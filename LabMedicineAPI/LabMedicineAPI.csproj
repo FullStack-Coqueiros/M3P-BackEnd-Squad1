@@ -27,7 +27,6 @@
     <Folder Include="AutoMapper\" />
     <Folder Include="Base\" />
     <Folder Include="Enumerators\" />
-    <Folder Include="Model\" />
   </ItemGroup>
 
 </Project>
