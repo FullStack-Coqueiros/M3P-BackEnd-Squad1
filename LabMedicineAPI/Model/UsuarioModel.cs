@@ -31,9 +31,8 @@ namespace LabMedicineAPI.Model
        [Column(TypeName = "VARCHAR"), Required, MinLength(6)]
        public string Senha { get; set; }
 
-       //faltando o dropdown com as opções
        [Column(TypeName = "VARCHAR"), Required]
-       public string Tipo { get; set; }
+       public TipoEnum Tipo { get; set; }
 
        [Column(TypeName = "VARCHAR"), Required]
        public bool StatusSistema { get; } = true;
