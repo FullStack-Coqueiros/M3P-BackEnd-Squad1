@@ -13,11 +13,9 @@ namespace LabMedicineAPI.Model
         [Column(TypeName = "VARCHAR"), Required, MaxLength(64), MinLength(8)]
         public string NomeExame { get; set; }
         
-        //validar se o tipo de dado dessa propriedade está correto
         [Required]
         public DateTime DataExame { get; set; }
 
-        //validar se o tipo de dado dessa propriedade está correto
         [Required]
         public DateTime HorarioExame { get; set; }
               
@@ -35,6 +33,20 @@ namespace LabMedicineAPI.Model
         [Required]
         public bool StatusSistema { get; set; }
 
-        //ver como colocar o PacienteID e UsuarioID
+        [Required]
+        public int PacienteId { get; set; }
+
+        [Required]
+        public PacienteModel paciente { get; set; }
+
+        [Required]
+        public int UsuarioId { get; set; }
+        
+        [Required]
+        public UsuarioModel usuario { get; set; }
+
+
+
+
     }
 }
