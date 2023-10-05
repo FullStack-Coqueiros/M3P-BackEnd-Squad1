@@ -32,7 +32,7 @@ namespace LabMedicineAPI.Model
         [Required]
         public UnidadeEnum Unidade { get; set; }
 
-        public bool StatusSistemaMyProperty { get; set; }
+        public bool StatusSistema { get; set; }
 
         //ver como inserir a prop PacienteId e UsuarioId
     }
