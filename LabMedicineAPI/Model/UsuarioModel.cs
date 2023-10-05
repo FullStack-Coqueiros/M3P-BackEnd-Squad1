@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using LabMedicineAPI.Model.Enums;
 
 namespace LabMedicineAPI.Model
 {
@@ -13,9 +14,8 @@ namespace LabMedicineAPI.Model
        [Column(TypeName = "VARCHAR"), Required, MaxLength(64), MinLength(8)]
        public string NomeCompleto { get; set; }
 
-       //faltando o dropdown e as opções
        [Column(TypeName = "VARCHAR"), Required]
-       public string Genero { get; set; }
+       public GeneroEnum Genero { get; set; }
 
        [Column(TypeName = "VARCHAR"), Required, MaxLength(14)]
        public string CPF { get; set; }
