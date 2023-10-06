@@ -2,19 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LabMedicineAPI.Model.Enums;
+using LabMedicineAPI.Enums;
 
 namespace LabMedicineAPI.Model
 {
     public class PacienteModel
     {
-        public string NomeCompleto { get; set; }
-        public string Genero { get; set; }
         public DateTime DataNasc { get; set; }
-        public string CPF { get; set; }
         public string RG { get; set; }
         public EstadoCivilEnum EstadoCivil { get; set; }
-        public string Email { get; set; }
         public string Naturalidade { get; set; }
         public string ContatoEmergencia { get; set; }
         public string ListaAlergias { get; set; }
@@ -23,6 +19,5 @@ namespace LabMedicineAPI.Model
         public string NumeroConvenio { get; set; }
         public DateTime? ValidadeConvenio { get; set; }
         public Endereco Endereco { get; set; }
-        public bool StatusSistema { get; set; } = true;
     }
 }

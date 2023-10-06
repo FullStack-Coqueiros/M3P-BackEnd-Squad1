@@ -1,10 +1,10 @@
-namespace LabMedicineAPI.Model.Enums
+namespace LabMedicineAPI.Enums
 {
     public enum UnidadeEnum
     {
         mg,
         mcg,
         g,
-        mL            
+        mL
     }
 }
