@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace LabMedicineAPI.Model
 {
+    [Table("Endereco")]
     public class Endereco
     {
         [Key]
