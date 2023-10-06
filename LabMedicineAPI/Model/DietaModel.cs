@@ -25,22 +25,24 @@ namespace LabMedicineAPI.Model
        [Required]
        public TipoDietaEnum TipoDieta { get; set; }
 
+       //ver com Vitor, tem 2 prop Descriçao mesmo ou é erro na documentação?
+
        [Column(TypeName = "VARCHAR"), Required]
        public bool StatusSistema { get; } = true;
 
        [Required]
+       [ForeignKey("Paciente Model")]
        public int PacienteId { get; set; }
 
        [Required]
        public PacienteModel paciente { get; set; }
 
        [Required]
+       [ForeignKey("Usuario Model")]
        public int UsuarioId { get; set; }
         
        [Required]
-       public UsuarioModel usuario { get; set; }
-
-       //ver com Vitor, tem 2 prop Descriçao mesmo ou é erro?
+       public UsuarioModel usuario { get; set; }     
 
     }
 }
