@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
+using LabMedicineAPI.Model.Enums;
+
+namespace LabMedicineAPI.Model
+{
+    [Table("Dieta")]
+    public class DietaModel
+    {
+       [Column(TypeName = "VARCHAR"), Required, MaxLength(100), MinLength(5)]
+       public string NomeDieta { get; set; } 
+
+       public string DescricaoDieta { get; set; }
+
+       [Required]
+       public DateTime Data { get; set; }
+
+       [Required]
+       public DateTime Horario { get; set; }
+
+       [Required]
+       public TipoDietaEnum TipoDieta { get; set; }
+
+       [Column(TypeName = "VARCHAR"), Required]
+       public bool StatusSistema { get; } = true;
+
+       [Required]
+       public int PacienteId { get; set; }
+
+       [Required]
+       public PacienteModel paciente { get; set; }
+
+       [Required]
+       public int UsuarioId { get; set; }
+        
+       [Required]
+       public UsuarioModel usuario { get; set; }
+
+       //ver com Vitor, tem 2 prop Descriçao mesmo ou é erro?
+
+    }
+}

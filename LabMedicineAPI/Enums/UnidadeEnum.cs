@@ -5,6 +5,8 @@ namespace LabMedicineAPI.Enums
         mg,
         mcg,
         g,
-        mL
+        mL,
+        porcentagem
+
     }
 }

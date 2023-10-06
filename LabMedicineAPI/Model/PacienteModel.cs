@@ -1,23 +1,30 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using LabMedicineAPI.Enums;
+using LabMedicineAPI.Model.Enums;
+using LabMedicineAPI.Model;
+using System.ComponentModel.DataAnnotations;
 
 namespace LabMedicineAPI.Model
 {
-    public class PacienteModel
+    [Table("Paciente")]
+    public class PacienteModel : UsuarioModel
     {
-        public DateTime DataNasc { get; set; }
-        public string RG { get; set; }
+        [Required]
+        public DateTime DataNascimento { get; set; }
+        [Column(TypeName = "VARCHAR"), Required, RegularExpression(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$")]
+        public string RgOrgaoExpedidor { get; set; }
+        [Required]
         public EstadoCivilEnum EstadoCivil { get; set; }
-        public string Naturalidade { get; set; }
-        public string ContatoEmergencia { get; set; }
-        public string ListaAlergias { get; set; }
-        public string ListaCuidadosEspecificos { get; set; }
+        public string Alergias { get; set; }
+        public string CuidadosEspecificos { get; set; }
         public string Convenio { get; set; }
         public string NumeroConvenio { get; set; }
         public DateTime? ValidadeConvenio { get; set; }
+        [Required]
         public Endereco Endereco { get; set; }
     }
 }
