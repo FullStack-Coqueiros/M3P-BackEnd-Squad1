@@ -1,4 +1,4 @@
-namespace LabMedicineAPI.Model.Enums
+namespace LabMedicineAPI.Enums
 {
     public enum GeneroEnum
     {

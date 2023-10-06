@@ -1,4 +1,4 @@
-namespace LabMedicineAPI.Model.Enums
+namespace LabMedicineAPI.Enums
 {
     public enum UnidadeEnum
     {
@@ -6,6 +6,7 @@ namespace LabMedicineAPI.Model.Enums
         mcg,
         g,
         mL,
-        porcentagem          
+        porcentagem
+
     }
 }
