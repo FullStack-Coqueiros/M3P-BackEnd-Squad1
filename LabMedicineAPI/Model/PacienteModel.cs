@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using LabMedicineAPI.Enums;
 using LabMedicineAPI.Model;
 using System.ComponentModel.DataAnnotations;
+using LabMedicineAPI.Base;
 
 namespace LabMedicineAPI.Model
 {
     [Table("Paciente")]
-    public class PacienteModel : UsuarioModel
+    public class PacienteModel : BaseUsuario
     {
         [Required]
         public DateTime DataNascimento { get; set; }
@@ -25,9 +26,8 @@ namespace LabMedicineAPI.Model
         public DateTime? ValidadeConvenio { get; set; }
         [Required]
         public Endereco Endereco { get; set; }
-        [Required]
-        public int UsuarioId { get; set; }
-        [Required]
-        public UsuarioModel usuario { get; set; }
+        public List <ConsultaModel> Consultas { get; set; }
+
+       
     }
 }

@@ -20,9 +20,9 @@ namespace LabMedicineAPI.Model
         public bool StatusDoSistema { get; set; }
         public int PacienteId { get; set; }
         [Required]
-        public PacienteModel paciente { get; set; }
+        public PacienteModel Paciente { get; set; }
         public int UsuarioId { get; set; }
         [Required]
-        public UsuarioModel usuario { get; set; }
+        public UsuarioModel Usuario { get; set; }
     }
 }

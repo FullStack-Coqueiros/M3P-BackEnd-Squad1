@@ -24,9 +24,10 @@ namespace LabMedicineAPI.Infra
         {
 
 
-            modelBuilder.Entity<PacienteModel>()
+            modelBuilder.Entity<ConsultaModel>()
                         .HasOne(h => h.Paciente) // Um usuário pode ter muitos pacientes
-                        .WithMany(w => w.Consultas) // Um paciente pertence a um único usuário
+                        .WithMany(c => c.Consultas)
+                        .HasForeignKey(p => p.PacienteId)
                         .OnDelete(DeleteBehavior.Restrict);
             
             modelBuilder.Entity<UsuarioModel>()
