@@ -25,5 +25,9 @@ namespace LabMedicineAPI.Model
         public DateTime? ValidadeConvenio { get; set; }
         [Required]
         public Endereco Endereco { get; set; }
+        [Required]
+        public int UsuarioId { get; set; }
+        [Required]
+        public UsuarioModel usuario { get; set; }
     }
 }
