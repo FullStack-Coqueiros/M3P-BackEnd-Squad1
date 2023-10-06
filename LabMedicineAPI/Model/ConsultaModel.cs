@@ -13,7 +13,6 @@ namespace LabMedicineAPI.Model
         public DateTime HorarioConsulta { get; set; }
         [Column(TypeName = "VARCHAR"), Required, MaxLength(1024), MinLength(16)]
         public string ProblemaDescricao { get; set; }
-        
         public string? MedicacaoIndicada { get; set; }
         [Column(TypeName = "VARCHAR"), Required, MaxLength(256), MinLength(16)]
         public string DosagemEPrecaucoes { get; set; }

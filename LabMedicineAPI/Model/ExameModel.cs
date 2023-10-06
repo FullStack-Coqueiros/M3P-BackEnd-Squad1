@@ -45,8 +45,5 @@ namespace LabMedicineAPI.Model
         [Required]
         public UsuarioModel usuario { get; set; }
 
-
-
-
     }
 }
