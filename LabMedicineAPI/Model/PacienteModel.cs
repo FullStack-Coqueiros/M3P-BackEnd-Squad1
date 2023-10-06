@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 namespace LabMedicineAPI.Model
 {
     [Table("Paciente")]
-    public class PacienteModel : UsuarioModel
+    public class PacienteModel : BaseUsuario
     {
         [Required]
         public DateTime DataNascimento { get; set; }
