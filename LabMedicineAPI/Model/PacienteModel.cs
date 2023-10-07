@@ -27,7 +27,12 @@ namespace LabMedicineAPI.Model
         [Required]
         public Endereco Endereco { get; set; }
         public List <ConsultaModel> Consultas { get; set; }
+        public List<DietaModel> Dietas { get; set; }
+        public List<ExameModel> Exames { get; set; }
 
-       
+
+
+
+
     }
 }

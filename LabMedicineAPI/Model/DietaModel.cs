@@ -35,14 +35,14 @@ namespace LabMedicineAPI.Model
        public int PacienteId { get; set; }
 
        [Required]
-       public PacienteModel paciente { get; set; }
+       public PacienteModel Paciente { get; set; }
 
        [Required]
        [ForeignKey("Usuario Model")]
        public int UsuarioId { get; set; }
         
        [Required]
-       public UsuarioModel usuario { get; set; }     
+       public UsuarioModel Usuario { get; set; }     
 
     }
 }

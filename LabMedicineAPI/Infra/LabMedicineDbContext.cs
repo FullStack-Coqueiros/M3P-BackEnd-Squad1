@@ -7,13 +7,13 @@ namespace LabMedicineAPI.Infra
     public class LabMedicineDbContext : DbContext
     {
         public DbSet<UsuarioModel> Usuarios { get; set; }
-        public DbSet<PacienteModel>Pacientes { get; set; }
-        public DbSet<ConsultaModel>Consultas { get; set; }
-        public DbSet<Endereco>Enderecos { get; set; }
-        public DbSet<ExameModel>Exames { get; set; }
-        public DbSet<ExercicioModel>Exercicios { get; set; }
-        public DbSet<DietaModel>Dietas { get; set; }
-        public DbSet<MedicamentoModel>Medicamentos { get; set; }
+        public DbSet<PacienteModel> Pacientes { get; set; }
+        public DbSet<ConsultaModel> Consultas { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<ExameModel> Exames { get; set; }
+        public DbSet<ExercicioModel> Exercicios { get; set; }
+        public DbSet<DietaModel> Dietas { get; set; }
+        public DbSet<MedicamentoModel> Medicamentos { get; set; }
 
 
 
@@ -25,11 +25,24 @@ namespace LabMedicineAPI.Infra
 
 
             modelBuilder.Entity<ConsultaModel>()
-                        .HasOne(h => h.Paciente) // Um usuário pode ter muitos pacientes
-                        .WithMany(c => c.Consultas)
+                        .HasOne(h => h.Paciente) // Um paciente pode ter muitos consulta
+                        .WithMany(c => c.Consultas) // Um paciente muitas consultas
                         .HasForeignKey(p => p.PacienteId)
                         .OnDelete(DeleteBehavior.Restrict);
-            
+
+                        modelBuilder.Entity<DietaModel>()
+                        .HasOne(h => h.Paciente) // Um paciente pode ter muitos dietas
+                        .WithMany(c => c.Dietas) // Um paciente muitas consultas
+                        .HasForeignKey(p => p.PacienteId)
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                        modelBuilder.Entity<ExameModel>()
+                        .HasOne(h => h.Paciente) // Um paciente pode ter muitos dietas
+                        .WithMany(c => c.Exames) // Um paciente muitas 
+                        .HasForeignKey(p => p.PacienteId)
+                        .OnDelete(DeleteBehavior.Restrict);
+            ///
+
             modelBuilder.Entity<UsuarioModel>()
                         .HasOne(h => h.Pacientes) // Um usuário pode ter muitos pacientes
                         .WithMany(w => w.Id) // Um paciente pertence a um único usuário
