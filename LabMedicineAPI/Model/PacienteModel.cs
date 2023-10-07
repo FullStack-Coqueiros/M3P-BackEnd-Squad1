@@ -18,6 +18,12 @@ namespace LabMedicineAPI.Model
         public string RgOrgaoExpedidor { get; set; }
         [Required]
         public EstadoCivilEnum EstadoCivil { get; set; }
+        [Required]
+        public string Telefone { get; set; }
+        [Required, MaxLength(64), MinLength(8)]
+        public string Naturalidade { get; set; }
+        [Required]
+        public string ContatoEmergencia { get; set; }
         public string Alergias { get; set; }
         public string CuidadosEspecificos { get; set; }
         public string Convenio { get; set; }
