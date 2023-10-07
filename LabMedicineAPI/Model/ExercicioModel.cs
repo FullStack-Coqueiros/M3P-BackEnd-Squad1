@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using LabMedicineAPI.Model.Enums;
+using LabMedicineAPI.Enums;
+
 
 namespace LabMedicineAPI.Model
 {
@@ -33,12 +34,14 @@ namespace LabMedicineAPI.Model
         public bool StatusSistema { get; } = true;
 
         [Required]
+        [ForeignKey("PacienteModel")]
         public int PacienteId { get; set; }
 
         [Required]
         public PacienteModel paciente { get; set; }
 
         [Required]
+        [ForeignKey("UsuarioModel")]
         public int UsuarioId { get; set; }
         
         [Required]

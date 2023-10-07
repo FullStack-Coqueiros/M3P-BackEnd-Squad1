@@ -1,4 +1,4 @@
-namespace LabMedicineAPI.Model.Enums
+namespace LabMedicineAPI.Enums
 {
     public enum TipoExercicioEnum
     {
@@ -8,6 +8,5 @@ namespace LabMedicineAPI.Model.Enums
         Forca,
         Agilidade,
         Outro
-
     }
 }
