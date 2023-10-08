@@ -205,9 +205,9 @@ namespace LabMedicineAPI.Migrations
                     TipoExerc = table.Column<int>(type: "int", nullable: false),
                     QuantidadeSemana = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DescricaoExerc = table.Column<string>(type: "VARCHAR(1000)", maxLength: 1000, nullable: false),
-                    StatusSistema = table.Column<string>(type: "VARCHAR(1)", nullable: false),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Horario = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StatusSistema = table.Column<bool>(type: "bit", nullable: false),
                     PacienteId = table.Column<int>(type: "int", nullable: false),
                     UsuarioId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -239,9 +239,9 @@ namespace LabMedicineAPI.Migrations
                     Quantidade = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Unidade = table.Column<int>(type: "int", nullable: false),
                     Observacoes = table.Column<string>(type: "VARCHAR(1000)", maxLength: 1000, nullable: false),
-                    StatusSistema = table.Column<bool>(type: "bit", nullable: false),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Horario = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StatusSistema = table.Column<bool>(type: "bit", nullable: false),
                     PacienteId = table.Column<int>(type: "int", nullable: false),
                     UsuarioId = table.Column<int>(type: "int", nullable: false)
                 },
