@@ -21,7 +21,7 @@ namespace LabMedicineAPI.Controllers
         public IActionResult Logar(LoginDTO loginDTO)
         {
             if (!_authService.Autenticar(loginDTO))
-                return Unauthorized("Usuario ou Senha inválidos");
+                return Unauthorized("Email ou Senha inválidos");
 
             string token = _authService.GerarToken(loginDTO);
             return Ok(token);

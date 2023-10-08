@@ -1,6 +1,10 @@
-﻿namespace LabMedicineAPI.Interfaces
+﻿using LabMedicineAPI.DTOs;
+
+namespace LabMedicineAPI.Interfaces
 {
-    public class IAuthServices
+    public interface IAuthServices
     {
+        bool Autenticar(LoginDTO login);
+        string GerarToken(LoginDTO loginDTO);
     }
 }

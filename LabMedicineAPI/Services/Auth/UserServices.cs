@@ -1,42 +1,43 @@
-﻿using static LabMedicineAPI.Services.Auth.UserServices;
+﻿using LabMedicineAPI.Interfaces;
+using static LabMedicineAPI.Services.Auth.UserServices;
 
 namespace LabMedicineAPI.Services.Auth
 {
-    public class UserServices
+
+
+    public class UserServices : IUserServices
     {
-        public class UserServices : IUserServices, IUserServices
+        public Usuario Atualizar(Usuario usuario)
         {
-            public Usuario Atualizar(Usuario usuario)
-            {
-                throw new NotImplementedException();
-            }
+            throw new NotImplementedException();
+        }
 
-            public Usuario Criar(Usuario usuario)
-            {
-                throw new NotImplementedException();
-            }
+        public Usuario Criar(Usuario usuario)
+        {
+            throw new NotImplementedException();
+        }
 
-            public void Deletar(string login)
-            {
-                throw new NotImplementedException();
-            }
+        public void Deletar(string login)
+        {
+            throw new NotImplementedException();
+        }
 
-            public List<Usuario> Obter()
-            {
-                throw new NotImplementedException();
-            }
+        public List<Usuario> Obter()
+        {
+            throw new NotImplementedException();
+        }
 
-            public Usuario ObterPorLogin(string login)
+        public Usuario ObterPorLogin(string login)
+        {//implantar busca de usuario no db
+            return new Usuario()
             {
-                return new Usuario()
-                {
-                    Nome = "Vitor",
-                    Login = "vitor.lassen",
-                    Senha = "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
-                    Permissao = "Professor",
-                    Interno = true
-                };
-            }
+                Nome = "Vitor",
+                Login = "vitor.lassen",
+                Senha = "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
+                Permissao = "Professor",
+                Interno = true
+            };
         }
     }
+
 }
