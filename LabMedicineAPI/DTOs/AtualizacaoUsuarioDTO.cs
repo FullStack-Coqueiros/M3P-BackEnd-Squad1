@@ -7,7 +7,7 @@ using LabMedicineAPI.Enums;
 
 namespace LabMedicineAPI.DTOs
 {
-    public class AlteracaoUsuarioDTO
+    public class AtualizacaoUsuarioDTO
     {
         [Required, MaxLength(64), MinLength(8)]
         public string NomeCompleto { get; set; }
