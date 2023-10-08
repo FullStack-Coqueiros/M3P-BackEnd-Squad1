@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace LabMedicineAPI.DTOs
 {
-    public class LoginDTO
+    public class PacienteDeleteDTO
     {
-        [Required]
-        public string Email { get; set; }
-        [Required]
-        public string Senha { get; set; }
+        [Required(ErrorMessage = "O campo ID é obrigatório")]
+        public int Id { get; set; }
     }
 }
