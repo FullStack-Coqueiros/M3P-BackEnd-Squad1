@@ -23,11 +23,7 @@ namespace LabMedicineAPI.Model
 
         [Column(TypeName = "VARCHAR"), Required, MaxLength(1000), MinLength(10)]
         public string DescricaoExerc { get; set; }
-
-        [Column(TypeName = "VARCHAR"), Required]
-        public bool StatusSistema { get; } = true;
-
-        
+      
 
     }
 }

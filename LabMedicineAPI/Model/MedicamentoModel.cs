@@ -26,10 +26,6 @@ namespace LabMedicineAPI.Model
 
         [Column(TypeName = "VARCHAR"), Required, MaxLength(1000), MinLength(10)]
         public string Observacoes { get; set; }
-
-        [Required]
-        public bool StatusSistema { get; set; }
-
        
     }
 }
