@@ -1,11 +1,13 @@
-﻿namespace LabMedicineAPI.Interfaces
+﻿using LabMedicineAPI.Model;
+
+namespace LabMedicineAPI.Interfaces
 {
     public interface IUserServices
     {
-        Usuario Atualizar(Usuario usuario);
-        Usuario Criar(Usuario usuario);
+        UsuarioModel Atualizar(UsuarioModel usuario);
+        UsuarioModel Criar(UsuarioModel usuario);
         void Deletar(string login);
-        List<Usuario> Obter();
-        Usuario ObterPorLogin(string login);
+        List<UsuarioModel> Obter();
+        UsuarioModel ObterPorLogin(string login);
     }
 }

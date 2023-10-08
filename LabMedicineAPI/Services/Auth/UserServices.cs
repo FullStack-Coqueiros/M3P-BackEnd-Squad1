@@ -1,4 +1,5 @@
 ﻿using LabMedicineAPI.Interfaces;
+using LabMedicineAPI.Model;
 using static LabMedicineAPI.Services.Auth.UserServices;
 
 namespace LabMedicineAPI.Services.Auth
@@ -7,12 +8,12 @@ namespace LabMedicineAPI.Services.Auth
 
     public class UserServices : IUserServices
     {
-        public Usuario Atualizar(Usuario usuario)
+        public UsuarioModel Atualizar(UsuarioModel usuario)
         {
             throw new NotImplementedException();
         }
 
-        public Usuario Criar(Usuario usuario)
+        public UsuarioModel Criar(UsuarioModel usuario)
         {
             throw new NotImplementedException();
         }
@@ -22,14 +23,14 @@ namespace LabMedicineAPI.Services.Auth
             throw new NotImplementedException();
         }
 
-        public List<Usuario> Obter()
+        public List<UsuarioModel> Obter()
         {
             throw new NotImplementedException();
         }
 
-        public Usuario ObterPorLogin(string login)
+        public UsuarioModel ObterPorLogin(string login)
         {//implantar busca de usuario no db
-            return new Usuario()
+            return new UsuarioModel()
             {
                 Nome = "Vitor",
                 Login = "vitor.lassen",

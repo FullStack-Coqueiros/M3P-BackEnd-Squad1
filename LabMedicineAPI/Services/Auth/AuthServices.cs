@@ -44,12 +44,12 @@ namespace LabMedicineAPI.Services.Auth
             {
                 Subject = new ClaimsIdentity(new Claim[]
                   {
-                      new Claim(ClaimTypes.Name, usuario.Login),
+                      new Claim(ClaimTypes.Name, usuario.Email),
                       new Claim("Nome", usuario.Nome),
                       new Claim("Interno", usuario.Interno.ToString()),
-                      new Claim(ClaimTypes.Role, usuario.Permissao),
+                      new Claim(ClaimTypes.Role, usuario.Permissao),// determina as permissões de acesso
                   }),
-                Expires = DateTime.UtcNow.AddHours(4),
+                Expires = DateTime.UtcNow.AddHours(8),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
