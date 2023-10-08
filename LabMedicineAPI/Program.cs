@@ -1,6 +1,8 @@
 using LabMedicineAPI.Infra;
+using LabMedicineAPI.Repositories;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,10 @@ builder.Services.AddSwaggerGen();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<LabMedicineDbContext>(o => o.UseSqlServer(connectionString));
+
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
 
 //ConfigurationMapper
 builder.Services.AddAutoMapper(typeof(Program));

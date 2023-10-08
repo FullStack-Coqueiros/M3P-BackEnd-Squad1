@@ -259,9 +259,8 @@ namespace LabMedicineAPI.Migrations
                     b.Property<decimal>("QuantidadeSemana")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("StatusSistema")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR");
+                    b.Property<bool>("StatusSistema")
+                        .HasColumnType("bit");
 
                     b.Property<int>("TipoExerc")
                         .HasColumnType("int");
