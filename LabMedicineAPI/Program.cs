@@ -2,7 +2,7 @@ using LabMedicineAPI.Infra;
 using LabMedicineAPI.Repositories;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
-using static LabMedicineAPI.Repositories.IRepository;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
