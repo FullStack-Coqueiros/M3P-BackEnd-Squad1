@@ -20,9 +20,8 @@ namespace LabMedicineAPI.Model
 
         [Column(TypeName = "VARCHAR"), Required]
         public TipoEnum Tipo { get; set; }
-        public ICollection<PacienteModel>? Pacientes { get; set; } /// 
-
-        public ICollection<ConsultaModel>? Consultas { get; set; } ////
+        public ICollection<PacienteModel>? Pacientes { get; set; }
+        public ICollection<ConsultaModel>? Consultas { get; set; }
 
     }
 }

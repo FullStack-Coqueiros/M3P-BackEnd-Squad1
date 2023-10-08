@@ -14,6 +14,8 @@ namespace LabMedicineAPI.Base
         public DateTime Horario { get; set; } //Usar a prop .formenber noa uato mapper para renomear a prop conforme a dto e exigencia do projeto no request.
 
         [Required]
+        public bool StatusSistema { get; set; }
+        [Required]
         [ForeignKey("PacienteModel")]
         public int PacienteId { get; set; }
         [Required]

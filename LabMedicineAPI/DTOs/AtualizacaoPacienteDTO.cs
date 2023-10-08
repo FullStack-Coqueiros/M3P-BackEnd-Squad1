@@ -32,7 +32,7 @@ namespace LabMedicineAPI.DTOs
         public string NumeroConvenio { get; set; }
         public DateTime ValidadeConvenio { get; set; }
         [Required]
-        public Endereco Endereco { get; set; }
+        public EnderecoModel Endereco { get; set; }
         [Required]
         public bool StatusSistema { get; set; }
     }
