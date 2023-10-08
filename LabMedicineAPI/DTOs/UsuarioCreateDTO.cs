@@ -38,6 +38,17 @@ namespace LabMedicineAPI.DTOs
 
         public bool StatusSistema { get; set; } = true; // Valor padrão: ativo
 
-        
+        public UsuarioCreateDTO(string nomeCompleto, GeneroEnum genero, string cpf, string telefone, string email, string senha, TipoEnum tipo,
+        bool statusSistema = true)
+        {
+            NomeCompleto = nomeCompleto;
+            Genero = genero;
+            CPF = cpf;
+            Telefone = telefone;
+            Email = email;
+            Senha = senha;
+            Tipo = tipo;
+            StatusSistema = statusSistema;
+        }
     }
 }
