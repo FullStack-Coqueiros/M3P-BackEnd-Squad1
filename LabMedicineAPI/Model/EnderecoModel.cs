@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace LabMedicineAPI.Model
 {
     [Table("Endereco")]
-    public class Endereco
+    public class EnderecoModel
     {
         [Key]
         public int EnderecoId { get; set; }
@@ -28,6 +28,19 @@ namespace LabMedicineAPI.Model
         public string Bairro { get; set; }
         [Column(TypeName = "VARCHAR"), Required]
         public string PontoReferencia { get; set; }
+
+        [Required]
+        [ForeignKey("Usuario Model")]
+        public int UsuarioId { get; set; }
+        [Required]
+        public UsuarioModel Usuario { get; set; }
+
+        [Required]
+        [ForeignKey("Paciente Model")]
+        public int PacienteId { get; set; }
+
+        [Required]
+        public PacienteModel Paciente { get; set; }
 
 
     }

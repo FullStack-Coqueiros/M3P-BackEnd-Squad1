@@ -22,10 +22,23 @@ namespace LabMedicineAPI.Model
         public string CuidadosEspecificos { get; set; }
         public string Convenio { get; set; }
         public string NumeroConvenio { get; set; }
-        public string ValidadeConvenio { get; set; }
-        [ForeignKey("Endereco")]
-        public int EnderecoID { get; set; }
+        public DateTime? ValidadeConvenio { get; set; }
         [Required]
-        public Endereco Endereco { get; set; }
+        [ForeignKey("UsuarioModel")]
+        public int UsuarioId { get; set; }
+        [Required]
+        public UsuarioModel Usuario { get; set; }
+        public ICollection <ConsultaModel> Consultas { get; set; }
+        public ICollection<DietaModel> Dietas { get; set; }
+        public ICollection<ExameModel> Exames { get; set; }
+        public ICollection<ExercicioModel> Exercicios { get; set;}
+        public ICollection<MedicamentoModel> Medicamentos { get; set;}
+        public ICollection<EnderecoModel> Enderecos { get; set; }
+
+       
+
+
+
+
     }
 }

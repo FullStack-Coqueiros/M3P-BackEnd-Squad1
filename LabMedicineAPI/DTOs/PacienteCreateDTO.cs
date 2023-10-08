@@ -54,7 +54,7 @@ namespace LabMedicineAPI.DTOs
 
         public DateTime? ValidadeConvenio { get; set; }
 
-        public required Endereco Endereco { get; set; }
+        public required EnderecoModel Endereco { get; set; }
 
         public bool StatusSistema { get; set; } = true; 
 
