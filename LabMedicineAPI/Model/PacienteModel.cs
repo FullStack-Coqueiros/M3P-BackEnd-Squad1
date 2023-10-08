@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using LabMedicineAPI.Enums;
-using LabMedicineAPI.Model;
 using System.ComponentModel.DataAnnotations;
 using LabMedicineAPI.Base;
 
@@ -15,7 +14,7 @@ namespace LabMedicineAPI.Model
     {
         [Required]
         public DateTime DataNascimento { get; set; }
-        [Column(TypeName = "VARCHAR"), Required, RegularExpression(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$")]
+        [Required, MaxLength(20)]
         public string RgOrgaoExpedidor { get; set; }
         [Required]
         public EstadoCivilEnum EstadoCivil { get; set; }
@@ -24,6 +23,8 @@ namespace LabMedicineAPI.Model
         public string Convenio { get; set; }
         public string NumeroConvenio { get; set; }
         public DateTime? ValidadeConvenio { get; set; }
+        [ForeignKey("Endereco")]
+        public int EnderecoID { get; set; }
         [Required]
         public Endereco Endereco { get; set; }
         public List <ConsultaModel> Consultas { get; set; }

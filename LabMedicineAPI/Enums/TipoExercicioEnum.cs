@@ -8,6 +8,5 @@ namespace LabMedicineAPI.Enums
         Forca,
         Agilidade,
         Outro
-
     }
 }

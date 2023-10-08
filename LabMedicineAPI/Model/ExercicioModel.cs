@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LabMedicineAPI.Enums;
 
+
 namespace LabMedicineAPI.Model
 {
     [Table("Exercicio")]
@@ -33,12 +34,14 @@ namespace LabMedicineAPI.Model
         public bool StatusSistema { get; } = true;
 
         [Required]
+        [ForeignKey("PacienteModel")]
         public int PacienteId { get; set; }
 
         [Required]
         public PacienteModel paciente { get; set; }
 
         [Required]
+        [ForeignKey("UsuarioModel")]
         public int UsuarioId { get; set; }
         
         [Required]
