@@ -1,11 +1,16 @@
 using LabMedicineAPI.Infra;
+<<<<<<< HEAD
 using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Services.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+=======
+using LabMedicineAPI.Repositories;
+>>>>>>> main
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +57,7 @@ builder.Services.AddDbContext<LabMedicineDbContext>(o => o.UseSqlServer(connecti
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+<<<<<<< HEAD
 var jwtChave = builder.Configuration.GetSection("jwtTokenChave").Get<string>();
 builder.Services.AddAuthentication(x =>
 {
@@ -70,6 +76,8 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+=======
+>>>>>>> main
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
