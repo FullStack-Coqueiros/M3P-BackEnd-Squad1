@@ -50,6 +50,8 @@ builder.Services.AddTransient<IUserServices, UserServices>();
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<LabMedicineDbContext>(o => o.UseSqlServer(connectionString));
 
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
 var jwtChave = builder.Configuration.GetSection("jwtTokenChave").Get<string>();
 builder.Services.AddAuthentication(x =>
 {

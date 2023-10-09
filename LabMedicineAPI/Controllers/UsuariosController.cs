@@ -55,8 +55,8 @@ namespace LabMedicineAPI.Controllers
             throw new NotImplementedException("Não encontrado");
         }
 
-        [HttpGet("ApenasProfessor")]
-        [Authorize(Roles = "Professor")]
+        [HttpGet("ApenasMedico")]
+        [Authorize(Roles = "Medico")]
         public ActionResult ApenasProfessor()
         {
             return Ok("apenas role professor");
