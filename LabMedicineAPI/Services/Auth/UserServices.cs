@@ -32,11 +32,11 @@ namespace LabMedicineAPI.Services.Auth
         {//implantar busca de usuario no db
             return new UsuarioModel()
             {
-                Nome = "Vitor",
-                Login = "vitor.lassen",
+                NomeCompleto = "Teste Nome",
+                Email = "teste@teste",
                 Senha = "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
-                Permissao = "Professor",
-                Interno = true
+                Tipo = Enums.TipoEnum.Medico,
+                StatusSistema = true
             };
         }
     }

@@ -1,5 +1,6 @@
 ﻿using LabMedicineAPI.DTOs;
 using LabMedicineAPI.Interfaces;
+using LabMedicineAPI.Utils;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -45,9 +46,9 @@ namespace LabMedicineAPI.Services.Auth
                 Subject = new ClaimsIdentity(new Claim[]
                   {
                       new Claim(ClaimTypes.Name, usuario.Email),
-                      new Claim("Nome", usuario.Nome),
-                      new Claim("Interno", usuario.Interno.ToString()),
-                      new Claim(ClaimTypes.Role, usuario.Permissao),// determina as permissões de acesso
+                      new Claim("Nome", usuario.NomeCompleto),
+                      new Claim("Interno", usuario.Email.ToString()),
+                      new Claim(ClaimTypes.Role, usuario.Tipo.ToString()),// determina as permissões de acesso
                   }),
                 Expires = DateTime.UtcNow.AddHours(8),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
