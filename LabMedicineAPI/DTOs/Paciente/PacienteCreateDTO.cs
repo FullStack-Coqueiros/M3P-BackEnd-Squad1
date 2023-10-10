@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using LabMedicineAPI.Enums;
 using LabMedicineAPI.Model;
 
-namespace LabMedicineAPI.DTOs
+namespace LabMedicineAPI.DTOs.Paciente
 {
     public class PacienteCreateDTO
     {
@@ -56,8 +56,8 @@ namespace LabMedicineAPI.DTOs
 
         public required EnderecoModel Endereco { get; set; }
 
-        public bool StatusSistema { get; set; } = true; 
+        public bool StatusSistema { get; set; } = true;
 
-        
+
     }
 }

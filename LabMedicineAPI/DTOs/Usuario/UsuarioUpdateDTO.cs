@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LabMedicineAPI.Enums;
 
-namespace LabMedicineAPI.DTOs
+namespace LabMedicineAPI.DTOs.Usuario
 {
     public class UsuarioUpdateDTO
     {

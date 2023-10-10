@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using LabMedicineAPI.DTOs;
+using LabMedicineAPI.DTOs.Exame;
+using LabMedicineAPI.DTOs.Paciente;
+using LabMedicineAPI.DTOs.Usuario;
 using LabMedicineAPI.Model;
 
 namespace LabMedicineAPI.AutoMapper
