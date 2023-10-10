@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LabMedicineAPI.DTOs
+namespace LabMedicineAPI.DTOs.Exame
 {
     public class ExameGetDTO
     {
