@@ -1,35 +1,62 @@
-﻿using LabMedicineAPI.Interfaces;
+﻿using AutoMapper;
+using LabMedicineAPI.DTOs;
+using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Model;
+using LabMedicineAPI.Repositories;
 using static LabMedicineAPI.Services.Auth.UserServices;
 
 namespace LabMedicineAPI.Services.Auth
 {
 
 
-    public class UserServices : IUserServices
+    public class UserServices:IUserServices
     {
-        public UsuarioModel Atualizar(UsuarioModel usuario)
+        readonly IRepository<UsuarioModel> _repository;
+        readonly IMapper _mapper;
+
+        public UserServices(IRepository<UsuarioModel> repository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+            _mapper = mapper;
         }
 
-        public UsuarioModel Criar(UsuarioModel usuario)
+        public UsuarioModel Atualizar(int id,UsuarioUpdateDTO UpdateDTO)
         {
-            throw new NotImplementedException();
+            var usuario = _repository.GetById(id);
+            if(usuario == null)
+            {
+                throw new Exception("Usuario não encontrado");
+            }
+            _mapper.Map(UpdateDTO, usuario);
+            var usuarioUpdated = _repository.Update(usuario);
+            var usuarioUpdateDTO = _mapper.Map<UsuarioModel>(usuarioUpdated);
+            return usuarioUpdateDTO;
+            
         }
 
-        public void Deletar(string login)
+        public UsuarioModel Criar(UsuarioCreateDTO createDTO)
         {
-            throw new NotImplementedException();
+            var usuario = _mapper.Map<UsuarioModel>(createDTO);
+            var usuarioCreated = _repository.Create(usuario);
+            var usuarioCreatedDTO = _mapper.Map<UsuarioModel>(usuarioCreated);
+            return usuarioCreatedDTO;
+         
+        }
+        public bool Deletar(int id)
+        {
+            return _repository.Delete(id);
         }
 
-        public List<UsuarioModel> Obter()
+        public IEnumerable<UsuarioGetDTO> Obter()
         {
-            throw new NotImplementedException();
+            var usuarios = _repository.GetAll();
+            var usuariosDTO = _mapper.Map<IEnumerable<UsuarioGetDTO>>(usuarios);
+            return usuariosDTO;
         }
 
         public UsuarioModel ObterPorLogin(string login)
-        {//implantar busca de usuario no db
+        {
+            
             return new UsuarioModel()
             {
                 NomeCompleto = "Teste Nome",

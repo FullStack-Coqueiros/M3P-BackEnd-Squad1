@@ -1,11 +1,8 @@
 using LabMedicineAPI.Infra;
-<<<<<<< HEAD
 using LabMedicineAPI.Interfaces;
+using LabMedicineAPI.Repositories;
 using LabMedicineAPI.Services.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-=======
-using LabMedicineAPI.Repositories;
->>>>>>> main
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -56,28 +53,15 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 builder.Services.AddDbContext<LabMedicineDbContext>(o => o.UseSqlServer(connectionString));
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IAuthServices, AuthServices>();
+builder.Services.AddScoped<IUserServices, UserServices>();
 
-<<<<<<< HEAD
-var jwtChave = builder.Configuration.GetSection("jwtTokenChave").Get<string>();
-builder.Services.AddAuthentication(x =>
+builder.Services.AddRouting(options =>
 {
-    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(x =>
-{
-    x.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(jwtChave)),
-        ValidateIssuer = false,
-        ValidateAudience = false,
-        RequireExpirationTime = true
-
-    };
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
 });
 
-=======
->>>>>>> main
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -88,6 +72,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(p =>
+{
+    p.AllowAnyOrigin();
+    p.AllowAnyHeader();
+    p.AllowAnyMethod();
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
