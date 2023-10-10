@@ -59,12 +59,11 @@ namespace LabMedicineAPI.Services.Auth
             return usuariosDTO;
         }
 
-        public UsuarioModel ObterPorLogin (string email)//(LoginDTO login)
+        public UsuarioModel ObterPorLogin (LoginDTO login)
         {
-            var criteria = (Expression<Func<UsuarioModel, bool>>)(u => u.Email == email);
-            //Expression<Func<UsuarioModel, bool>> criteria = u => u.Email == login.Email && u.Senha == login.Senha;
-
-            return _repository.GetByUser(criteria);
+            Expression<Func<UsuarioModel, bool>>user=(u => u.Email == login.Email);
+            
+            return _repository.GetByUser(user);
             
         }
     }

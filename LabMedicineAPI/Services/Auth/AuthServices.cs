@@ -23,7 +23,12 @@ namespace LabMedicineAPI.Services.Auth
 
         public bool Autenticar(LoginDTO login)
         {
-            var usuario = _userService.ObterPorLogin(login.Email);
+            var loginDTO = new LoginDTO
+            {
+                Email = login.Email,
+                Senha = login.Senha // Você pode definir a senha aqui se for necessário
+            };
+            var usuario = _userService.ObterPorLogin(loginDTO);
             if (usuario != null)
             {
                 return usuario.Senha == Criptografia.CriptografarSenha(login.Senha);
@@ -35,7 +40,8 @@ namespace LabMedicineAPI.Services.Auth
 
         public string GerarToken(LoginDTO loginDTO)
         {
-            var usuario = _userService.ObterPorLogin(loginDTO.Email);
+
+            var usuario = _userService.ObterPorLogin(loginDTO);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_chaveJwt);

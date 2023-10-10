@@ -50,11 +50,11 @@ namespace LabMedicineAPI.Repositories
             return true;
         }
 
-        public TEntity GetByUser(Expression<Func<TEntity, bool>> criteria)
+        public TEntity GetByUser(Expression<Func<TEntity, bool>> user)
         {
             try
             {
-                return _context.Set<TEntity>().FirstOrDefault(criteria);
+                return _context.Set<TEntity>().FirstOrDefault(user);
             }
             catch (Exception ex)
             {
