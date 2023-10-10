@@ -5,7 +5,7 @@ using LabMedicineAPI.Repositories;
 
 namespace LabMedicineAPI.Service
 {
-    public class PacienteServices
+    public class PacienteServices : IPacienteServices
     {
         readonly IRepository<PacienteModel> _repository;
         readonly IMapper _mapper;
@@ -38,7 +38,7 @@ namespace LabMedicineAPI.Service
             return pacienteCreatedDTO;
 
         }
-        public PacienteModel  PacienteUpdateDTO(int id, PacienteUpdateDTO updatePacienteDTO)
+        public PacienteModel PacienteUpdateDTO(int id, PacienteUpdateDTO updatePacienteDTO)
         {
             var paciente = _repository.GetById(id);
             if (paciente == null)
