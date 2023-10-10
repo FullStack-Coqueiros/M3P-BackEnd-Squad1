@@ -1,13 +1,14 @@
-﻿using LabMedicineAPI.Model;
+﻿using LabMedicineAPI.DTOs;
+using LabMedicineAPI.Model;
 
 namespace LabMedicineAPI.Interfaces
 {
     public interface IUserServices
     {
-        UsuarioModel Atualizar(UsuarioModel usuario);
-        UsuarioModel Criar(UsuarioModel usuario);
-        void Deletar(string login);
-        List<UsuarioModel> Obter();
-        UsuarioModel ObterPorLogin(string login);
+        UsuarioModel Atualizar(int id, UsuarioUpdateDTO UpdateDTO);
+        UsuarioModel Criar(UsuarioCreateDTO createDTO);
+        bool Deletar(int id);
+        IEnumerable<UsuarioGetDTO> Obter();
+        UsuarioModel ObterPorLogin(LoginDTO login);
     }
 }
