@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using LabMedicineAPI.Enums;
 using LabMedicineAPI.Model;
 
-namespace LabMedicineAPI.DTOs
+namespace LabMedicineAPI.DTOs.Paciente
 {
     public class PacienteUpdateDTO
     {

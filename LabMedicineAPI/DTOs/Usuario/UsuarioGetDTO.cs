@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LabMedicineAPI.Enums;
 
-namespace LabMedicineAPI.DTOs
+namespace LabMedicineAPI.DTOs.Usuario
 {
     public class UsuarioGetDTO
     {
@@ -22,7 +22,7 @@ namespace LabMedicineAPI.DTOs
             Email = email;
             Tipo = tipo;
             StatusSistema = statusDoSistema;
-            
+
         }
     }
 }

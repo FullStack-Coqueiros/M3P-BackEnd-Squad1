@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LabMedicineAPI.DTOs;
+using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.Model;
 using LabMedicineAPI.Repositories;
 

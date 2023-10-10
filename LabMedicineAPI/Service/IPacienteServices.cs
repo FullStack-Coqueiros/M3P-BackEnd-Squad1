@@ -1,4 +1,4 @@
-﻿using LabMedicineAPI.DTOs;
+﻿using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.Model;
 
 namespace LabMedicineAPI.Service
