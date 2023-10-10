@@ -1,4 +1,5 @@
-﻿using LabMedicineAPI.DTOs;
+﻿using LabMedicineAPI.DTOs.Login;
+using LabMedicineAPI.DTOs.Usuario;
 using LabMedicineAPI.Model;
 
 namespace LabMedicineAPI.Interfaces

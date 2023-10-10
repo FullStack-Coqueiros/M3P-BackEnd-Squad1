@@ -1,4 +1,4 @@
-﻿using LabMedicineAPI.DTOs;
+﻿using LabMedicineAPI.DTOs.Login;
 
 namespace LabMedicineAPI.Interfaces
 {

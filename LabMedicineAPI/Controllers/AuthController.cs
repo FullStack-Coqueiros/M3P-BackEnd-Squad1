@@ -1,4 +1,4 @@
-﻿using LabMedicineAPI.DTOs;
+﻿using LabMedicineAPI.DTOs.Login;
 using LabMedicineAPI.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

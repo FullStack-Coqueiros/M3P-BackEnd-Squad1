@@ -1,4 +1,4 @@
-﻿using LabMedicineAPI.DTOs;
+﻿using LabMedicineAPI.DTOs.Login;
 using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Utils;
 using Microsoft.IdentityModel.Tokens;

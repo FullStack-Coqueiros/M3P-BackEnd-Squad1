@@ -1,4 +1,4 @@
-﻿namespace LabMedicineAPI.DTOs
+﻿namespace LabMedicineAPI.DTOs.Login
 {
     public class LoginDTO
     {

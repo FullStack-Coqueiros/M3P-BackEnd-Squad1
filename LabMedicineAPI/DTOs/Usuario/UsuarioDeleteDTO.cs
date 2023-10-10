@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using LabMedicineAPI.Enums;
 
-namespace LabMedicineAPI.DTOs
+namespace LabMedicineAPI.DTOs.Usuario
 {
-    public class PacienteDeleteDTO
+    public class UsuarioDeleteDTO
     {
-        [Required(ErrorMessage = "O campo ID é obrigatório")]
         public int Id { get; set; }
     }
 }

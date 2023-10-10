@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using LabMedicineAPI.DTOs;
+using LabMedicineAPI.DTOs.Login;
+using LabMedicineAPI.DTOs.Usuario;
 using LabMedicineAPI.Infra;
 using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Model;
