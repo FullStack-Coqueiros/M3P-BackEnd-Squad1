@@ -15,7 +15,12 @@ builder.Services.AddSwaggerGen();
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<LabMedicineDbContext>(o => o.UseSqlServer(connectionString));
 
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+
+//ConfigurationMapper
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
