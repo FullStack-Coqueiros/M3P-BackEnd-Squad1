@@ -7,10 +7,10 @@ namespace LabMedicineAPI.Service
 {
     public class PacienteServices
     {
-        readonly IRepository<PacienteServices> _repository;
+        readonly IRepository<PacienteModel> _repository;
         readonly IMapper _mapper;
 
-        public PacienteServices(IRepository<PacienteServices> repository, IMapper mapper)
+        public PacienteServices(IRepository<PacienteModel> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -38,18 +38,23 @@ namespace LabMedicineAPI.Service
             return pacienteCreatedDTO;
 
         }
-        public PacienteModel  PacienteUpdateDTO(int id, PacienteUpdateDTO pacienteUpdateDTO)
+        public PacienteModel  PacienteUpdateDTO(int id, PacienteUpdateDTO updatePacienteDTO)
         {
             var paciente = _repository.GetById(id);
             if (paciente == null)
             {
                 throw new Exception("Paciente não encontrado");
             }
-            _mapper.Map(pacienteUpdateDTO, paciente);
+            _mapper.Map(updatePacienteDTO, paciente);
 
             var pacienteUpdated = _repository.Update(paciente);
-            var pacienteUpdateDTO = _mapper.Map<Estudio>(pacienteUpdated);
+            var pacienteUpdateDTO = _mapper.Map<PacienteModel>(pacienteUpdated);
             return pacienteUpdateDTO;
+        }
+
+        public bool DeletePaciente(int id)
+        {
+            return _repository.Delete(id);
         }
 
     }
