@@ -3,7 +3,7 @@ using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.Model;
 using LabMedicineAPI.Repositories;
 
-namespace LabMedicineAPI.Service
+namespace LabMedicineAPI.Service.Paciente
 {
     public class PacienteServices : IPacienteServices
     {
