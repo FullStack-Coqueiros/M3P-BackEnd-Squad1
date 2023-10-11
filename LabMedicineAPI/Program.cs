@@ -1,8 +1,13 @@
 using LabMedicineAPI.Infra;
 using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Repositories;
+<<<<<<< HEAD
 using LabMedicineAPI.Services.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+=======
+using LabMedicineAPI.Service.Paciente;
+using LabMedicineAPI.Service.Usuario;
+>>>>>>> main
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -52,6 +57,7 @@ builder.Services.AddTransient<IUserServices, UserServices>();
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<LabMedicineDbContext>(o => o.UseSqlServer(connectionString));
 
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IAuthServices, AuthServices>();
 builder.Services.AddScoped<IUserServices, UserServices>();
@@ -61,6 +67,12 @@ builder.Services.AddRouting(options =>
     options.LowercaseUrls = true;
     options.LowercaseQueryStrings = true;
 });
+
+builder.Services.AddScoped<IPacienteServices, PacienteServices>();
+builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
+
+//ConfigurationMapper
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
