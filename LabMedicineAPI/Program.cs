@@ -1,6 +1,5 @@
 using LabMedicineAPI.Infra;
 using LabMedicineAPI.Repositories;
-using LabMedicineAPI.Service.Dieta;
 using LabMedicineAPI.Service.Paciente;
 using LabMedicineAPI.Service.Usuario;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
@@ -23,7 +22,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddScoped<IPacienteServices, PacienteServices>();
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
-builder.Services.AddScoped<IDietaServices, DietaServices>();
+
 
 //ConfigurationMapper
 builder.Services.AddAutoMapper(typeof(Program));
