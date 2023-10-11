@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using LabMedicineAPI.DTOs.Exame;
+using LabMedicineAPI.DTOs.Login;
 using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.DTOs.Usuario;
 using LabMedicineAPI.Model;
@@ -17,6 +18,8 @@ namespace LabMedicineAPI.AutoMapper
             // ConfigurationMapper Usuario
 
             // Origem ... Destino
+            CreateMap<LoginDTO,UsuarioModel>();
+
             CreateMap<UsuarioCreateDTO, UsuarioModel>();
             
             CreateMap<UsuarioGetDTO, UsuarioModel>();
