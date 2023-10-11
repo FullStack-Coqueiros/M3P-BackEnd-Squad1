@@ -27,6 +27,7 @@ builder.Services.AddScoped<IMedicamentoServices, MedicamentoServices>();
 
 
 
+
 //ConfigurationMapper
 builder.Services.AddAutoMapper(typeof(Program));
 
