@@ -1,6 +1,7 @@
 using LabMedicineAPI.Infra;
 using LabMedicineAPI.Repositories;
-using LabMedicineAPI.Service;
+using LabMedicineAPI.Service.Paciente;
+using LabMedicineAPI.Service.Usuario;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,7 @@ builder.Services.AddDbContext<LabMedicineDbContext>(o => o.UseSqlServer(connecti
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddScoped<IPacienteServices, PacienteServices>();
+builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
 
 //ConfigurationMapper
 builder.Services.AddAutoMapper(typeof(Program));

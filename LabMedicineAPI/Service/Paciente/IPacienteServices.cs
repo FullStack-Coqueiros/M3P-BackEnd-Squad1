@@ -1,7 +1,7 @@
 ﻿using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.Model;
 
-namespace LabMedicineAPI.Service
+namespace LabMedicineAPI.Service.Paciente
 {
     public interface IPacienteServices
     {
