@@ -1,6 +1,5 @@
 using LabMedicineAPI.Infra;
 using LabMedicineAPI.Repositories;
-using LabMedicineAPI.Service.Exercicio;
 using LabMedicineAPI.Service.Paciente;
 using LabMedicineAPI.Service.Usuario;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
