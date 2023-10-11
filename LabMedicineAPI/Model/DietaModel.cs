@@ -10,23 +10,21 @@ using LabMedicineAPI.Enums;
 namespace LabMedicineAPI.Model
 {
     [Table("Dieta")]
-    public class DietaModel:BaseAtendimento
+    public class DietaModel : BaseAtendimento
     {
-       [Column(TypeName = "VARCHAR"), Required, MaxLength(100), MinLength(5)]
-       public string NomeDieta { get; set; } 
+        [Column(TypeName = "VARCHAR"), Required, MaxLength(100), MinLength(5)]
+        public string NomeDieta { get; set; }
 
-       public string? DescricaoDieta { get; set; }
+        public string? DescricaoDieta { get; set; }
 
-       [Required]
-       public TipoDietaEnum TipoDieta { get; set; }
+        [Required]
+        public TipoDietaEnum TipoDieta { get; set; }
 
-       public string? DescricaoDetalhada { get; set; }
+        public string? DescricaoDetalhada { get; set; }
 
-       //ver com Vitor, tem 2 prop Descriçao mesmo ou é erro na documentação?
-
-
-
-   
 
     }
+
+
+
 }
