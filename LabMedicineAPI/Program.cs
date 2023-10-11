@@ -1,13 +1,10 @@
 using LabMedicineAPI.Infra;
 using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Repositories;
-<<<<<<< HEAD
-using LabMedicineAPI.Services.Auth;
+using LabMedicineAPI.Service.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-=======
 using LabMedicineAPI.Service.Paciente;
 using LabMedicineAPI.Service.Usuario;
->>>>>>> main
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

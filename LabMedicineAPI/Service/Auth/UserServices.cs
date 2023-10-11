@@ -6,29 +6,29 @@ using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Model;
 using LabMedicineAPI.Repositories;
 using System.Linq.Expressions;
-using static LabMedicineAPI.Services.Auth.UserServices;
+using static LabMedicineAPI.Service.Auth.UserServices;
 
-namespace LabMedicineAPI.Services.Auth
+namespace LabMedicineAPI.Service.Auth
 {
 
 
-    public class UserServices:IUserServices
+    public class UserServices : IUserServices
     {
         readonly IRepository<UsuarioModel> _repository;
         readonly IMapper _mapper;
-       
+
 
         public UserServices(IRepository<UsuarioModel> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
-            
+
         }
 
-        public UsuarioModel Atualizar(int id,UsuarioUpdateDTO UpdateDTO)
+        public UsuarioModel Atualizar(int id, UsuarioUpdateDTO UpdateDTO)
         {
             var usuario = _repository.GetById(id);
-            if(usuario == null)
+            if (usuario == null)
             {
                 throw new Exception("Usuario não encontrado");
             }
@@ -36,7 +36,7 @@ namespace LabMedicineAPI.Services.Auth
             var usuarioUpdated = _repository.Update(usuario);
             var usuarioUpdateDTO = _mapper.Map<UsuarioModel>(usuarioUpdated);
             return usuarioUpdateDTO;
-            
+
         }
 
         public UsuarioModel Criar(UsuarioCreateDTO createDTO)
@@ -45,7 +45,7 @@ namespace LabMedicineAPI.Services.Auth
             var usuarioCreated = _repository.Create(usuario);
             var usuarioCreatedDTO = _mapper.Map<UsuarioModel>(usuarioCreated);
             return usuarioCreatedDTO;
-         
+
         }
         public bool Deletar(int id)
         {
@@ -59,28 +59,28 @@ namespace LabMedicineAPI.Services.Auth
             return usuariosDTO;
         }
 
-        public UsuarioModel ObterPorLogin (LoginDTO login)
+        public UsuarioModel ObterPorLogin(LoginDTO login)
         {
-            Expression<Func<UsuarioModel, bool>>user=(u => u.Email == login.Email);
-            
+            Expression<Func<UsuarioModel, bool>> user = u => u.Email == login.Email;
+
             return _repository.GetByUser(user);
-            
+
         }
     }
 
 }
-        //public UsuarioModel ObterPorLogin(string email, string senha)
-        //{
-        //    var criteria = (Expression<Func<UsuarioModel, bool>>)(u => u.Email == email && u.Senha == senha);
-        //    return _repository.GetByUser(criteria);
-         
-        //}
+//public UsuarioModel ObterPorLogin(string email, string senha)
+//{
+//    var criteria = (Expression<Func<UsuarioModel, bool>>)(u => u.Email == email && u.Senha == senha);
+//    return _repository.GetByUser(criteria);
 
-            //return new UsuarioModel()
-            //{
-            //    NomeCompleto = "Teste Nome",
-            //    Email = "teste@teste",
-            //    Senha = "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
-            //    Tipo = Enums.TipoEnum.Medico,
-            //    StatusSistema = true
-            //};
+//}
+
+//return new UsuarioModel()
+//{
+//    NomeCompleto = "Teste Nome",
+//    Email = "teste@teste",
+//    Senha = "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
+//    Tipo = Enums.TipoEnum.Medico,
+//    StatusSistema = true
+//};
