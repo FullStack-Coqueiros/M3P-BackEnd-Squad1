@@ -25,6 +25,7 @@ builder.Services.AddScoped<IPacienteServices, PacienteServices>();
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
 builder.Services.AddScoped<IMedicamentoServices, MedicamentoServices>();
 
+
 //ConfigurationMapper
 builder.Services.AddAutoMapper(typeof(Program));
 
