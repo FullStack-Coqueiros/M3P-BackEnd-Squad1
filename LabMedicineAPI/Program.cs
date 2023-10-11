@@ -23,7 +23,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddScoped<IPacienteServices, PacienteServices>();
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
-builder.Services.AddScoped<IExercicioServices, ExercicioServices>();
+
 
 //ConfigurationMapper
 builder.Services.AddAutoMapper(typeof(Program));
