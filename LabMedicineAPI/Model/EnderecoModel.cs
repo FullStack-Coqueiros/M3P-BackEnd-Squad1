@@ -11,6 +11,7 @@ namespace LabMedicineAPI.Model
     public class EnderecoModel
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EnderecoId { get; set; }
         [Column(TypeName = "VARCHAR"), Required]
         public string CEP { get; set; }
@@ -22,11 +23,11 @@ namespace LabMedicineAPI.Model
         public string Logradouro { get; set; }
         [Column(TypeName = "VARCHAR"), Required]
         public string Numero { get; set; }
-        [Column(TypeName = "VARCHAR"), Required]
+
         public string Complemento { get; set; }
-        [Column(TypeName = "VARCHAR"), Required]
+
         public string Bairro { get; set; }
-        [Column(TypeName = "VARCHAR"), Required]
+
         public string PontoReferencia { get; set; }
 
         [Required]
