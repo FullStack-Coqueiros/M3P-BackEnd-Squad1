@@ -10,7 +10,8 @@ using LabMedicineAPI.Enums;
 namespace LabMedicineAPI.Model
 {
     [Table("Exercicio")]
-    public class ExercicioModel:BaseAtendimento
+
+    public class ExercicioModel : BaseAtendimento
     {
         [Column(TypeName = "VARCHAR"), Required, MaxLength(100), MinLength(5)]
         public string NomeSerieExerc { get; set; }
@@ -23,7 +24,6 @@ namespace LabMedicineAPI.Model
 
         [Column(TypeName = "VARCHAR"), Required, MaxLength(1000), MinLength(10)]
         public string DescricaoExerc { get; set; }
-      
+    }     
 
-    }
 }

@@ -3,6 +3,7 @@ using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Repositories;
 using LabMedicineAPI.Service.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using LabMedicineAPI.Service.Medicamento;
 using LabMedicineAPI.Service.Paciente;
 using LabMedicineAPI.Service.Usuario;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
@@ -67,6 +68,10 @@ builder.Services.AddRouting(options =>
 
 builder.Services.AddScoped<IPacienteServices, PacienteServices>();
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
+builder.Services.AddScoped<IMedicamentoServices, MedicamentoServices>();
+
+
+
 
 //ConfigurationMapper
 builder.Services.AddAutoMapper(typeof(Program));
