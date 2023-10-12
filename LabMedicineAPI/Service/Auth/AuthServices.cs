@@ -23,12 +23,12 @@ namespace LabMedicineAPI.Service.Auth
 
         public bool Autenticar(LoginDTO login)
         {
-            var loginDTO = new LoginDTO
+            var usuario = new LoginDTO
             {
                 Email = login.Email,
                 Senha = login.Senha // Você pode definir a senha aqui se for necessário
             };
-            var usuario = _userService.ObterPorLogin(loginDTO);
+            var usuarioModel = _userService.ObterPorLogin(usuario);
             if (usuario != null)
             {
                 return usuario.Senha == Criptografia.CriptografarSenha(login.Senha);
