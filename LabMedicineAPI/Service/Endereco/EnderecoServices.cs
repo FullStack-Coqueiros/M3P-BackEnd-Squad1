@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LabMedicineAPI.DTOs.Endereco;
 using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.Model;
 using LabMedicineAPI.Repositories;

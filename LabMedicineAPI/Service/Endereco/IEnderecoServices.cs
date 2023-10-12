@@ -1,4 +1,5 @@
-﻿using LabMedicineAPI.Model;
+﻿using LabMedicineAPI.DTOs.Endereco;
+using LabMedicineAPI.Model;
 
 namespace LabMedicineAPI.Service.Endereco
 {
