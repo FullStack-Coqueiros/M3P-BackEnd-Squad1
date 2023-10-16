@@ -35,8 +35,6 @@ builder.Services.AddScoped<IEnderecoServices, EnderecoServices>();
 builder.Services.AddScoped<IExameServices, ExameServices>();
 builder.Services.AddScoped<IExercicioServices, ExercicioServices>();
 
-
-
 //ConfigurationMapper
 builder.Services.AddAutoMapper(typeof(Program));
 
