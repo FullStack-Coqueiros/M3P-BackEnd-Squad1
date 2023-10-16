@@ -108,6 +108,28 @@ namespace LabMedicineAPI.Controllers
 
             }
         }
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var result = _services.DeletePaciente(id);
+
+                if (result == null)
+                {
+                    return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Dados inválidos fornecidos para a exclusão do paciente");
+                }
+
+                return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Paciente excluído dos registros com sucesso");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+            }
+        }
 
 
     }
