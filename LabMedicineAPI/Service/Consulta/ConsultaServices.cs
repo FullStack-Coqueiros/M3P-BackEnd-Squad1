@@ -18,18 +18,22 @@ namespace LabMedicineAPI.Service.Consulta
             _mapper = mapper;
         }
 
-        public IEnumerable<ConsultaGetDTO> Get()
+        public IEnumerable<ConsultaGetDTO> Get(int? pacienteId)
         {
-            var consultas = _repository.GetAll();
+            IEnumerable<ConsultaModel> consultas;
+
+            if (pacienteId.HasValue)
+            {
+                consultas = _repository.GetAll().Where(c => c.PacienteId == pacienteId.Value);
+            }
+            else
+            {
+                consultas = _repository.GetAll();
+            }
+
             var consultasDTO = _mapper.Map<IEnumerable<ConsultaGetDTO>>(consultas);
             return consultasDTO;
-        }
 
-        public ConsultaGetDTO GetById(int id)
-        {
-            var consulta = _repository.GetById(id);
-            var consultaDTO = _mapper.Map<ConsultaGetDTO>(consulta);
-            return consultaDTO;
         }
 
         public ConsultaModel ConsultaCreateDTO(ConsultaCreateDTO consultaCreateDTO)
