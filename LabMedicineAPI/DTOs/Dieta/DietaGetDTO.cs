@@ -9,7 +9,6 @@ namespace LabMedicineAPI.DTOs.Dieta
         public DateTime Data { get; set; }
         public DateTime Horario { get; set; }
         public TipoDietaEnum TipoDieta { get; set; }
-        public string? DescricaoDetalhada { get; set; }
         public bool StatusSistema { get; set; } = true;
         public int PacienteId { get; set; }
         public int UsuarioId { get; set; }

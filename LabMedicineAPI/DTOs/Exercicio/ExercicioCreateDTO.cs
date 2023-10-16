@@ -14,14 +14,14 @@ namespace LabMedicineAPI.DTOs.Exercicio
         public DateTime Horario { get; set; }
 
         [Required(ErrorMessage = "O preenchimento do campo tipo de exercicio é obrigatório.")]
-        public TipoExercicioEnum Tipo { get; set; }
+        public TipoExercicioEnum TipoExerc { get; set; }
 
         [Required(ErrorMessage = "O preenchimento do quantidade por semana é obrigatório.")]
         public decimal QuantidadeSemana { get; set; }
 
         [Required(ErrorMessage = "O preenchimento do campo descrição é obrigatório.")]
         [StringLength(1000, MinimumLength = 10)]
-        public string Descricao { get; set; }
+        public string DescricaoExerc { get; set; }
 
         [Required(ErrorMessage = "O preenchimento do campo status no sistema é obrigatório.")]
         public bool StatusSistema { get; set; } = true;
