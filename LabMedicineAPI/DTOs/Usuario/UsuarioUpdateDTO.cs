@@ -27,13 +27,5 @@ namespace LabMedicineAPI.DTOs.Usuario
         [Required(ErrorMessage = "O campo 'Tipo' é obrigatório.")]
         public TipoEnum Tipo { get; set; }
 
-        public UsuarioUpdateDTO(string nomeCompleto, GeneroEnum genero, string telefone, string senha, TipoEnum tipo)
-        {
-            NomeCompleto = nomeCompleto;
-            Genero = genero;
-            Telefone = telefone;
-            Senha = senha;
-            Tipo = tipo;
-        }
     }
 }

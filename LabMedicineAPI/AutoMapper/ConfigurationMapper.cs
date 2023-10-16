@@ -18,11 +18,12 @@ namespace LabMedicineAPI.AutoMapper
 
             // Origem ... Destino
             CreateMap<UsuarioCreateDTO, UsuarioModel>();
-            
+                //.ForMember(destino => destino.NomeCompleto, origem => origem.MapFrom(dados => dados.NomeCompleto))
+                //.ForMember(destino => destino.NomeCompleto, origem => origem.MapFrom(dados => dados.NomeCompleto))
+                //.ForMember(destino => destino.NomeCompleto, origem => origem.MapFrom(dados => dados.NomeCompleto));
+
             CreateMap<UsuarioGetDTO, UsuarioModel>();
-
             CreateMap<UsuarioUpdateDTO, UsuarioModel>();
-
             CreateMap<UsuarioDeleteDTO, UsuarioModel>();
 
             // ConfigurationMapper Paciente

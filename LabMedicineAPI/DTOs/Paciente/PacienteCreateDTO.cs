@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using LabMedicineAPI.DTOs.Endereco;
 using LabMedicineAPI.Enums;
 using LabMedicineAPI.Model;
 
@@ -47,14 +48,14 @@ namespace LabMedicineAPI.DTOs.Paciente
         [RegularExpression(@"^\(\d{2}\) \d{4,5}-\d{4,5}$", ErrorMessage = "Formato de Contato de Emergência inválido.")]
         public required string ContatoEmergencia { get; set; }
 
-        public string? ListaAlergias { get; set; }
-        public string? ListaCuidadosEspecificos { get; set; }
+        public string? Alergias { get; set; }
+        public string? CuidadosEspecificos { get; set; }
         public string? Convenio { get; set; }
         public string? NumeroConvenio { get; set; }
 
         public DateTime? ValidadeConvenio { get; set; }
 
-        public required EnderecoModel Endereco { get; set; }
+        public required EnderecoCreateDTO Enderecos { get; set; }
 
         public bool StatusSistema { get; set; } = true;
 

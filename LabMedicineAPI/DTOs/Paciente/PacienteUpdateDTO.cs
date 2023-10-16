@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using LabMedicineAPI.DTOs.Endereco;
 using LabMedicineAPI.Enums;
 using LabMedicineAPI.Model;
 
@@ -19,10 +20,8 @@ namespace LabMedicineAPI.DTOs.Paciente
 
         [Required(ErrorMessage = "A Data de Nascimento é obrigatória.")]
         public DateTime DataNascimento { get; set; }
-
         [Required(ErrorMessage = "O Estado Civil é obrigatório.")]
         public EstadoCivilEnum EstadoCivil { get; set; }
-
         [Required(ErrorMessage = "O Telefone é obrigatório.")]
         [RegularExpression(@"^\(\d{2}\) \d{4,5}-\d{4}$", ErrorMessage = "Formato de Telefone inválido.")]
         public required string Telefone { get; set; }
@@ -47,8 +46,8 @@ namespace LabMedicineAPI.DTOs.Paciente
         public DateTime? ValidadeConvenio { get; set; }
 
         [Required(ErrorMessage = "O Endereço é obrigatório.")]
-        public required EnderecoModel Endereco { get; set; }
-
+        public required EnderecoUpdateDTO Endereco { get; set; }
+        [Required]
         public bool StatusSistema { get; set; } = true;
     }
 }
