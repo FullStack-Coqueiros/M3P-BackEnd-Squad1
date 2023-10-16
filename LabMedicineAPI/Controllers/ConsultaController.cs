@@ -30,9 +30,9 @@ namespace LabMedicineAPI.Controllers
 
                 
                 if (consultaDTO == null || !consultaDTO.Any())
-                {
+                
                     return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Nenhum resultado encontrado para o ID do paciente fornecido");
-                }
+                
 
                 return StatusCode(HttpStatusCode.OK.GetHashCode(), consultaDTO);
             }

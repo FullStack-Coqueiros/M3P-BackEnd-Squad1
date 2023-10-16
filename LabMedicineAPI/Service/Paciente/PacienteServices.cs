@@ -2,6 +2,7 @@
 using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.Model;
 using LabMedicineAPI.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace LabMedicineAPI.Service.Paciente
 {
@@ -32,6 +33,12 @@ namespace LabMedicineAPI.Service.Paciente
 
         public PacienteModel PacienteCreateDTO(PacienteCreateDTO pacienteCreateDTO)
         {
+            bool validaCpfeEmail = _repository.GetAll()
+                .Any(a=>a.CPF == pacienteCreateDTO.CPF || a.Email == pacienteCreateDTO.Email);
+            if (validaCpfeEmail)
+                throw new Exception("CPF e ou e-mail já cadstrado no sistema");
+
+            pacienteCreateDTO.StatusSistema = true;
             var paciente = _mapper.Map<PacienteModel>(pacienteCreateDTO);
             var pacienteCreated = _repository.Create(paciente);
             var pacienteCreatedDTO = _mapper.Map<PacienteModel>(pacienteCreated);
