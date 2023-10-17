@@ -20,7 +20,7 @@ namespace LabMedicineAPI.Model
         [Column(TypeName = "VARCHAR"), Required, MaxLength(32), MinLength(4)]
         public string Laboratorio { get; set; }
 
-        public string URL { get; set; }
+        public string Url { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required, MaxLength(1024), MinLength(16)]
         public string Resultados { get; set; }

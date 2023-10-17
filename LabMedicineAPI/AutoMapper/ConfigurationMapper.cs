@@ -20,26 +20,20 @@ namespace LabMedicineAPI.AutoMapper
     {
         protected ConfigurationMapper()
         {
-            // ConfigurationMapper Usuario
-
-            // Origem ... DestinO
+            
 
             CreateMap<UsuarioCreateDTO, UsuarioModel>();
             CreateMap<UsuarioGetDTO, UsuarioModel>();
             CreateMap<UsuarioModel,UsuarioUpdateDTO>();
             CreateMap<UsuarioDeleteDTO, UsuarioModel>();
 
-            // ConfigurationMapper Paciente
-
-            // Origem ... Destino
+         
             CreateMap<PacienteCreateDTO, PacienteModel>();
             CreateMap<PacienteGetDTO, PacienteModel>();
             CreateMap<PacienteModel,PacienteUpdateDTO>();
             CreateMap<PacienteDeleteDTO, PacienteModel>();
 
-            // ConfigurationMapper Exame
-
-            // Origem ... Destino
+           
             CreateMap<ExameCreateDTO, ExameModel>();
             CreateMap<ExameGetDTO, ExameModel>();
             CreateMap<ExameModel, ExameUpdateDTO>();

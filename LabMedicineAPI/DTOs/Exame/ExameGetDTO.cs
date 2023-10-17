@@ -11,6 +11,7 @@ namespace LabMedicineAPI.DTOs.Exame
 {
     public class ExameGetDTO
     {
+
         public int Id { get; set; }
         public DateTime Data { get; set; }
         public DateTime Horario { get; set; } 
