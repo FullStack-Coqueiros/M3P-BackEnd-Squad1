@@ -39,8 +39,8 @@ namespace LabMedicineAPI.DTOs.Paciente
         public required string ContatoEmergencia { get; set; }
 
         // Propriedades opcionais
-        public string? ListaAlergias { get; set; }
-        public string? ListaCuidadosEspecificos { get; set; }
+        public string? Alergias { get; set; }
+        public string? CuidadosEspecificos { get; set; }
         public string? Convenio { get; set; }
         public string? NumeroConvenio { get; set; }
         public DateTime? ValidadeConvenio { get; set; }

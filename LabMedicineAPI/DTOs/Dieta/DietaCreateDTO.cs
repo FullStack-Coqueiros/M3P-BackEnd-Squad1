@@ -15,8 +15,6 @@ namespace LabMedicineAPI.DTOs.Dieta
         public DateTime Horario { get; set; }
         [Required(ErrorMessage = "O preenchimento do campo tipo de dieta é obrigatório.")]
         public TipoDietaEnum TipoDieta { get; set; }
-        public string? DescricaoDetalhada { get; set; }
-        [Required(ErrorMessage = "O preenchimento do campo status no sistema é obrigatório.")]
         public bool StatusSistema { get; set; } = true;
         [Required(ErrorMessage = "O preenchimento do paciente id é obrigatório.")]
         public int PacienteId { get; set; }
