@@ -18,7 +18,7 @@ namespace LabMedicineAPI.AutoMapper
 {
     public class ConfigurationMapper : Profile
     {
-        protected ConfigurationMapper()
+        public ConfigurationMapper()
         {
             // ConfigurationMapper Usuario
 
