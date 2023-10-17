@@ -9,7 +9,6 @@ namespace LabMedicineAPI.Service.Consulta
         ConsultaModel ConsultaCreateDTO(ConsultaCreateDTO consultaCreateDTO);
         ConsultaModel ConsultaUpdateDTO(int id, ConsultaUpdateDTO updateConsultaDTO);
         bool DeleteConsulta(int id);
-        IEnumerable<ConsultaGetDTO> Get();
-        ConsultaGetDTO GetById(int id);
+        IEnumerable<ConsultaGetDTO> Get(int? pacienteId);
     }
 }

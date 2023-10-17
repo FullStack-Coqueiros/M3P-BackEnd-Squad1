@@ -1,8 +1,11 @@
 using LabMedicineAPI.Infra;
 using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Repositories;
-using LabMedicineAPI.Service.Auth;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using LabMedicineAPI.Service.Consulta;
+using LabMedicineAPI.Service.Dieta;
+using LabMedicineAPI.Service.Endereco;
+using LabMedicineAPI.Service.Exame;
+using LabMedicineAPI.Service.Exercicio;
 using LabMedicineAPI.Service.Medicamento;
 using LabMedicineAPI.Service.Paciente;
 using LabMedicineAPI.Service.Usuario;
@@ -69,9 +72,11 @@ builder.Services.AddRouting(options =>
 builder.Services.AddScoped<IPacienteServices, PacienteServices>();
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
 builder.Services.AddScoped<IMedicamentoServices, MedicamentoServices>();
-
-
-
+builder.Services.AddScoped<IConsultaServices, ConsultaServices>();
+builder.Services.AddScoped<IDietaServices, DietaServices>();
+builder.Services.AddScoped<IEnderecoServices, EnderecoServices>();
+builder.Services.AddScoped<IExameServices, ExameServices>();
+builder.Services.AddScoped<IExercicioServices, ExercicioServices>();
 
 //ConfigurationMapper
 builder.Services.AddAutoMapper(typeof(Program));
