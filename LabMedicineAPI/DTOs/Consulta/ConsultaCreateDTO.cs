@@ -12,10 +12,10 @@ namespace LabMedicineAPI.DTOs
         public required string MotivoConsulta { get; set; }
 
         [Required(ErrorMessage = "A Data da Consulta é obrigatória.")]
-        public DateTime DataConsulta { get; set; } 
+        public DateTime Data { get; set; } 
 
         [Required(ErrorMessage = "O Horário da Consulta é obrigatório.")]
-        public DateTime HorarioConsulta { get; set; } 
+        public DateTime Horario { get; set; } 
 
         [Required(ErrorMessage = "A Descrição da Consulta é obrigatória.")]
         public required string ProblemaDescricao { get; set; }

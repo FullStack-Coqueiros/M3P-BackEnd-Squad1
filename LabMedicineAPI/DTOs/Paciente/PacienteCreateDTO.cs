@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using LabMedicineAPI.DTOs.Endereco;
 using LabMedicineAPI.Enums;
 using LabMedicineAPI.Model;
 
@@ -54,7 +55,8 @@ namespace LabMedicineAPI.DTOs.Paciente
 
         public DateTime? ValidadeConvenio { get; set; }
 
-        public required EnderecoModel Endereco { get; set; }
+        [Required]
+        public EnderecoCreateDTO endereco { get; set; }
 
         public bool StatusSistema { get; set; } = true;
 

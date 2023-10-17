@@ -20,8 +20,6 @@ namespace LabMedicineAPI.Model
         [Required]
         public TipoDietaEnum TipoDieta { get; set; }
 
-        public string? DescricaoDetalhada { get; set; }
-
 
     }
 
