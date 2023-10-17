@@ -1,6 +1,8 @@
 using LabMedicineAPI.Infra;
 using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Repositories;
+using LabMedicineAPI.Service.Auth;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using LabMedicineAPI.Service.Consulta;
 using LabMedicineAPI.Service.Dieta;
 using LabMedicineAPI.Service.Endereco;

@@ -9,6 +9,7 @@ using LabMedicineAPI.DTOs.Dieta;
 using LabMedicineAPI.DTOs.Endereco;
 using LabMedicineAPI.DTOs.Exame;
 using LabMedicineAPI.DTOs.Exercicio;
+using LabMedicineAPI.DTOs.Login;
 using LabMedicineAPI.DTOs.Medicamento;
 using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.DTOs.Usuario;
@@ -18,11 +19,12 @@ namespace LabMedicineAPI.AutoMapper
 {
     public class ConfigurationMapper : Profile
     {
-        protected ConfigurationMapper()
+        public ConfigurationMapper()
         {
             // ConfigurationMapper Usuario
-
             // Origem ... Destino
+
+            CreateMap<LoginDTO, UsuarioModel>();
             CreateMap<UsuarioCreateDTO, UsuarioModel>();
             
             CreateMap<UsuarioGetDTO, UsuarioModel>();
@@ -30,7 +32,6 @@ namespace LabMedicineAPI.AutoMapper
             CreateMap<UsuarioDeleteDTO, UsuarioModel>();
 
             // ConfigurationMapper Paciente
-
             // Origem ... Destino
             CreateMap<PacienteCreateDTO, PacienteModel>();
             CreateMap<PacienteGetDTO, PacienteModel>();
@@ -38,7 +39,6 @@ namespace LabMedicineAPI.AutoMapper
             CreateMap<PacienteDeleteDTO, PacienteModel>();
 
             // ConfigurationMapper Exame
-
             // Origem ... Destino
             CreateMap<ExameCreateDTO, ExameModel>();
             CreateMap<ExameGetDTO, ExameModel>();
