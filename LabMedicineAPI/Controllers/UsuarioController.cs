@@ -117,13 +117,11 @@ namespace LabMedicineAPI.Controllers
         {
             try
             {
+                var where = _services.GetById(id);
+                if(where == null)
+                   return BadRequest("Dados inválidos fornecidos para a exclusão do usuário");
+                
                 var result = _services.DeleteUsuario(id);
-
-                if (result == null)
-                {
-                    return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Dados inválidos fornecidos para a exclusão do usuario");
-                }
-
                 return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Usuario excluído dos registros com sucesso");
             }
             catch

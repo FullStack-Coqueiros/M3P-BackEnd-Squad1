@@ -49,20 +49,7 @@ namespace LabMedicineAPI.Service.Usuario
             UsuarioModel usuarioUpdated = _repository.GetById(id);
             UsuarioGetDTO usuarioGet = _mapper.Map<UsuarioGetDTO>(usuarioUpdated);
             return usuarioGet;
-            //var usuarioGetId = _repository.GetById(id);
-            //if (usuarioGetId == null)
-            //{
-            //    throw new Exception("Paciente não encontrado");
-            //}
-            //UsuarioModel model = _mapper.Map<UsuarioModel>(updateUsuarioDTO);
-            //_repository.Update(model);
-            //UsuarioGetDTO usuarioGet = _mapper.Map<UsuarioGetDTO>(updateUsuarioDTO);
-            //return usuarioGet;
-            //_mapper.Map(updateUsuarioDTO, usuario);
-
-            //var usuarioUpdated = _repository.Update(usuario);
-            //var usuarioUpdateDTO = _mapper.Map<UsuarioModel>(usuarioUpdated);
-            //return usuarioUpdateDTO;
+         
         }
 
         public bool DeleteUsuario(int id)
