@@ -19,10 +19,10 @@ namespace LabMedicineAPI.Service.Usuario
             _mapper = mapper;
         }
 
-        public List<UsuarioGetDTO> Get()
+        public IEnumerable<UsuarioGetDTO> Get()
         {
-            var usuarios = _repository.GetAll();
-            var usuariosDTO = _mapper.Map<List<UsuarioGetDTO>>(usuarios);
+            IEnumerable<UsuarioModel> usuarios = _repository.GetAll();
+            IEnumerable<UsuarioGetDTO> usuariosDTO = _mapper.Map<IEnumerable<UsuarioGetDTO>>(usuarios);
             return usuariosDTO;
         }
 

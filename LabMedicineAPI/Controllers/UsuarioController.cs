@@ -23,20 +23,22 @@ namespace LabMedicineAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public IActionResult Get()
+        public ActionResult<IEnumerable<UsuarioGetDTO>> Get()
         {
             try
             {
-                var usuarios = _services.Get();
-                if (usuarios != null)
-                    return StatusCode(HttpStatusCode.OK.GetHashCode(), usuarios);
+                IEnumerable<UsuarioGetDTO> usuarios = _services.Get();
+                return Ok(usuarios);
+                //var usuarios = _services.Get();
+                //if (usuarios != null)
+                //    return StatusCode(HttpStatusCode.OK.GetHashCode(), usuarios);
 
-                return NotFound("Não foi encontrado nenhum usuario cadastrado no sistema");
+                //return NotFound("Não foi encontrado nenhum usuario cadastrado no sistema");
 
             }
-            catch
+            catch(Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Erro interno no servidor");
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),"Erro interno no servidor");
             }
         }
         [HttpGet("{id}")]

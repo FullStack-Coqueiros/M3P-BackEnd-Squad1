@@ -6,7 +6,7 @@ namespace LabMedicineAPI.Service.Usuario
     public interface IUsuarioServices
     {
         bool DeleteUsuario(int id);
-        List<UsuarioGetDTO> Get();
+        IEnumerable<UsuarioGetDTO> Get();
         UsuarioGetDTO GetById(int id);
         UsuarioModel UsuarioCreateDTO(UsuarioCreateDTO usuarioCreateDTO);
         UsuarioModel UsuarioUpdateDTO(int id, UsuarioUpdateDTO updateUsuarioDTO);
