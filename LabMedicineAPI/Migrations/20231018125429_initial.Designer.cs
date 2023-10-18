@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabMedicineAPI.Migrations
 {
     [DbContext(typeof(LabMedicineDbContext))]
-    [Migration("20231017181937_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231018125429_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -366,6 +366,7 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Genero")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("NomeCompleto")
@@ -415,6 +416,7 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Genero")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("NomeCompleto")
@@ -424,15 +426,17 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
-                        .HasMaxLength(13)
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");

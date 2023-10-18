@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LabMedicineAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,11 +17,11 @@ namespace LabMedicineAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Telefone = table.Column<string>(type: "VARCHAR(13)", maxLength: 13, nullable: false),
-                    Senha = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Tipo = table.Column<string>(type: "VARCHAR", nullable: false),
+                    Telefone = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Senha = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Tipo = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
                     NomeCompleto = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    Genero = table.Column<string>(type: "VARCHAR", nullable: false),
+                    Genero = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
                     CPF = table.Column<string>(type: "VARCHAR(14)", maxLength: 14, nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false)
                 },
@@ -46,7 +46,7 @@ namespace LabMedicineAPI.Migrations
                     ValidadeConvenio = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UsuarioId = table.Column<int>(type: "int", nullable: false),
                     NomeCompleto = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    Genero = table.Column<string>(type: "VARCHAR", nullable: false),
+                    Genero = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
                     CPF = table.Column<string>(type: "VARCHAR(14)", maxLength: 14, nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false)
                 },

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace LabMedicineAPI.Enums
@@ -9,7 +10,7 @@ namespace LabMedicineAPI.Enums
         mcg,
         g,
         mL,
-        porcentagem
+        Porcentagem
 
     }
 }

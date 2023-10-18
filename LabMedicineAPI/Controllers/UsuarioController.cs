@@ -74,8 +74,10 @@ namespace LabMedicineAPI.Controllers
                 var usuario = _services.UsuarioCreateDTO(usuarioCreateDTO);
 
                 if (usuario != null)
+                {
+                    return Ok("Usuario registrado com sucesso");
+                }
 
-                    return CreatedAtAction("Usuario registrado com sucesso", new { id = usuario.Id }, usuario);
 
                 return BadRequest("Dados inválidos fornecidos para a criação do usuario");
 

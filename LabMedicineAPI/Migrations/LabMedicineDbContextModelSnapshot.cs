@@ -363,6 +363,7 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Genero")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("NomeCompleto")
@@ -412,6 +413,7 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Genero")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("NomeCompleto")
@@ -421,15 +423,17 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
-                        .HasMaxLength(13)
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
