@@ -33,7 +33,7 @@ namespace LabMedicineAPI.Controllers
                 return BadRequest("Não foi localizado o pacinete com o Id fornecido");
 
             }
-            catch (IOException ex)
+            catch (Exception ex)
             {
                 return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
             }
@@ -62,7 +62,7 @@ namespace LabMedicineAPI.Controllers
             }
         }
 
-        [HttpPost("{id}")]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

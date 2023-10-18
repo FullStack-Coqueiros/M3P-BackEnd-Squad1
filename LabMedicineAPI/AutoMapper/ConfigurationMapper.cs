@@ -18,14 +18,15 @@ namespace LabMedicineAPI.AutoMapper
 {
     public class ConfigurationMapper : Profile
     {
-        protected ConfigurationMapper()
+        public ConfigurationMapper()
         {
             
 
-            CreateMap<UsuarioCreateDTO, UsuarioModel>();
-            CreateMap<UsuarioGetDTO, UsuarioModel>();
-            CreateMap<UsuarioModel,UsuarioUpdateDTO>();
-            CreateMap<UsuarioDeleteDTO, UsuarioModel>();
+            CreateMap<UsuarioCreateDTO, UsuarioModel>().ReverseMap();
+            CreateMap<UsuarioGetDTO, UsuarioModel>().ReverseMap();
+            //CreateMap<List<UsuarioModel>, List<UsuarioGetDTO>>();
+            CreateMap<UsuarioModel,UsuarioUpdateDTO>().ReverseMap();
+            
 
          
             CreateMap<PacienteCreateDTO, PacienteModel>();

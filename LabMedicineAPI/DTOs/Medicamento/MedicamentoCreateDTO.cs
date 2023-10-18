@@ -10,12 +10,15 @@ namespace LabMedicineAPI.DTOs.Medicamento
         public string NomeMedicamento { get; set; }
 
         [Required(ErrorMessage = "O campo data é de preenchimento obrigatório.")]
+        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
         public DateTime Data { get; set; }
         [Required(ErrorMessage = "O campo horario é de preenchimento obrigatório.")]
+        [DisplayFormat(DataFormatString = "{0:HH:mm:ss}")]
         public DateTime Horario { get; set; }
         [Required]
         public TipoMedicamentoEnum TipoMedicamento { get; set; }
         [Required(ErrorMessage = "O campo quantidade é de preenchimento obrigatório.")]
+        [DisplayFormat(DataFormatString = "{0,c}")]
         public decimal Quantidade { get; set; }
         [Required(ErrorMessage = "O campo unidade é de preenchimento obrigatório.")]
         public UnidadeEnum Unidade { get; set; }

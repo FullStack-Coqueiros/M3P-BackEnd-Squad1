@@ -13,13 +13,13 @@ namespace LabMedicineAPI.Base
         public int Id { get; set; }
         [Column(TypeName = "VARCHAR"), Required, MaxLength(64), MinLength(8)]
         public string NomeCompleto { get; set; }
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, MaxLength(100)]
         public GeneroEnum Genero { get; set; }
         [Column(TypeName = "VARCHAR"), Required, MaxLength(14)]
         public string CPF { get; set; }
         [Column(TypeName = "VARCHAR"), Required, MaxLength(100)]
         public string Email { get; set; }
         [Column(TypeName = "VARCHAR"), Required]
-        public bool StatusSistema { get; } = true;
+        public bool StatusSistema { get; set; } = true;
     }
 }

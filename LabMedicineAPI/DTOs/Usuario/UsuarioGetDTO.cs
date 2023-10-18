@@ -13,7 +13,7 @@ namespace LabMedicineAPI.DTOs.Usuario
         public string NomeCompleto { get; set; }
         public string Email { get; set; }
         public TipoEnum Tipo { get; set; }
-        public bool StatusSistema { get; set; }
+        public bool StatusSistema { get; set; } = true;
 
     }
 }
