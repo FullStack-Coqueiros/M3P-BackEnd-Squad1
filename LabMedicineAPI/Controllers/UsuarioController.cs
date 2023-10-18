@@ -31,7 +31,7 @@ namespace LabMedicineAPI.Controllers
                 if (usuarios != null)
                     return StatusCode(HttpStatusCode.OK.GetHashCode(), usuarios);
 
-                return NotFound("Não foi localizado o  com o Id fornecido");
+                return NotFound("Não foi encontrado nenhum usuario cadastrado no sistema");
 
             }
             catch

@@ -25,6 +25,7 @@ namespace LabMedicineAPI.AutoMapper
             // Origem ... DestinO
 
             CreateMap<UsuarioCreateDTO, UsuarioModel>();
+            CreateMap<List<UsuarioModel>, List<UsuarioGetDTO>>();
             CreateMap<UsuarioGetDTO, UsuarioModel>();
             CreateMap<UsuarioModel,UsuarioUpdateDTO>();
             CreateMap<UsuarioDeleteDTO, UsuarioModel>();

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabMedicineAPI.Migrations
 {
     [DbContext(typeof(LabMedicineDbContext))]
-    [Migration("20231018125429_initial")]
+    [Migration("20231018143759_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -383,6 +383,10 @@ namespace LabMedicineAPI.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("StatusSistema")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR");
+
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
@@ -427,6 +431,10 @@ namespace LabMedicineAPI.Migrations
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasMaxLength(255)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("StatusSistema")
+                        .IsRequired()
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Telefone")

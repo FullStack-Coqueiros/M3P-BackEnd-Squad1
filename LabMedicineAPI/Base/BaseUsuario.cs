@@ -20,6 +20,6 @@ namespace LabMedicineAPI.Base
         [Column(TypeName = "VARCHAR"), Required, MaxLength(100)]
         public string Email { get; set; }
         [Column(TypeName = "VARCHAR"), Required]
-        public bool StatusSistema { get; } = true;
+        public bool StatusSistema { get; set; } = true;
     }
 }

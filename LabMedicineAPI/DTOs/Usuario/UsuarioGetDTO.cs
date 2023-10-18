@@ -9,20 +9,11 @@ namespace LabMedicineAPI.DTOs.Usuario
 {
     public class UsuarioGetDTO
     {
-        public int UsuarioId { get; set; }
+        public int Id { get; set; }
         public string NomeCompleto { get; set; }
         public string Email { get; set; }
         public TipoEnum Tipo { get; set; }
-        public bool StatusSistema { get; set; }
+        public bool StatusSistema { get; set; } = true;
 
-        public UsuarioGetDTO(int usuarioId, string nomeCompleto, string email, TipoEnum tipo, bool statusDoSistema)
-        {
-            UsuarioId = usuarioId;
-            NomeCompleto = nomeCompleto;
-            Email = email;
-            Tipo = tipo;
-            StatusSistema = statusDoSistema;
-
-        }
     }
 }

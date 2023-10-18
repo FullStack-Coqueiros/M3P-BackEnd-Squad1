@@ -23,7 +23,8 @@ namespace LabMedicineAPI.Migrations
                     NomeCompleto = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
                     Genero = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
                     CPF = table.Column<string>(type: "VARCHAR(14)", maxLength: 14, nullable: false),
-                    Email = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false)
+                    Email = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
+                    StatusSistema = table.Column<string>(type: "VARCHAR(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,7 +49,8 @@ namespace LabMedicineAPI.Migrations
                     NomeCompleto = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
                     Genero = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
                     CPF = table.Column<string>(type: "VARCHAR(14)", maxLength: 14, nullable: false),
-                    Email = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false)
+                    Email = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
+                    StatusSistema = table.Column<string>(type: "VARCHAR(1)", nullable: false)
                 },
                 constraints: table =>
                 {
