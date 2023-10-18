@@ -33,12 +33,14 @@ namespace LabMedicineAPI.Service.Usuario
             return usuarioDTO;
         }
 
-        public UsuarioModel UsuarioCreateDTO(UsuarioCreateDTO usuarioCreateDTO)
+        public UsuarioGetDTO UsuarioCreateDTO(UsuarioCreateDTO usuarioCreateDTO)
         {
             var usuario = _mapper.Map<UsuarioModel>(usuarioCreateDTO);
             var usuarioCreated = _repository.Create(usuario);
-            var usuarioCreatedDTO = _mapper.Map<UsuarioModel>(usuarioCreated);
-            return usuarioCreatedDTO;
+            usuario = _repository.GetAll()
+                .Where(a => a.CPF == usuarioCreateDTO.CPF).FirstOrDefault();
+            UsuarioGetDTO usuarioGet = _mapper.Map<UsuarioGetDTO>(usuarioCreated);
+            return usuarioGet;
 
         }
         public UsuarioGetDTO UsuarioUpdateDTO(int id ,UsuarioUpdateDTO updateUsuarioDTO)
