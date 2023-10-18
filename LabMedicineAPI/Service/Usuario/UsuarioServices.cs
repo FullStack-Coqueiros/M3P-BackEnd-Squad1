@@ -28,8 +28,8 @@ namespace LabMedicineAPI.Service.Usuario
 
         public UsuarioGetDTO GetById(int id)
         {
-            var usuario = _repository.GetById(id);
-            var usuarioDTO = _mapper.Map<UsuarioGetDTO>(usuario);
+            UsuarioModel usuario = _repository.GetById(id);
+            UsuarioGetDTO usuarioDTO = _mapper.Map<UsuarioGetDTO>(usuario);
             return usuarioDTO;
         }
 
@@ -41,18 +41,28 @@ namespace LabMedicineAPI.Service.Usuario
             return usuarioCreatedDTO;
 
         }
-        public UsuarioModel UsuarioUpdateDTO(int id, UsuarioUpdateDTO updateUsuarioDTO)
+        public UsuarioGetDTO UsuarioUpdateDTO(int id ,UsuarioUpdateDTO updateUsuarioDTO)
         {
-            var usuario = _repository.GetById(id);
-            if (usuario == null)
-            {
-                throw new Exception("Paciente não encontrado");
-            }
-            _mapper.Map(updateUsuarioDTO, usuario);
+            UsuarioModel model = _repository.GetById(id);
+            model = _mapper.Map(updateUsuarioDTO, model);
+            _repository.Update(model);
+            UsuarioModel usuarioUpdated = _repository.GetById(id);
+            UsuarioGetDTO usuarioGet = _mapper.Map<UsuarioGetDTO>(usuarioUpdated);
+            return usuarioGet;
+            //var usuarioGetId = _repository.GetById(id);
+            //if (usuarioGetId == null)
+            //{
+            //    throw new Exception("Paciente não encontrado");
+            //}
+            //UsuarioModel model = _mapper.Map<UsuarioModel>(updateUsuarioDTO);
+            //_repository.Update(model);
+            //UsuarioGetDTO usuarioGet = _mapper.Map<UsuarioGetDTO>(updateUsuarioDTO);
+            //return usuarioGet;
+            //_mapper.Map(updateUsuarioDTO, usuario);
 
-            var usuarioUpdated = _repository.Update(usuario);
-            var usuarioUpdateDTO = _mapper.Map<UsuarioModel>(usuarioUpdated);
-            return usuarioUpdateDTO;
+            //var usuarioUpdated = _repository.Update(usuario);
+            //var usuarioUpdateDTO = _mapper.Map<UsuarioModel>(usuarioUpdated);
+            //return usuarioUpdateDTO;
         }
 
         public bool DeleteUsuario(int id)

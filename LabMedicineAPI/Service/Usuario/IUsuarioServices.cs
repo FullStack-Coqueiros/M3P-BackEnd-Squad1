@@ -9,6 +9,6 @@ namespace LabMedicineAPI.Service.Usuario
         IEnumerable<UsuarioGetDTO> Get();
         UsuarioGetDTO GetById(int id);
         UsuarioModel UsuarioCreateDTO(UsuarioCreateDTO usuarioCreateDTO);
-        UsuarioModel UsuarioUpdateDTO(int id, UsuarioUpdateDTO updateUsuarioDTO);
+        UsuarioGetDTO UsuarioUpdateDTO(int id, UsuarioUpdateDTO updateUsuarioDTO);
     }
 }

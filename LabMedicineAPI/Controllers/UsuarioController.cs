@@ -23,17 +23,15 @@ namespace LabMedicineAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public ActionResult<IEnumerable<UsuarioGetDTO>> Get()
+        public IActionResult Get()
         {
             try
             {
                 IEnumerable<UsuarioGetDTO> usuarios = _services.Get();
-                return Ok(usuarios);
-                //var usuarios = _services.Get();
-                //if (usuarios != null)
-                //    return StatusCode(HttpStatusCode.OK.GetHashCode(), usuarios);
+                if (usuarios != null)
+                    return StatusCode(HttpStatusCode.OK.GetHashCode(), usuarios);
 
-                //return NotFound("Não foi encontrado nenhum usuario cadastrado no sistema");
+                return NotFound("Não foi encontrado nenhum usuario cadastrado no sistema");
 
             }
             catch(Exception)
@@ -49,11 +47,11 @@ namespace LabMedicineAPI.Controllers
         {
             try
             {
-                var usuario = _services.GetById(id);
-                if (id != null)
+                UsuarioGetDTO usuario = _services.GetById(id);
+                if (usuario != null)
                     return StatusCode(HttpStatusCode.OK.GetHashCode(), usuario);
 
-                return BadRequest("Não foi localizado o usuario com o Id fornecido");
+                return NotFound("Não foi localizado o usuario com o Id fornecido");
 
             }
             catch
@@ -79,8 +77,6 @@ namespace LabMedicineAPI.Controllers
                 {
                     return Ok("Usuario registrado com sucesso");
                 }
-
-
                 return BadRequest("Dados inválidos fornecidos para a criação do usuario");
 
             }
@@ -96,15 +92,15 @@ namespace LabMedicineAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult PacienteUpdateDTO(int id, [FromBody] UsuarioUpdateDTO usuarioUpdate)
+        public IActionResult Update([FromRoute]int id, [FromBody] UsuarioUpdateDTO usuarioUpdate)
         {
             try
             {
-                var usuario = _services.UsuarioUpdateDTO(id, usuarioUpdate);
-                if (usuario != null)
+                UsuarioGetDTO usuario = _services.GetById(id);
+                if (usuario == null)
                     return BadRequest("Requisição com dados inválidos");
-
-                return Ok(usuario);
+                UsuarioGetDTO usuarioGet = _services.UsuarioUpdateDTO(id,usuarioUpdate);
+                return Ok(usuarioGet);
             }
             catch
             {
