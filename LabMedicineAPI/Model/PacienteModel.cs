@@ -40,6 +40,8 @@ namespace LabMedicineAPI.Model
         public int UsuarioId { get; set; }
         [Required]
         public UsuarioModel Usuario { get; set; }
+        public EnderecoModel Endereco { get; set; }
+
         public Collection <ConsultaModel> Consultas { get; set; }
         public Collection<DietaModel> Dietas { get; set; }
         public Collection<ExameModel> Exames { get; set; }

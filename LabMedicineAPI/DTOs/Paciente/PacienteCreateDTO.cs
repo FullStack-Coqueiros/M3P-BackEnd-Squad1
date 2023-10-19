@@ -52,13 +52,10 @@ namespace LabMedicineAPI.DTOs.Paciente
         public string? CuidadosEspecificos { get; set; }
         public string? Convenio { get; set; }
         public string? NumeroConvenio { get; set; }
-
         public DateTime? ValidadeConvenio { get; set; }
-
         [Required]
-        public List <EnderecoCreateDTO> Enderecos { get; set; }
-
         public bool StatusSistema { get; set; }
+       public EnderecoCreateDTO Endereco { get; set; }
 
 
     }

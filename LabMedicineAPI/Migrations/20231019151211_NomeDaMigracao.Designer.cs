@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabMedicineAPI.Migrations
 {
     [DbContext(typeof(LabMedicineDbContext))]
-    [Migration("20231019021504_NomeDaMigracao")]
+    [Migration("20231019151211_NomeDaMigracao")]
     partial class NomeDaMigracao
     {
         /// <inheritdoc />
@@ -360,6 +360,9 @@ namespace LabMedicineAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("VARCHAR");
 
+                    b.Property<int>("EnderecoId")
+                        .HasColumnType("int");
+
                     b.Property<int>("EstadoCivil")
                         .HasColumnType("int");
 
@@ -403,6 +406,8 @@ namespace LabMedicineAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EnderecoId");
 
                     b.HasIndex("UsuarioId");
 
@@ -504,7 +509,7 @@ namespace LabMedicineAPI.Migrations
                     b.HasOne("LabMedicineAPI.Model.PacienteModel", "Paciente")
                         .WithMany("Enderecos")
                         .HasForeignKey("PacienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Paciente");
@@ -569,11 +574,19 @@ namespace LabMedicineAPI.Migrations
 
             modelBuilder.Entity("LabMedicineAPI.Model.PacienteModel", b =>
                 {
+                    b.HasOne("LabMedicineAPI.Model.EnderecoModel", "Endereco")
+                        .WithMany()
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("LabMedicineAPI.Model.UsuarioModel", "Usuario")
                         .WithMany("Pacientes")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Endereco");
 
                     b.Navigation("Usuario");
                 });

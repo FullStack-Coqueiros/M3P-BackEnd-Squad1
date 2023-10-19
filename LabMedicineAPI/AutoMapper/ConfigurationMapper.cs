@@ -28,8 +28,8 @@ namespace LabMedicineAPI.AutoMapper
 
 
 
-            CreateMap<PacienteCreateDTO, PacienteModel>().ReverseMap()
-                .ForMember(destino => destino.Enderecos, origem => origem.MapFrom(dados => dados.Enderecos));
+            CreateMap<PacienteCreateDTO, PacienteModel>().ReverseMap();
+               // .ForMember(destino => destino.PacienteId, origem => origem.MapFrom(dados => dados.Id));
 
             //.ForMember(destino => destino.Consultas, origem => origem.MapFrom(dados => dados.Consultas))
             //.ForMember(destino => destino.Dietas, origem => origem.MapFrom(dados => dados.DietasModels))
@@ -39,7 +39,7 @@ namespace LabMedicineAPI.AutoMapper
 
 
             CreateMap<PacienteGetDTO, PacienteModel>().ReverseMap();
-                //.ForMember(destino => destino.Enderecos, origem => origem.MapFrom(dados => dados.Enderecos))
+               // .ForMember(destino => destino.PacienteId, origem => origem.MapFrom(dados => dados.Id));
                 //.ForMember(destino => destino.Consultas, origem => origem.MapFrom(dados => dados.Consultas))
                 //.ForMember(destino => destino.Dietas, origem => origem.MapFrom(dados => dados.DietasModels))
                 //.ForMember(destino => destino.Exames, origem => origem.MapFrom(dados => dados.Exames))

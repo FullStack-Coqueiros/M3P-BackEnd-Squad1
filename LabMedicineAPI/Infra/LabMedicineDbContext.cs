@@ -48,22 +48,18 @@ namespace LabMedicineAPI.Infra
                 .HasForeignKey(p => p.PacienteId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //modelBuilder.Entity<EnderecoModel>()
-            //   .HasOne(h => h.Paciente)
-            //   .WithMany(c => c.Enderecos)
-            //   .HasForeignKey(p => p.PacienteId)
-            //   .OnDelete(DeleteBehavior.Restrict);
-
             modelBuilder.Entity<PacienteModel>()                
                 .HasOne(h => h.Usuario)
                 .WithMany(c => c.Pacientes)
                 .HasForeignKey(p => p.UsuarioId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<PacienteModel>()
-                .HasMany(p => p.Enderecos)  // 'Enderecos' é a propriedade de navegação em 'PacienteModel'
-                .WithOne(e => e.Paciente);  // 'Paciente' é a propriedade de navegação em 'EnderecoModel' que referencia 'PacienteModel'
-
+            modelBuilder.Entity<EnderecoModel>()
+                .HasOne(p => p.Paciente)
+                .WithMany(p => p.Enderecos)
+                .HasForeignKey(p => p.PacienteId)
+                .OnDelete(DeleteBehavior.Restrict);
+            
 
 
             ///
