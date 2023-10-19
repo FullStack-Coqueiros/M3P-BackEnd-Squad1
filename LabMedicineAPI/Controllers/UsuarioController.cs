@@ -51,7 +51,7 @@ namespace LabMedicineAPI.Controllers
                 if (usuario != null)
                     return StatusCode(HttpStatusCode.OK.GetHashCode(), usuario);
 
-                return NotFound("Não foi localizado o usuario com o Id fornecido");
+                return BadRequest("Não foi localizado o usuario com o Id fornecido");
 
             }
             catch
@@ -82,7 +82,7 @@ namespace LabMedicineAPI.Controllers
             }
             // implantar excepyion para conflito de cpf e email
 
-            catch(Exception ex) 
+            catch (Exception ex) 
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,ex);
             }

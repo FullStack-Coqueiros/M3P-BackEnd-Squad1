@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,7 @@ namespace LabMedicineAPI.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EnderecoId { get; set; }
+        public int Id { get; set; }
         [Column(TypeName = "VARCHAR"), Required]
         public string CEP { get; set; }
         [Column(TypeName = "VARCHAR"), Required]
@@ -31,18 +32,7 @@ namespace LabMedicineAPI.Model
         public string PontoReferencia { get; set; }
 
         [Required]
-        [ForeignKey("Usuario Model")]
-        public int UsuarioId { get; set; }
-        [Required]
-        public UsuarioModel Usuario { get; set; }
-
-        [Required]
-        [ForeignKey("Paciente Model")]
+        [ForeignKey("PacienteModel")]
         public int PacienteId { get; set; }
-
-        [Required]
-        public PacienteModel Paciente { get; set; }
-
-
     }
 }

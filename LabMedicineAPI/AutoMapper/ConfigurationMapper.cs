@@ -24,15 +24,30 @@ namespace LabMedicineAPI.AutoMapper
 
             CreateMap<UsuarioCreateDTO, UsuarioModel>().ReverseMap();
             CreateMap<UsuarioGetDTO, UsuarioModel>().ReverseMap();
-            //CreateMap<List<UsuarioModel>, List<UsuarioGetDTO>>();
             CreateMap<UsuarioModel,UsuarioUpdateDTO>().ReverseMap();
-            
 
-         
-            CreateMap<PacienteCreateDTO, PacienteModel>();
-            CreateMap<PacienteGetDTO, PacienteModel>();
-            CreateMap<PacienteModel,PacienteUpdateDTO>();
-            CreateMap<PacienteDeleteDTO, PacienteModel>();
+
+
+            CreateMap<PacienteCreateDTO, PacienteModel>().ReverseMap()
+                .ForMember(destino => destino.Enderecos, origem => origem.MapFrom(dados => dados.Enderecos));
+
+            //.ForMember(destino => destino.Consultas, origem => origem.MapFrom(dados => dados.Consultas))
+            //.ForMember(destino => destino.Dietas, origem => origem.MapFrom(dados => dados.DietasModels))
+            //.ForMember(destino => destino.Exames, origem => origem.MapFrom(dados => dados.Exames))
+            //.ForMember(destino => destino.Exercicios, origem => origem.MapFrom(dados => dados.Exercicios))
+            //.ForMember(destino => destino.Medicamentos, origem => origem.MapFrom(dados => dados.Medicamentos)
+
+
+            CreateMap<PacienteGetDTO, PacienteModel>().ReverseMap();
+                //.ForMember(destino => destino.Enderecos, origem => origem.MapFrom(dados => dados.Enderecos))
+                //.ForMember(destino => destino.Consultas, origem => origem.MapFrom(dados => dados.Consultas))
+                //.ForMember(destino => destino.Dietas, origem => origem.MapFrom(dados => dados.DietasModels))
+                //.ForMember(destino => destino.Exames, origem => origem.MapFrom(dados => dados.Exames))
+                //.ForMember(destino => destino.Exercicios, origem => origem.MapFrom(dados => dados.Exercicios))
+                //.ForMember(destino => destino.Meicamentos, origem => origem.MapFrom(dados => dados.Medicamentos);
+                
+            CreateMap<PacienteModel,PacienteUpdateDTO>().ReverseMap();
+            
 
            
             CreateMap<ExameCreateDTO, ExameModel>();

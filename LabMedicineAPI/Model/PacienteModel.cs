@@ -8,6 +8,7 @@ using LabMedicineAPI.Enums;
 using System.ComponentModel.DataAnnotations;
 using LabMedicineAPI.Base;
 using System.Diagnostics.CodeAnalysis;
+using System.Collections.ObjectModel;
 
 namespace LabMedicineAPI.Model
 {
@@ -21,9 +22,9 @@ namespace LabMedicineAPI.Model
         [Required]
         public EstadoCivilEnum EstadoCivil { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, MaxLength(13)]
+        [Column(TypeName = "VARCHAR"), Required, MaxLength(255)]
         public string Telefone { get; set; }
-        
+
         [Required(ErrorMessage = "A Naturalidade é obrigatória.")]
         [StringLength(64, MinimumLength = 8, ErrorMessage = "A Naturalidade deve ter entre 8 e 64 caracteres.")]
         public required string Naturalidade { get; set; }
@@ -39,12 +40,12 @@ namespace LabMedicineAPI.Model
         public int UsuarioId { get; set; }
         [Required]
         public UsuarioModel Usuario { get; set; }
-        public ICollection <ConsultaModel> Consultas { get; set; }
-        public ICollection<DietaModel> Dietas { get; set; }
-        public ICollection<ExameModel> Exames { get; set; }
-        public ICollection<ExercicioModel> Exercicios { get; set;}
-        public ICollection<MedicamentoModel> Medicamentos { get; set;}
-        public ICollection<EnderecoModel> Enderecos { get; set; }
+        public Collection <ConsultaModel> Consultas { get; set; }
+        public Collection<DietaModel> Dietas { get; set; }
+        public Collection<ExameModel> Exames { get; set; }
+        public Collection<ExercicioModel> Exercicios { get; set;}
+        public Collection<MedicamentoModel> Medicamentos { get; set;}
+        public Collection<EnderecoModel> Enderecos { get; set; }
 
 
     }

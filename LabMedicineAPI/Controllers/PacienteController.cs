@@ -26,16 +26,16 @@ namespace LabMedicineAPI.Controllers
         {
             try
             {
-                var pacientes = _services.Get();
+                IEnumerable<PacienteGetDTO>pacientes = _services.Get();
                 if (pacientes != null)
                     return StatusCode(HttpStatusCode.OK.GetHashCode(), pacientes);
 
-                return BadRequest("Não foi localizado o pacinete com o Id fornecido");
+                return BadRequest("Não foi encontrado nenhum usuario cadastrado no sistema");
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Erro interno no servidor");
             }
 
 
@@ -48,16 +48,16 @@ namespace LabMedicineAPI.Controllers
         {
             try
             {
-                var paciente = _services.GetById(id);
-                if (id != null)
+                PacienteGetDTO paciente = _services.GetById(id);
+                if (paciente != null)
                     return StatusCode(HttpStatusCode.OK.GetHashCode(), paciente);
 
                 return BadRequest("Não foi localizado o pacinete com o Id fornecido");
 
             }
-            catch (IOException ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Erro interno no servidor");
 
             }
         }
@@ -75,14 +75,14 @@ namespace LabMedicineAPI.Controllers
                 
                 if (paciente != null)
 
-                    return CreatedAtAction("Paciente registrado com sucesso", new { id = paciente.Id }, paciente);
+                    return Ok("Paciente cadastrado com sucesso");
 
                 return BadRequest("Dados inválidos fornecidos para a criação do paciente");
 
             }
             // implantar excepyion para conflito de cpf e email
             
-            catch (Exception ex)
+            catch (Exception)
             {         
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
             }

@@ -8,7 +8,7 @@ namespace LabMedicineAPI.Service.Paciente
         bool DeletePaciente(int id);
         IEnumerable<PacienteGetDTO> Get();
         PacienteGetDTO GetById(int id);
-        PacienteModel PacienteCreateDTO(PacienteCreateDTO pacienteCreateDTO);
-        PacienteModel PacienteUpdateDTO(int id, PacienteUpdateDTO updatePacienteDTO);
+        PacienteGetDTO PacienteCreateDTO(PacienteCreateDTO pacienteCreateDTO);
+        PacienteGetDTO PacienteUpdateDTO(int id, PacienteUpdateDTO updatePacienteDTO);
     }
 }

@@ -56,10 +56,9 @@ namespace LabMedicineAPI.DTOs.Paciente
         public DateTime? ValidadeConvenio { get; set; }
 
         [Required]
-        public required EnderecoCreateDTO Enderecos { get; set; }
+        public List <EnderecoCreateDTO> Enderecos { get; set; }
 
-
-        public bool StatusSistema { get; set; } = true;
+        public bool StatusSistema { get; set; }
 
 
     }
