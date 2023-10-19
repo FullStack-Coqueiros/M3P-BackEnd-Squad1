@@ -23,12 +23,22 @@ namespace LabMedicineAPI.Infra
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+            modelBuilder.Entity<ConsultaModel>()
+                .HasOne(c => c.Paciente)
+                .WithMany(p => p.Consultas)
+                .HasForeignKey(c => c.PacienteId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ConsultaModel>()
+                .HasOne(c => c.Usuario)
+                .WithMany(u => u.Consultas)
+                .HasForeignKey(c => c.UsuarioId)
+                .OnDelete(DeleteBehavior.Restrict);
+            /*modelBuilder.Entity<ConsultaModel>()
                 .HasOne(h => h.Paciente) // Um paciente pode ter muitos consulta
                 .WithMany(c => c.Consultas) // Um paciente muitas consultas
                 .HasForeignKey(p => p.PacienteId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict);*/
 
             modelBuilder.Entity<DietaModel>()
                 .HasOne(h => h.Paciente) // Um paciente pode ter muitos dietas
@@ -48,17 +58,19 @@ namespace LabMedicineAPI.Infra
                 .HasForeignKey(p => p.PacienteId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<PacienteModel>()                
+            modelBuilder.Entity<PacienteModel>()
+                .HasOne(p => p.Endereco)
+                .WithOne(e => e.Paciente)
+                .HasForeignKey<EnderecoModel>(e => e.PacienteId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            /*modelBuilder.Entity<PacienteModel>()                
                 .HasOne(h => h.Usuario)
                 .WithMany(c => c.Pacientes)
                 .HasForeignKey(p => p.UsuarioId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict);*/
 
-            modelBuilder.Entity<EnderecoModel>()
-                .HasOne(p => p.Paciente)
-                .WithMany(p => p.Enderecos)
-                .HasForeignKey(p => p.PacienteId)
-                .OnDelete(DeleteBehavior.Restrict);
             
 
 

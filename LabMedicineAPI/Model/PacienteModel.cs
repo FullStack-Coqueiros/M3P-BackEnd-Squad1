@@ -28,26 +28,24 @@ namespace LabMedicineAPI.Model
         [Required(ErrorMessage = "A Naturalidade é obrigatória.")]
         [StringLength(64, MinimumLength = 8, ErrorMessage = "A Naturalidade deve ter entre 8 e 64 caracteres.")]
         public required string Naturalidade { get; set; }
+        [Column(TypeName = "VARCHAR"), MaxLength(255)]
         public string Alergias { get; set; }
+        [Column(TypeName = "VARCHAR"), MaxLength(255)]
         public string CuidadosEspecificos { get; set; }
+        [Column(TypeName = "VARCHAR"), MaxLength(255)]
+
         public string Convenio { get; set; }
-        [NotNull]
-        public required string ContatoEmergencia { get; set; }
+        [Column(TypeName = "VARCHAR"), MaxLength(255), Required]
+        public string ContatoEmergencia { get; set; }
+        [Column(TypeName = "VARCHAR"), MaxLength(255)]
         public string NumeroConvenio { get; set; }
         public DateTime? ValidadeConvenio { get; set; }
-        [Required]
-        [ForeignKey("UsuarioModel")]
-        public int UsuarioId { get; set; }
-        [Required]
-        public UsuarioModel Usuario { get; set; }
         public EnderecoModel Endereco { get; set; }
-
-        public Collection <ConsultaModel> Consultas { get; set; }
+        public Collection<ConsultaModel> Consultas { get; set; }
         public Collection<DietaModel> Dietas { get; set; }
         public Collection<ExameModel> Exames { get; set; }
-        public Collection<ExercicioModel> Exercicios { get; set;}
-        public Collection<MedicamentoModel> Medicamentos { get; set;}
-        public Collection<EnderecoModel> Enderecos { get; set; }
+        public Collection<ExercicioModel> Exercicios { get; set; }
+        public Collection<MedicamentoModel> Medicamentos { get; set; }
 
 
     }

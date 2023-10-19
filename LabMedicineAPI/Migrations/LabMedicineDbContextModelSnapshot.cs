@@ -125,30 +125,37 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Bairro")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("CEP")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Complemento")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("Estado")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logradouro")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Numero")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<int>("PacienteId")
@@ -156,11 +163,13 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("PontoReferencia")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PacienteId");
+                    b.HasIndex("PacienteId")
+                        .IsUnique();
 
                     b.ToTable("Endereco");
                 });
@@ -330,7 +339,8 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Alergias")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("CPF")
                         .IsRequired()
@@ -339,15 +349,18 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("ContatoEmergencia")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("Convenio")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("CuidadosEspecificos")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
@@ -356,9 +369,6 @@ namespace LabMedicineAPI.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("VARCHAR");
-
-                    b.Property<int>("EnderecoId")
-                        .HasColumnType("int");
 
                     b.Property<int>("EstadoCivil")
                         .HasColumnType("int");
@@ -380,7 +390,8 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("NumeroConvenio")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("RgOrgaoExpedidor")
                         .IsRequired()
@@ -396,7 +407,7 @@ namespace LabMedicineAPI.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<int>("UsuarioId")
+                    b.Property<int?>("UsuarioModelId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ValidadeConvenio")
@@ -404,9 +415,7 @@ namespace LabMedicineAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EnderecoId");
-
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UsuarioModelId");
 
                     b.ToTable("Paciente");
                 });
@@ -474,7 +483,7 @@ namespace LabMedicineAPI.Migrations
                     b.HasOne("LabMedicineAPI.Model.UsuarioModel", "Usuario")
                         .WithMany("Consultas")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Paciente");
@@ -504,8 +513,8 @@ namespace LabMedicineAPI.Migrations
             modelBuilder.Entity("LabMedicineAPI.Model.EnderecoModel", b =>
                 {
                     b.HasOne("LabMedicineAPI.Model.PacienteModel", "Paciente")
-                        .WithMany("Enderecos")
-                        .HasForeignKey("PacienteId")
+                        .WithOne("Endereco")
+                        .HasForeignKey("LabMedicineAPI.Model.EnderecoModel", "PacienteId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -571,21 +580,9 @@ namespace LabMedicineAPI.Migrations
 
             modelBuilder.Entity("LabMedicineAPI.Model.PacienteModel", b =>
                 {
-                    b.HasOne("LabMedicineAPI.Model.EnderecoModel", "Endereco")
-                        .WithMany()
-                        .HasForeignKey("EnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LabMedicineAPI.Model.UsuarioModel", "Usuario")
+                    b.HasOne("LabMedicineAPI.Model.UsuarioModel", null)
                         .WithMany("Pacientes")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Endereco");
-
-                    b.Navigation("Usuario");
+                        .HasForeignKey("UsuarioModelId");
                 });
 
             modelBuilder.Entity("LabMedicineAPI.Model.PacienteModel", b =>
@@ -594,7 +591,8 @@ namespace LabMedicineAPI.Migrations
 
                     b.Navigation("Dietas");
 
-                    b.Navigation("Enderecos");
+                    b.Navigation("Endereco")
+                        .IsRequired();
 
                     b.Navigation("Exames");
 
