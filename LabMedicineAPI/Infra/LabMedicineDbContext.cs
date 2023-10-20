@@ -59,6 +59,9 @@ namespace LabMedicineAPI.Infra
                 .HasForeignKey<EnderecoModel>(e => e.PacienteId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<EnderecoModel>()
+                .HasKey(p => p.Id);
+
 
             base.OnModelCreating(modelBuilder);
 
