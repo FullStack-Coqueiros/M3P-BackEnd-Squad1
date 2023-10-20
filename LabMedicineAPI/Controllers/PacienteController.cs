@@ -26,7 +26,7 @@ namespace LabMedicineAPI.Controllers
         {
             try
             {
-                IEnumerable<PacienteGetDTO>pacientes = _services.Get();
+                IEnumerable<PacienteGetDTO> pacientes = _services.Get();
                 if (pacientes != null)
                     return StatusCode(HttpStatusCode.OK.GetHashCode(), pacientes);
 
@@ -72,7 +72,7 @@ namespace LabMedicineAPI.Controllers
             try
             {
                 var paciente = _services.CriarPacienteEndereco(pacienteEnderecoCreateDTO);
-                
+
                 if (paciente != null)
 
                     return Ok("Paciente cadastrado com sucesso");
@@ -81,9 +81,9 @@ namespace LabMedicineAPI.Controllers
 
             }
             // implantar excepyion para conflito de cpf e email
-            
+
             catch (Exception)
-            {         
+            {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
             }
         }
@@ -92,17 +92,17 @@ namespace LabMedicineAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult PacienteUpdateDTO(int id, [FromBody]PacienteUpdateDTO pacienteUpdate)
+        public IActionResult PacienteEnderecoUpdate(int id, [FromBody] PacienteEnderecoUpdateDTO pacienteEnderecoUpdate)
         {
             try
             {
-                var paciente = _services.PacienteUpdateDTO(id, pacienteUpdate);
-                if (paciente != null)
-                    return BadRequest("Requisição com dados inválidos");
+                var pacienteAtualizado = _services.PacienteEnderecoUpdate(id, pacienteEnderecoUpdate);
+                if (pacienteAtualizado != null)
+                    return Ok(pacienteAtualizado);
 
-                return Ok(paciente);
+                return BadRequest("Requisição com dados inválidos");
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
 
