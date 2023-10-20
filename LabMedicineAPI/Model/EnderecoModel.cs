@@ -12,8 +12,7 @@ namespace LabMedicineAPI.Model
     public class EnderecoModel
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int Id { get; }
         [Column(TypeName = "VARCHAR"),MaxLength(255), Required]
         public string CEP { get; set; }
         [Column(TypeName = "VARCHAR"), MaxLength(255), Required]

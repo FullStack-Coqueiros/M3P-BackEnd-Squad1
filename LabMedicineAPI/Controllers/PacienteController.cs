@@ -67,11 +67,11 @@ namespace LabMedicineAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public IActionResult Post([FromBody] PacienteCreateDTO pacienteCreateDTO)
+        public IActionResult Post([FromBody] PacienteEnderecoCreateDTO pacienteEnderecoCreateDTO)
         {
             try
             {
-                var paciente = _services.PacienteCreateDTO(pacienteCreateDTO);
+                var paciente = _services.CriarPacienteEndereco(pacienteEnderecoCreateDTO);
                 
                 if (paciente != null)
 
