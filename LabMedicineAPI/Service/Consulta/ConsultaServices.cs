@@ -3,7 +3,7 @@ using LabMedicineAPI.DTOs;
 using LabMedicineAPI.DTOs.Consulta;
 using LabMedicineAPI.Model;
 using LabMedicineAPI.Repositories;
-
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace LabMedicineAPI.Service.Consulta
 {
@@ -44,18 +44,24 @@ namespace LabMedicineAPI.Service.Consulta
             return consultaCreatedDTO;
 
         }
-        public ConsultaModel ConsultaUpdateDTO(int id, ConsultaUpdateDTO updateConsultaDTO)
+        public ConsultaUpdateDTO ConsultaUpdate(int id, ConsultaUpdateDTO updateConsultaDTO)
         {
-            var consulta = _repository.GetById(id);
-            if (consulta == null)
-            {
-                throw new Exception("Paciente não encontrado");
-            }
-            _mapper.Map(updateConsultaDTO, consulta);
+            if (_repository.GetById(id) == null)
+                throw new Exception("Paciente não localizado em nossos registros");
+            var consulta = _mapper.Map<ConsultaUpdateDTO, ConsultaModel>(updateConsultaDTO);
+  
+            _repository.Update(consulta);
+            return updateConsultaDTO;
+            //var consulta = _repository.GetById(id);
+            //if (consulta == null)
+            //{
+            //    throw new Exception("Paciente não encontrado");
+            //}
+            //_mapper.Map(updateConsultaDTO, consulta);
 
-            var consultaUpdated = _repository.Update(consulta);
-            var consultaUpdateDTO = _mapper.Map<ConsultaModel>(consultaUpdated);
-            return consultaUpdateDTO;
+            //var consultaUpdated = _repository.Update(consulta);
+            //var consultaUpdateDTO = _mapper.Map<ConsultaModel>(consultaUpdated);
+            //return consultaUpdateDTO;
         }
 
         public bool DeleteConsulta(int id)

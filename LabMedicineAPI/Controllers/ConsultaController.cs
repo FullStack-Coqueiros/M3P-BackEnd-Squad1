@@ -27,13 +27,11 @@ namespace LabMedicineAPI.Controllers
             try
             {
                 var consultaDTO = _consultaServices.Get(pacienteId);
-
                 
                 if (consultaDTO == null || !consultaDTO.Any())
                 
                     return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Nenhum resultado encontrado para o ID do paciente fornecido");
                 
-
                 return StatusCode(HttpStatusCode.OK.GetHashCode(), consultaDTO);
             }
             catch (Exception ex)
@@ -73,7 +71,7 @@ namespace LabMedicineAPI.Controllers
         {
             try
             {
-                var consulta = _consultaServices.ConsultaUpdateDTO(id, consultaUpdateDTO);
+                var consulta = _consultaServices.ConsultaUpdate(id, consultaUpdateDTO);
 
                 if (consulta == null)
                 {
