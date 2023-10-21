@@ -61,7 +61,6 @@ namespace LabMedicineAPI.Controllers
 
             }
         }
-
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -73,20 +72,26 @@ namespace LabMedicineAPI.Controllers
             {
                 var paciente = _services.CriarPacienteEndereco(pacienteEnderecoCreateDTO);
 
-                if (paciente != null)
-
-                    return Ok("Paciente cadastrado com sucesso");
-
-                return BadRequest("Dados inválidos fornecidos para a criação do paciente");
-
+                return StatusCode(StatusCodes.Status201Created, "Paciente cadastrado com sucesso");
             }
-            // implantar excepyion para conflito de cpf e email
-
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
+                if (ex.Message.Contains("CPF"))
+                {
+                    return StatusCode(StatusCodes.Status409Conflict, "Conflito de CPF: ");
+                }
+                else if (ex.Message.Contains("email"))
+                {
+                    return StatusCode(StatusCodes.Status409Conflict, "Conflito de email: ");
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
+                }
             }
         }
+
+
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

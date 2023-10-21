@@ -40,12 +40,12 @@ namespace LabMedicineAPI.Model
         [Column(TypeName = "VARCHAR"), MaxLength(255)]
         public string NumeroConvenio { get; set; }
         public DateTime? ValidadeConvenio { get; set; }
-        public EnderecoModel Endereco { get; set; }
-        public Collection<ConsultaModel> Consultas { get; set; }
-        public Collection<DietaModel> Dietas { get; set; }
-        public Collection<ExameModel> Exames { get; set; }
-        public Collection<ExercicioModel> Exercicios { get; set; }
-        public Collection<MedicamentoModel> Medicamentos { get; set; }
+        public virtual EnderecoModel Endereco { get; set; }
+        public virtual Collection<ConsultaModel> Consultas { get; set; }
+        public virtual Collection<DietaModel> Dietas { get; set; }
+        public  virtual Collection<ExameModel> Exames { get; set; }
+        public virtual Collection<ExercicioModel> Exercicios { get; set; }
+        public virtual Collection<MedicamentoModel> Medicamentos { get; set; }
 
 
     }

@@ -33,30 +33,31 @@ namespace LabMedicineAPI.Service.Paciente
             var pacienteDTO = _mapper.Map<PacienteGetDTO>(paciente);
             return pacienteDTO;
         }
-
         public PacienteEnderecoCreateDTO CriarPacienteEndereco(PacienteEnderecoCreateDTO pacienteEnderecoCreateDTO)
         {
             var paciente = _mapper.Map<PacienteModel>(pacienteEnderecoCreateDTO.Paciente);
             var enderecoModel = _mapper.Map<EnderecoModel>(pacienteEnderecoCreateDTO.Endereco);
 
-            paciente = _repository.GetAll().Where(x => x.CPF == pacienteEnderecoCreateDTO.Paciente.CPF).FirstOrDefault();
+            var conflitoCPF = _repository.GetAll().Where(x => x.CPF == paciente.CPF).FirstOrDefault();
+            if (conflitoCPF != null)
+            {
+                throw new Exception("Já existe um paciente com o CPF informado cadastrado no sistema.");
+            }
+
+            var conflitoEmail = _repository.GetAll().Where(x => x.Email == paciente.Email).FirstOrDefault();
+            if (conflitoEmail != null)
+            {
+                throw new Exception("Já existe um paciente com o email informado cadastrado no sistema.");
+            }
+
             _repository.Create(paciente);
 
             paciente.Endereco = enderecoModel;
             _enderecoRepository.Create(enderecoModel);
 
             return pacienteEnderecoCreateDTO;
-
-
-            //PacienteModel paciente = _mapper.Map<PacienteEnderecoCreateModel>(pacienteCreateDTO);
-            //_repository.Create(paciente);
-            //PacienteModel pacienteCreate = _repository.GetAll()
-            //    .Where(a => a.CPF == pacienteCreateDTO.CPF).FirstOrDefault();
-            //PacienteGetDTO pacienteGet = _mapper.Map<PacienteGetDTO>(pacienteCreate);
-
-            //return pacienteGet;
-
         }
+
         public PacienteEnderecoUpdateDTO PacienteEnderecoUpdate(int id, PacienteEnderecoUpdateDTO pacienteEnderecoUpdateDTO)
         {
             PacienteModel paciente = _repository.GetById(id);
