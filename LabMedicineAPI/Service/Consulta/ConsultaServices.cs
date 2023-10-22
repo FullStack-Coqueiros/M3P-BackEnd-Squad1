@@ -44,25 +44,42 @@ namespace LabMedicineAPI.Service.Consulta
             return consultaCreatedDTO;
 
         }
-        public ConsultaUpdateDTO ConsultaUpdate(int id, ConsultaUpdateDTO updateConsultaDTO)
-        {
-            if (_repository.GetById(id) == null)
-                throw new Exception("Paciente não localizado em nossos registros");
-            var consulta = _mapper.Map<ConsultaUpdateDTO, ConsultaModel>(updateConsultaDTO);
-  
-            _repository.Update(consulta);
-            return updateConsultaDTO;
-            //var consulta = _repository.GetById(id);
-            //if (consulta == null)
-            //{
-            //    throw new Exception("Paciente não encontrado");
-            //}
-            //_mapper.Map(updateConsultaDTO, consulta);
 
-            //var consultaUpdated = _repository.Update(consulta);
-            //var consultaUpdateDTO = _mapper.Map<ConsultaModel>(consultaUpdated);
-            //return consultaUpdateDTO;
+        public ConsultaModel ConsultaUpdate(int id, ConsultaUpdateDTO updateConsultaDTO)
+        {
+            var consulta = _repository.GetById(id);
+
+            if (consulta == null)
+            {
+                throw new Exception("Consulta com o ID informado não foi encontrada em nossos registros");
+            }
+
+            _mapper.Map(updateConsultaDTO, consulta);
+
+            _repository.Update(consulta);
+
+            return consulta; // Retorna a entidade atualizada
         }
+
+        //public ConsultaUpdateDTO ConsultaUpdate(int id, ConsultaUpdateDTO updateConsultaDTO)
+        //{
+        //    if (_repository.GetById(id) == null)
+        //        throw new Exception("Consultacom o id informado não localizado em nossos registros");
+        //    var consulta = _mapper.Map<ConsultaUpdateDTO, ConsultaModel>(updateConsultaDTO);
+
+        //    _repository.Update(consulta);
+        //    return updateConsultaDTO;
+        //    //var consulta = _repository.GetById(id);
+        //    //if (consulta == null)
+        //    //{
+        //    //    throw new Exception("Paciente não encontrado");
+        //    //}
+        //    //_mapper.Map(updateConsultaDTO, consulta);
+
+        //    //var consultaUpdated = _repository.Update(consulta);
+        //    //var consultaUpdateDTO = _mapper.Map<ConsultaModel>(consultaUpdated);
+        //    //return consultaUpdateDTO;
+        //}
 
         public bool DeleteConsulta(int id)
         {
