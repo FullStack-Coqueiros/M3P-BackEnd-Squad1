@@ -104,7 +104,7 @@ namespace LabMedicineAPI.Controllers
                 var pacienteAtualizado = _services.PacienteEnderecoUpdate(id, pacienteEnderecoUpdate);
                 if (pacienteAtualizado != null)
                     return Ok(pacienteAtualizado);
-
+               
                 return BadRequest("Requisição com dados inválidos");
             }
             catch (Exception ex)

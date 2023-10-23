@@ -31,10 +31,40 @@ namespace LabMedicineAPI.Repositories
         }
 
         public TEntity Update(TEntity entity)
+      
         {
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
-            return entity;
+            
+            
+                _context.Entry(entity).State = EntityState.Modified;
+                _context.SaveChanges();
+                return entity;
+            
+        //    catch (DbUpdateConcurrencyException ex)
+        //    {
+        //        // Recarregua a entidade do banco de dados
+        //        var databaseEntry = ex.Entries.Single();
+        //        var databaseValues = databaseEntry.OriginalValues;
+        //        var clientValues = (TEntity)ex.Entries.Single().Entity;
+
+        //        // Verifique as propriedades alteradas pelo cliente e sobrescreva apenas essas no banco de dados
+        //        foreach (var property in databaseValues.Properties)
+        //        {
+        //            var databaseValue = databaseValues[property];
+        //            var clientValue = typeof(TEntity).GetProperty(property.Name).GetValue(clientValues);
+
+        //            if (databaseValue != null && !databaseValue.Equals(clientValue))
+        //            {
+        //                // Somente sobrescreva as propriedades que foram modificadas pelo cliente
+        //                databaseEntry.Property(property.Name).OriginalValue = databaseValue;
+        //                databaseEntry.Property(property.Name).IsModified = true;
+        //            }
+        //        }
+
+        //        // Agora tente salvar novamente
+        //        _context.SaveChanges();
+        //        return entity;
+        //    }
+
         }
 
         public bool Delete(int id)

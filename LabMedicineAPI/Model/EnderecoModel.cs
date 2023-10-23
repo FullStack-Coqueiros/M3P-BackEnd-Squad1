@@ -34,6 +34,6 @@ namespace LabMedicineAPI.Model
         [Required]
         [ForeignKey("PacienteModel")]
         public int PacienteId { get; set; }
-        public virtual PacienteModel Paciente { get; set; }
+        public virtual PacienteModel? Paciente { get; set; }
     }
 }

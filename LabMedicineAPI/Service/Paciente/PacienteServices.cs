@@ -72,6 +72,7 @@ namespace LabMedicineAPI.Service.Paciente
                     
                     EnderecoModel novoEndereco = _mapper.Map<EnderecoModel>(pacienteEnderecoUpdateDTO.Endereco);
                     paciente.Endereco = novoEndereco;
+                    _enderecoRepository.Create(paciente.Endereco);
                 }
                 else
                 {
@@ -80,20 +81,15 @@ namespace LabMedicineAPI.Service.Paciente
                     _mapper.Map(pacienteEnderecoUpdateDTO.Endereco, enderecoExistente);
                 }
 
-                _repository.Update(paciente);
+                _enderecoRepository.Update(paciente.Endereco);
 
-                PacienteEnderecoUpdateDTO pacienteAtualizadoDTO = new PacienteEnderecoUpdateDTO
-                {
-                    Paciente = _mapper.Map<PacienteUpdateDTO>(paciente),
-                    Endereco = _mapper.Map<EnderecoUpdateDTO>(paciente.Endereco) // Use o endereço atualizado do paciente.
-                };
-
-                return pacienteAtualizadoDTO;
+             
+                return pacienteEnderecoUpdateDTO;
             }
             else
             {
-                // Lide com o caso em que o paciente não foi encontrado.
-                return null;
+
+                throw new Exception("Não foi localizado o registro com o id indicado");
             }
         }
 
