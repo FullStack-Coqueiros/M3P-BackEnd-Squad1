@@ -35,10 +35,6 @@ namespace LabMedicineAPI.Model
         public ICollection<MedicamentoModel> Medicamentos { get; set;}
         public ICollection<EnderecoModel> Enderecos { get; set; }
 
-       
-
-
-
 
     }
 }

@@ -29,7 +29,6 @@ namespace LabMedicineAPI.Model
         public string Bairro { get; set; }
 
         public string PontoReferencia { get; set; }
-
         [Required]
         [ForeignKey("Usuario Model")]
         public int UsuarioId { get; set; }
