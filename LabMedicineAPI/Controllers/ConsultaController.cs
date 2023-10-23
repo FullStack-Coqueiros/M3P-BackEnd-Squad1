@@ -34,9 +34,9 @@ namespace LabMedicineAPI.Controllers
                 
                 return StatusCode(HttpStatusCode.OK.GetHashCode(), consultaDTO);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),"Ocorreu um erro interno no servidor");
             }
         }
 
@@ -57,9 +57,9 @@ namespace LabMedicineAPI.Controllers
 
                 return StatusCode(HttpStatusCode.Created.GetHashCode(), consulta);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),"Erro interno no servidor");
             }
         }
 
@@ -87,7 +87,7 @@ namespace LabMedicineAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Delete(int id)
@@ -103,9 +103,9 @@ namespace LabMedicineAPI.Controllers
 
                 return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Consulta excluída com sucesso");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),"Ocorreu um erro interno no servidor");
             }
         }
 

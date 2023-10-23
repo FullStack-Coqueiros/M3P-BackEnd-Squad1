@@ -58,32 +58,13 @@ namespace LabMedicineAPI.Service.Consulta
 
             _repository.Update(consulta);
 
-            return consulta; // Retorna a entidade atualizada
+            return consulta;
         }
 
-        //public ConsultaUpdateDTO ConsultaUpdate(int id, ConsultaUpdateDTO updateConsultaDTO)
-        //{
-        //    if (_repository.GetById(id) == null)
-        //        throw new Exception("Consultacom o id informado não localizado em nossos registros");
-        //    var consulta = _mapper.Map<ConsultaUpdateDTO, ConsultaModel>(updateConsultaDTO);
-
-        //    _repository.Update(consulta);
-        //    return updateConsultaDTO;
-        //    //var consulta = _repository.GetById(id);
-        //    //if (consulta == null)
-        //    //{
-        //    //    throw new Exception("Paciente não encontrado");
-        //    //}
-        //    //_mapper.Map(updateConsultaDTO, consulta);
-
-        //    //var consultaUpdated = _repository.Update(consulta);
-        //    //var consultaUpdateDTO = _mapper.Map<ConsultaModel>(consultaUpdated);
-        //    //return consultaUpdateDTO;
-        //}
-
+      
         public bool DeleteConsulta(int id)
         {
-            return _repository.Delete(id);
+                return _repository.Delete(id);
         }
 
     }
