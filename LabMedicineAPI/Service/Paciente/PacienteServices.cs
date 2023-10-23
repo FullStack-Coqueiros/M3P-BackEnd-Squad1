@@ -65,20 +65,36 @@ namespace LabMedicineAPI.Service.Paciente
             if (paciente != null)
             {
                 _mapper.Map(pacienteEnderecoUpdateDTO.Paciente, paciente); // Mapeia os dados do paciente do DTO para o modelo do paciente.
+
+                
+                if (paciente.Endereco == null)
+                {
+                    
+                    EnderecoModel novoEndereco = _mapper.Map<EnderecoModel>(pacienteEnderecoUpdateDTO.Endereco);
+                    paciente.Endereco = novoEndereco;
+                }
+                else
+                {
+                  
+                    EnderecoModel enderecoExistente = paciente.Endereco;
+                    _mapper.Map(pacienteEnderecoUpdateDTO.Endereco, enderecoExistente);
+                }
+
+                _repository.Update(paciente);
+
+                PacienteEnderecoUpdateDTO pacienteAtualizadoDTO = new PacienteEnderecoUpdateDTO
+                {
+                    Paciente = _mapper.Map<PacienteUpdateDTO>(paciente),
+                    Endereco = _mapper.Map<EnderecoUpdateDTO>(paciente.Endereco) // Use o endereço atualizado do paciente.
+                };
+
+                return pacienteAtualizadoDTO;
             }
-
-            EnderecoModel endereco = _mapper.Map<EnderecoModel>(pacienteEnderecoUpdateDTO.Endereco);
-            paciente.Endereco = endereco;
-
-            _repository.Update(paciente);
-
-            PacienteEnderecoUpdateDTO pacienteAtualizadoDTO = new PacienteEnderecoUpdateDTO
+            else
             {
-                Paciente = _mapper.Map<PacienteUpdateDTO>(paciente),
-                Endereco = _mapper.Map<EnderecoUpdateDTO>(endereco)
-            };
-
-            return pacienteAtualizadoDTO;
+                // Lide com o caso em que o paciente não foi encontrado.
+                return null;
+            }
         }
 
         public bool DeletePaciente(int id)

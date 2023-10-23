@@ -107,9 +107,9 @@ namespace LabMedicineAPI.Controllers
 
                 return BadRequest("Requisição com dados inválidos");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
 
             }
         }

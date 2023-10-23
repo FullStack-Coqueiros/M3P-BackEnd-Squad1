@@ -27,7 +27,7 @@ namespace LabMedicineAPI.Model
 
         [Required(ErrorMessage = "A Naturalidade é obrigatória.")]
         [StringLength(64, MinimumLength = 8, ErrorMessage = "A Naturalidade deve ter entre 8 e 64 caracteres.")]
-        public required string Naturalidade { get; set; }
+        public  string Naturalidade { get; set; }
         [Column(TypeName = "VARCHAR"), MaxLength(255)]
         public string Alergias { get; set; }
         [Column(TypeName = "VARCHAR"), MaxLength(255)]
