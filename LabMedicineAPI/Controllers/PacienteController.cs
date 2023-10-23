@@ -82,7 +82,7 @@ namespace LabMedicineAPI.Controllers
             }
             // implantar excepyion para conflito de cpf e email
             
-            catch (Exception ex)
+            catch (Exception)
             {         
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
             }

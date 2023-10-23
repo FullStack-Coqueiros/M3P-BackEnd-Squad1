@@ -19,12 +19,12 @@ namespace LabMedicineAPI.Base
         [ForeignKey("PacienteModel")]
         public int PacienteId { get; set; }
         [Required]
-        public PacienteModel Paciente { get; set; }
+        public virtual PacienteModel Paciente { get; set; }
         [Required]
         [ForeignKey("UsuarioModel")]
         public int UsuarioId { get; set; }
         [Required]
-        public UsuarioModel Usuario { get; set; }
+        public virtual UsuarioModel Usuario { get; set; }
 
     }
 }
