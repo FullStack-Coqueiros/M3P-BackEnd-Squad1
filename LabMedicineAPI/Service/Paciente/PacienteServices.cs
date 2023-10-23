@@ -66,24 +66,25 @@ namespace LabMedicineAPI.Service.Paciente
             {
                 _mapper.Map(pacienteEnderecoUpdateDTO.Paciente, paciente); // Mapeia os dados do paciente do DTO para o modelo do paciente.
 
-                
                 if (paciente.Endereco == null)
                 {
-                    
                     EnderecoModel novoEndereco = _mapper.Map<EnderecoModel>(pacienteEnderecoUpdateDTO.Endereco);
-                    paciente.Endereco = novoEndereco;
-                    _enderecoRepository.Create(paciente.Endereco);
-                }
-                else
-                {
-                  
-                    EnderecoModel enderecoExistente = paciente.Endereco;
-                    _mapper.Map(pacienteEnderecoUpdateDTO.Endereco, enderecoExistente);
+                    var endereco = _enderecoRepository.GetByPacienteId(paciente.Id);
+                    if (endereco != null)
+                    {
+                        _mapper.Map(pacienteEnderecoUpdateDTO.Endereco, endereco);
+                        _enderecoRepository.Update(endereco);
+                    }
+                    else
+                    {
+
+                        paciente.Endereco = novoEndereco;
+                        _enderecoRepository.Create(paciente.Endereco);
+
+                    }
+
                 }
 
-                _enderecoRepository.Update(paciente.Endereco);
-
-             
                 return pacienteEnderecoUpdateDTO;
             }
             else
@@ -137,7 +138,7 @@ namespace LabMedicineAPI.Service.Paciente
                 return "Não é possível excluir o paciente, pois ele tem medicamentos vinculados.";
             }
 
-            return null; 
+            return null;
         }
 
     }

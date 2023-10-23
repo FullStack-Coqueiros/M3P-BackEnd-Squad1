@@ -1,4 +1,5 @@
 ﻿using LabMedicineAPI.Infra;
+using LabMedicineAPI.Model;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -22,6 +23,19 @@ namespace LabMedicineAPI.Repositories
         {
             return _context.Set<TEntity>().Find(id);
         }
+        public TEntity GetByPacienteId(int pacienteId)
+        {
+            if (typeof(TEntity) == typeof(EnderecoModel))
+            {
+                // Verifique se o tipo TEntity é EnderecoModel, pois você deseja filtrar por PacienteId apenas para essa entidade.
+                return _context.Set<TEntity>().Cast<EnderecoModel>().SingleOrDefault(e => e.PacienteId == pacienteId) as TEntity;
+            }
+            else
+            {
+                
+                return null;
+            }
+        }
 
         public TEntity Create(TEntity entity)
         {
@@ -38,32 +52,6 @@ namespace LabMedicineAPI.Repositories
                 _context.Entry(entity).State = EntityState.Modified;
                 _context.SaveChanges();
                 return entity;
-            
-        //    catch (DbUpdateConcurrencyException ex)
-        //    {
-        //        // Recarregua a entidade do banco de dados
-        //        var databaseEntry = ex.Entries.Single();
-        //        var databaseValues = databaseEntry.OriginalValues;
-        //        var clientValues = (TEntity)ex.Entries.Single().Entity;
-
-        //        // Verifique as propriedades alteradas pelo cliente e sobrescreva apenas essas no banco de dados
-        //        foreach (var property in databaseValues.Properties)
-        //        {
-        //            var databaseValue = databaseValues[property];
-        //            var clientValue = typeof(TEntity).GetProperty(property.Name).GetValue(clientValues);
-
-        //            if (databaseValue != null && !databaseValue.Equals(clientValue))
-        //            {
-        //                // Somente sobrescreva as propriedades que foram modificadas pelo cliente
-        //                databaseEntry.Property(property.Name).OriginalValue = databaseValue;
-        //                databaseEntry.Property(property.Name).IsModified = true;
-        //            }
-        //        }
-
-        //        // Agora tente salvar novamente
-        //        _context.SaveChanges();
-        //        return entity;
-        //    }
 
         }
 
