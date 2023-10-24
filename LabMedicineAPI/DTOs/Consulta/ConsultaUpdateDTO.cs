@@ -9,7 +9,7 @@ namespace LabMedicineAPI.DTOs.Consulta
     public class ConsultaUpdateDTO
     {
         [Required(ErrorMessage = "O Motivo da Consulta é obrigatório.")]
-        public required string MotivoConsulta { get; set; }
+        public string MotivoConsulta { get; set; }
 
         [Required(ErrorMessage = "A Data da Consulta é obrigatória.")]
         public DateTime Data { get; set; } 

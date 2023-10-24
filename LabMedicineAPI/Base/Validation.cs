@@ -4,8 +4,6 @@ using LabMedicineAPI.Enums;
 
 namespace LabMedicineAPI.Base
 {
-
-
     public partial class Validation
     {
         public sealed class EstadoCivilConverter : JsonConverter<EstadoCivilEnum>

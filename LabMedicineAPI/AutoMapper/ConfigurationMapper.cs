@@ -39,10 +39,10 @@ namespace LabMedicineAPI.AutoMapper
             CreateMap<ExameModel, ExameUpdateDTO>();
             CreateMap<ExameDeleteDTO, ExameModel>();
 
-            CreateMap<ConsultaCreateDTO, ConsultaModel>();
-            CreateMap<ConsultaGetDTO, ConsultaModel>();
-            CreateMap<ConsultaModel, ConsultaUpdateDTO>();
-            CreateMap<ConsultaDeleteDTO, ConsultaModel>();
+            CreateMap<ConsultaCreateDTO, ConsultaModel>().ReverseMap();
+            CreateMap<ConsultaGetDTO, ConsultaModel>().ReverseMap();
+            CreateMap<ConsultaUpdateDTO, ConsultaModel>().ReverseMap();
+           
 
             CreateMap<DietaCreateDTO, DietaModel>();
             CreateMap<DietaGetDTO, DietaModel>();

@@ -36,7 +36,7 @@ namespace LabMedicineAPI.DTOs.Usuario
         [EnumDataType(typeof(TipoEnum), ErrorMessage = "Tipo de usuário inválido.")]
         public TipoEnum Tipo { get; set; }
 
-        public bool StatusSistema { get; set; } = true; // Valor padrão: ativo
+        public bool StatusSistema { get; set; } = true; 
 
     }
 }
