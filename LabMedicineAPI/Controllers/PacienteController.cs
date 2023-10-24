@@ -130,9 +130,9 @@ namespace LabMedicineAPI.Controllers
 
                 return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Paciente excluído dos registros com sucesso");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode());
             }
         }
 

@@ -102,12 +102,16 @@ namespace LabMedicineAPI.Service.Paciente
             {
                 var impedimento = VerificarImpedimentosDelecao(paciente);
                 if (string.IsNullOrEmpty(impedimento))
-                {
+                { 
+                    if(paciente.Endereco != null) 
+                        _enderecoRepository.Delete(paciente.Endereco.PacienteId);
+
                     _repository.Delete(id);
+                   
                     //(paciente.Endereco.PacienteId);
                 }
 
-                return false;//_repository.Delete(id);
+                //_repository.Delete(id);
             }
 
             return false;
