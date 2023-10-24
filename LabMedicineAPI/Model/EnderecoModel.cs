@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace LabMedicineAPI.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; }
-        [Column(TypeName = "VARCHAR"), MaxLength(255), Required]
+        [Column(TypeName = "VARCHAR"),MaxLength(255), Required]
         public string CEP { get; set; }
         [Column(TypeName = "VARCHAR"), MaxLength(255), Required]
         public string Cidade { get; set; }
@@ -33,6 +34,6 @@ namespace LabMedicineAPI.Model
         [Required]
         [ForeignKey("PacienteModel")]
         public int PacienteId { get; set; }
-        public virtual PacienteModel Paciente { get; set; }
+        public virtual PacienteModel? Paciente { get; set; }
     }
 }

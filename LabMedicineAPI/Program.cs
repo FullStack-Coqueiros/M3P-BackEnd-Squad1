@@ -27,7 +27,6 @@ builder.Services.AddDbContext<LabMedicineDbContext>(o => o.UseSqlServer(connecti
 var options = new JsonSerializerOptions
 {
     ReferenceHandler = ReferenceHandler.Preserve,
-    MaxDepth = 64
 };
 builder.Services.AddControllers(options =>
 {

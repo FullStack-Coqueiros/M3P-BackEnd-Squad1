@@ -39,6 +39,9 @@ namespace LabMedicineAPI.Service.Usuario
             var usuarioCreated = _repository.Create(usuario);
             usuario = _repository.GetAll()
                 .Where(a => a.CPF == usuarioCreateDTO.CPF).FirstOrDefault();
+            
+            usuarioCreateDTO.StatusSistema = true;
+
             UsuarioGetDTO usuarioGet = _mapper.Map<UsuarioGetDTO>(usuarioCreated);
             return usuarioGet;
 

@@ -21,16 +21,19 @@ namespace LabMedicineAPI.Model
         public string RgOrgaoExpedidor { get; set; }
         [Required]
         public EstadoCivilEnum EstadoCivil { get; set; }
+
         [Column(TypeName = "VARCHAR"), Required, MaxLength(255)]
         public string Telefone { get; set; }
+
         [Required(ErrorMessage = "A Naturalidade é obrigatória.")]
         [StringLength(64, MinimumLength = 8, ErrorMessage = "A Naturalidade deve ter entre 8 e 64 caracteres.")]
-        public required string Naturalidade { get; set; }
+        public  string Naturalidade { get; set; }
         [Column(TypeName = "VARCHAR"), MaxLength(255)]
         public string Alergias { get; set; }
         [Column(TypeName = "VARCHAR"), MaxLength(255)]
         public string CuidadosEspecificos { get; set; }
         [Column(TypeName = "VARCHAR"), MaxLength(255)]
+
         public string Convenio { get; set; }
         [Column(TypeName = "VARCHAR"), MaxLength(255), Required]
         public string ContatoEmergencia { get; set; }
@@ -38,11 +41,11 @@ namespace LabMedicineAPI.Model
         public string NumeroConvenio { get; set; }
         public DateTime? ValidadeConvenio { get; set; }
         public virtual EnderecoModel Endereco { get; set; }
-        public virtual Collection<ConsultaModel>? Consultas { get; set; }
-        public virtual Collection<DietaModel>? Dietas { get; set; }
-        public virtual Collection<ExameModel>? Exames { get; set; }
-        public virtual Collection<ExercicioModel>? Exercicios { get; set; }
-        public virtual Collection<MedicamentoModel>? Medicamentos { get; set; }
+        public virtual Collection<ConsultaModel> Consultas { get; set; }
+        public virtual Collection<DietaModel> Dietas { get; set; }
+        public  virtual Collection<ExameModel> Exames { get; set; }
+        public virtual Collection<ExercicioModel> Exercicios { get; set; }
+        public virtual Collection<MedicamentoModel> Medicamentos { get; set; }
 
 
     }

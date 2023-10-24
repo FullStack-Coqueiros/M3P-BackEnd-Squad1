@@ -13,7 +13,7 @@ namespace LabMedicineAPI.DTOs.Paciente
     {
         [Required(ErrorMessage = "O Nome Completo é obrigatório.")]
         [StringLength(64, MinimumLength = 8, ErrorMessage = "O Nome Completo deve ter entre 8 e 64 caracteres.")]
-        public required string NomeCompleto { get; set; }
+        public string NomeCompleto { get; set; }
 
         [Required(ErrorMessage = "O Gênero é obrigatório.")]
         public GeneroEnum Genero { get; set; }
@@ -24,19 +24,19 @@ namespace LabMedicineAPI.DTOs.Paciente
         public EstadoCivilEnum EstadoCivil { get; set; }
         [Required(ErrorMessage = "O Telefone é obrigatório.")]
         [RegularExpression(@"^\(\d{2}\) \d{4,5}-\d{4}$", ErrorMessage = "Formato de Telefone inválido.")]
-        public required string Telefone { get; set; }
+        public string Telefone { get; set; }
 
         [Required(ErrorMessage = "O E-mail é obrigatório.")]
         [EmailAddress(ErrorMessage = "Formato de E-mail inválido.")]
-        public required string Email { get; set; }
+        public  string Email { get; set; }
 
         [Required(ErrorMessage = "A Naturalidade é obrigatória.")]
         [StringLength(64, MinimumLength = 8, ErrorMessage = "A Naturalidade deve ter entre 8 e 64 caracteres.")]
-        public required string Naturalidade { get; set; }
+        public  string Naturalidade { get; set; }
 
         [Required(ErrorMessage = "O Contato de Emergência é obrigatório.")]
         [RegularExpression(@"^\(\d{2}\) \d{4,5}-\d{4}$", ErrorMessage = "Formato de Contato de Emergência inválido.")]
-        public required string ContatoEmergencia { get; set; }
+        public  string ContatoEmergencia { get; set; }
 
         // Propriedades opcionais
         public string? Alergias { get; set; }
@@ -45,8 +45,6 @@ namespace LabMedicineAPI.DTOs.Paciente
         public string? NumeroConvenio { get; set; }
         public DateTime? ValidadeConvenio { get; set; }
 
-        [Required(ErrorMessage = "O Endereço é obrigatório.")]
-        public required EnderecoUpdateDTO Endereco { get; set; }
         [Required]
         public bool StatusSistema { get; set; } = true;
     }

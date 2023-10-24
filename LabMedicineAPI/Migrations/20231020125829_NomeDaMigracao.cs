@@ -6,11 +6,39 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LabMedicineAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class NomeDaMigracao : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Paciente",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RgOrgaoExpedidor = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    EstadoCivil = table.Column<int>(type: "int", nullable: false),
+                    Telefone = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Naturalidade = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Alergias = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    CuidadosEspecificos = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Convenio = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    ContatoEmergencia = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    NumeroConvenio = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    ValidadeConvenio = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    NomeCompleto = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
+                    Genero = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
+                    CPF = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Email = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
+                    StatusSistema = table.Column<string>(type: "VARCHAR(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Paciente", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Usuario",
                 columns: table => new
@@ -22,7 +50,7 @@ namespace LabMedicineAPI.Migrations
                     Tipo = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
                     NomeCompleto = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
                     Genero = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
-                    CPF = table.Column<string>(type: "VARCHAR(14)", maxLength: 14, nullable: false),
+                    CPF = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
                     StatusSistema = table.Column<string>(type: "VARCHAR(1)", nullable: false)
                 },
@@ -32,35 +60,30 @@ namespace LabMedicineAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Paciente",
+                name: "Endereco",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RgOrgaoExpedidor = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    EstadoCivil = table.Column<int>(type: "int", nullable: false),
-                    Alergias = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CuidadosEspecificos = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Convenio = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumeroConvenio = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ValidadeConvenio = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    NomeCompleto = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
-                    Genero = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
-                    CPF = table.Column<string>(type: "VARCHAR(14)", maxLength: 14, nullable: false),
-                    Email = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
-                    StatusSistema = table.Column<string>(type: "VARCHAR(1)", nullable: false)
+                    CEP = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Cidade = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Estado = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Logradouro = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Numero = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Complemento = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Bairro = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    PontoReferencia = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    PacienteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Paciente", x => x.Id);
+                    table.PrimaryKey("PK_Endereco", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Paciente_Usuario_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuario",
+                        name: "FK_Endereco_Paciente_PacienteId",
+                        column: x => x.PacienteId,
+                        principalTable: "Paciente",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,7 +116,7 @@ namespace LabMedicineAPI.Migrations
                         column: x => x.UsuarioId,
                         principalTable: "Usuario",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,41 +148,7 @@ namespace LabMedicineAPI.Migrations
                         column: x => x.UsuarioId,
                         principalTable: "Usuario",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Endereco",
-                columns: table => new
-                {
-                    EnderecoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CEP = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Cidade = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Estado = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Logradouro = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Numero = table.Column<string>(type: "VARCHAR", nullable: false),
-                    Complemento = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Bairro = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PontoReferencia = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    PacienteId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Endereco", x => x.EnderecoId);
-                    table.ForeignKey(
-                        name: "FK_Endereco_Paciente_PacienteId",
-                        column: x => x.PacienteId,
-                        principalTable: "Paciente",
-                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Endereco_Usuario_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuario",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -171,7 +160,7 @@ namespace LabMedicineAPI.Migrations
                     NomeExame = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: false),
                     TipoExame = table.Column<string>(type: "VARCHAR(32)", maxLength: 32, nullable: false),
                     Laboratorio = table.Column<string>(type: "VARCHAR(32)", maxLength: 32, nullable: false),
-                    URL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Resultados = table.Column<string>(type: "VARCHAR(1024)", maxLength: 1024, nullable: false),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Horario = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -193,7 +182,7 @@ namespace LabMedicineAPI.Migrations
                         column: x => x.UsuarioId,
                         principalTable: "Usuario",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -220,13 +209,13 @@ namespace LabMedicineAPI.Migrations
                         column: x => x.PacienteId,
                         principalTable: "Paciente",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Exercicio_Usuario_UsuarioId",
                         column: x => x.UsuarioId,
                         principalTable: "Usuario",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -260,7 +249,7 @@ namespace LabMedicineAPI.Migrations
                         column: x => x.UsuarioId,
                         principalTable: "Usuario",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -286,12 +275,8 @@ namespace LabMedicineAPI.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Endereco_PacienteId",
                 table: "Endereco",
-                column: "PacienteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Endereco_UsuarioId",
-                table: "Endereco",
-                column: "UsuarioId");
+                column: "PacienteId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Exame_PacienteId",
@@ -321,11 +306,6 @@ namespace LabMedicineAPI.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Medicamento_UsuarioId",
                 table: "Medicamento",
-                column: "UsuarioId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Paciente_UsuarioId",
-                table: "Paciente",
                 column: "UsuarioId");
         }
 
