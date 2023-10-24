@@ -59,9 +59,29 @@ namespace LabMedicineAPI.Service.Usuario
 
         public bool DeleteUsuario(int id)
         {
-            return _repository.Delete(id);
+            var usuario = _repository.GetById(id);
+            if(usuario != null)
+            {
+                var impedimentos = VerificarImpedimentosDelecao(usuario);
+                if (string.IsNullOrEmpty(impedimentos))
+                {
+                    return _repository.Delete(id);
+                }
+            }
+            return false;
+        }
+        private string VerificarImpedimentosDelecao(UsuarioModel usuario)
+        {
+            if (usuario.Consultas != null && usuario.Consultas.Count > 0)
+            {
+                return "Não é possível excluir o usuario, pois ele tem consultas vinculadas.";
+            }
+
+            
+            return null;
         }
 
     }
-
 }
+
+
