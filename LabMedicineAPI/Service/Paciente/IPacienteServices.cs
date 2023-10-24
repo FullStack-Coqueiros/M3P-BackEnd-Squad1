@@ -5,10 +5,10 @@ namespace LabMedicineAPI.Service.Paciente
 {
     public interface IPacienteServices
     {
+        PacienteEnderecoCreateDTO CriarPacienteEndereco(PacienteEnderecoCreateDTO pacienteEnderecoCreateDTO);
         bool DeletePaciente(int id);
         IEnumerable<PacienteGetDTO> Get();
         PacienteGetDTO GetById(int id);
-        PacienteModel PacienteCreateDTO(PacienteCreateDTO pacienteCreateDTO);
-        PacienteModel PacienteUpdateDTO(int id, PacienteUpdateDTO updatePacienteDTO);
+        PacienteEnderecoUpdateDTO PacienteEnderecoUpdate(int id, PacienteEnderecoUpdateDTO pacienteEnderecoUpdateDTO);    
     }
 }

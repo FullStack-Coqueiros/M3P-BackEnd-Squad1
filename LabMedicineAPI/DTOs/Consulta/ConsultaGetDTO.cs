@@ -8,7 +8,8 @@ namespace LabMedicineAPI.DTOs.Consulta
 {
     public class ConsultaGetDTO
     {
-        public required string MotivoConsulta { get; set; }
+        public int Id { get; set; }
+        public string MotivoConsulta { get; set; }
         public DateTime Data { get; set; }
         public DateTime Horario { get; set; }
         public required string ProblemaDescricao { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LabMedicineAPI.DTOs.Endereco
 {
@@ -22,11 +23,6 @@ namespace LabMedicineAPI.DTOs.Endereco
 
         public string PontoReferencia { get; set; }
 
-        [Required]
-        public int UsuarioId { get; set; }
-
-        [Required]
-        public int PacienteId { get; set; }
 
     }
 }

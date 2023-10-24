@@ -7,6 +7,7 @@
         TEntity Create(TEntity entity);
         TEntity Update(TEntity entity);
         bool Delete(int id);
+        TEntity GetByPacienteId(int pacienteId);
     }
 
 }
