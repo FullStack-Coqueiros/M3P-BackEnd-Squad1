@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LabMedicineAPI.DTOs;
+using LabMedicineAPI.DTOs.Consulta;
 using LabMedicineAPI.DTOs.Exame;
 using LabMedicineAPI.DTOs.Usuario;
 using LabMedicineAPI.Model;
@@ -20,18 +21,22 @@ namespace LabMedicineAPI.Service.Exame
             _mapper = mapper;
         }
 
-        public IEnumerable<ExameGetDTO> Get()
+        public IEnumerable<ExameGetDTO> Get(int? pacienteId)
         {
-            var exames = _repository.GetAll();
+            IEnumerable<ExameModel> exames;
+
+            if (pacienteId.HasValue)
+            {
+                exames = _repository.GetAll().Where(c => c.PacienteId == pacienteId.Value);
+            }
+            else
+            {
+                exames = _repository.GetAll();
+            }
+
             var examesDTO = _mapper.Map<IEnumerable<ExameGetDTO>>(exames);
             return examesDTO;
-        }
 
-        public ExameGetDTO GetById(int id)
-        {
-            var exame = _repository.GetById(id);
-            var exameDTO = _mapper.Map<ExameGetDTO>(exame);
-            return exameDTO;
         }
 
         public ExameModel ExameCreateDTO(ExameCreateDTO exameCreateDTO)
@@ -50,10 +55,8 @@ namespace LabMedicineAPI.Service.Exame
                 throw new Exception("Exame com id indicado  não encontrado");
             }
             _mapper.Map(updateExameDTO, exame);
-
-            var exameUpdated = _repository.Update(exame);
-            var exameUpdateDTO = _mapper.Map<ExameModel>(exameUpdated);
-            return exameUpdateDTO;
+            _repository.Update(exame);
+            return exame;
         }
 
         public bool DeleteExame(int id)

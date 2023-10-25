@@ -10,6 +10,7 @@ namespace LabMedicineAPI.Service.Exame
         ExameModel ExameCreateDTO(ExameCreateDTO exameCreateDTO);
         ExameModel exameUpdateDTO(int id, ExameUpdateDTO updateExameDTO);
         IEnumerable<ExameGetDTO> Get();
+        IEnumerable<ExameGetDTO> Get(int? pacienteId);
         ExameGetDTO GetById(int id);
     }
 }
