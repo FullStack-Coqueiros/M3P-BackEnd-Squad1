@@ -9,10 +9,9 @@ namespace LabMedicineAPI.Base
         [Key]
         public int Id { get; set; }
         [Required]
-        public DateTime Data { get; set; } //Usar a prop .formenber noa uato mapper para renomear a prop conforme a dto e exigencia do projeto no request.
+        public DateTime Data { get; set; } 
         [Required]
-        public DateTime Horario { get; set; } //Usar a prop .formenber noa uato mapper para renomear a prop conforme a dto e exigencia do projeto no request.
-
+        public DateTime Horario { get; set; } 
         [Required]
         public bool StatusSistema { get; set; }=true;
         [Required]
