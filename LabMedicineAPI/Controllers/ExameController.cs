@@ -105,6 +105,7 @@ namespace LabMedicineAPI.Controllers
             {
                 return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Ocorreu um erro interno no servidor");
             }
+
         }
     }
 }
