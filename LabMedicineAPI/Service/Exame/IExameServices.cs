@@ -6,10 +6,10 @@ namespace LabMedicineAPI.Service.Exame
 {
     public interface IExameServices
     {
-        bool DeleteExame(int id);
-        ExameModel ExameCreateDTO(ExameCreateDTO exameCreateDTO);
-        ExameModel exameUpdateDTO(int id, ExameUpdateDTO updateExameDTO);
-        IEnumerable<ExameGetDTO> Get();
+        IEnumerable<ExameGetDTO> Get(int? pacienteId);
         ExameGetDTO GetById(int id);
+        ExameModel ExameCreateDTO(ExameCreateDTO exameCreateDTO);
+        bool DeleteExame(int id);
+        ExameModel ExameUpdate(int id, ExameUpdateDTO dTO);
     }
 }

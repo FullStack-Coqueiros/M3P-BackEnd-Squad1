@@ -26,39 +26,30 @@ namespace LabMedicineAPI.AutoMapper
             CreateMap<UsuarioGetDTO, UsuarioModel>().ReverseMap();
             CreateMap<UsuarioModel,UsuarioUpdateDTO>().ReverseMap();
 
-
-
             CreateMap<PacienteCreateDTO, PacienteModel>().ReverseMap();
             CreateMap<PacienteGetDTO, PacienteModel>().ReverseMap();
             CreateMap<PacienteModel,PacienteUpdateDTO>().ReverseMap();
             
-
-           
-            CreateMap<ExameCreateDTO, ExameModel>();
-            CreateMap<ExameGetDTO, ExameModel>();
-            CreateMap<ExameModel, ExameUpdateDTO>();
-            CreateMap<ExameDeleteDTO, ExameModel>();
-
             CreateMap<ConsultaCreateDTO, ConsultaModel>().ReverseMap();
             CreateMap<ConsultaGetDTO, ConsultaModel>().ReverseMap();
             CreateMap<ConsultaUpdateDTO, ConsultaModel>().ReverseMap();
+ 
+            CreateMap<ExameCreateDTO, ExameModel>().ReverseMap();
+            CreateMap<ExameGetDTO, ExameModel>().ReverseMap();
+            CreateMap<ExameModel, ExameUpdateDTO>().ReverseMap();
            
+            CreateMap<MedicamentoCreateDTO, MedicamentoModel>().ReverseMap();
+            CreateMap<MedicamentoGetDTO, MedicamentoModel>().ReverseMap();
+            CreateMap<MedicamentoModel, MedicamentoUpdateDTO>().ReverseMap();
+            
+            CreateMap<ExercicioCreateDTO, ExercicioModel>().ReverseMap();
+            CreateMap<ExercicioGetDTO, ExercicioModel>().ReverseMap();
+            CreateMap<ExercicioModel, ExercicioUpdateDTO>().ReverseMap();
 
-            CreateMap<DietaCreateDTO, DietaModel>();
-            CreateMap<DietaGetDTO, DietaModel>();
-            CreateMap<DietaModel, DietaUpdateDTO>();
-            CreateMap<DietaDeleteDTO, DietaModel>();
-
-            CreateMap<ExercicioCreateDTO, ExercicioModel>();
-            CreateMap<ExercicioGetDTO, ExercicioModel>();
-            CreateMap<ExercicioModel, ExercicioUpdateDTO>();
-            CreateMap<ExercicioDeleteDTO, ExercicioModel>();
-
-            CreateMap<MedicamentoCreateDTO, MedicamentoModel>();
-            CreateMap<MedicamentoGetDTO, MedicamentoModel>();
-            CreateMap<MedicamentoModel, MedicamentoUpdateDTO>();
-            CreateMap<MedicamentoDeleteDTO,MedicamentoModel>();
-
+            CreateMap<DietaCreateDTO, DietaModel>().ReverseMap();
+            CreateMap<DietaGetDTO, DietaModel>().ReverseMap();
+            CreateMap<DietaModel, DietaUpdateDTO>().ReverseMap();
+          
             CreateMap<EnderecoCreateDTO, EnderecoModel>().ReverseMap();
             CreateMap<EnderecoGetDTO, EnderecoModel>().ReverseMap();
             CreateMap<EnderecoModel, EnderecoUpdateDTO>().ReverseMap();

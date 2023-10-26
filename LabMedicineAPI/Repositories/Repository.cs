@@ -32,7 +32,7 @@ namespace LabMedicineAPI.Repositories
             }
             else
             {
-                
+
                 return null;
             }
         }
@@ -45,13 +45,13 @@ namespace LabMedicineAPI.Repositories
         }
 
         public TEntity Update(TEntity entity)
-      
+
         {
-            
-            
-                _context.Entry(entity).State = EntityState.Modified;
-                _context.SaveChanges();
-                return entity;
+
+            _context.ChangeTracker.Clear();
+            _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
+            return entity;
 
         }
 

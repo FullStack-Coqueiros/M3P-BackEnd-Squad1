@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LabMedicineAPI.DTOs;
+using LabMedicineAPI.DTOs.Consulta;
 using LabMedicineAPI.DTOs.Exame;
 using LabMedicineAPI.DTOs.Usuario;
 using LabMedicineAPI.Model;
@@ -20,48 +21,54 @@ namespace LabMedicineAPI.Service.Exame
             _mapper = mapper;
         }
 
-        public IEnumerable<ExameGetDTO> Get()
+        public IEnumerable<ExameGetDTO> Get(int? pacienteId)
         {
-            var exames = _repository.GetAll();
+            IEnumerable<ExameModel> exames;
+
+            if (pacienteId.HasValue)
+            {
+                exames = _repository.GetAll().Where(c => c.PacienteId == pacienteId.Value);
+            }
+            else
+            {
+                exames = _repository.GetAll();
+            }
+
             var examesDTO = _mapper.Map<IEnumerable<ExameGetDTO>>(exames);
             return examesDTO;
-        }
 
+        }
         public ExameGetDTO GetById(int id)
         {
-            var exame = _repository.GetById(id);
-            var exameDTO = _mapper.Map<ExameGetDTO>(exame);
+            ExameModel exame = _repository.GetById(id);
+            ExameGetDTO exameDTO = _mapper.Map<ExameGetDTO>(exame);
             return exameDTO;
         }
-
+        public ExameModel ExameUpdate (int id, ExameUpdateDTO dTO)
+        {
+            var exame = _repository.GetById(id);
+            if(exame == null)
+            {
+                throw new Exception("O exame com o ID informado não foi encontrado em nossos registros");
+            }
+            _mapper.Map(dTO, exame);
+            _repository.Update(exame);
+            return exame;
+        }
         public ExameModel ExameCreateDTO(ExameCreateDTO exameCreateDTO)
         {
+           
             var exame = _mapper.Map<ExameModel>(exameCreateDTO);
             var exameCreated = _repository.Create(exame);
             var exameCreatedDTO = _mapper.Map<ExameModel>(exameCreated);
             return exameCreatedDTO;
 
         }
-        public ExameModel exameUpdateDTO(int id, ExameUpdateDTO updateExameDTO)
-        {
-            var exame = _repository.GetById(id);
-            if (exame == null)
-            {
-                throw new Exception("Exame com id indicado  não encontrado");
-            }
-            _mapper.Map(updateExameDTO, exame);
-
-            var exameUpdated = _repository.Update(exame);
-            var exameUpdateDTO = _mapper.Map<ExameModel>(exameUpdated);
-            return exameUpdateDTO;
-        }
 
         public bool DeleteExame(int id)
         {
             return _repository.Delete(id);
         }
-
-
 
     }
 }
