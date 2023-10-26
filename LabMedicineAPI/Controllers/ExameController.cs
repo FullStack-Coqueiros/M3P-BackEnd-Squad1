@@ -70,11 +70,11 @@ namespace LabMedicineAPI.Controllers
         {
             try
             {
-                var exame = _examesServices.exameUpdateDTO(id, exameUpdateDTO);
+                var exame = _examesServices.ExameUpdate(id, exameUpdateDTO);
 
                 if (exame == null)
                 {
-                    return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Dados inválidos fornecidos para a atualização do exame");
+                    return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Dados inválidos fornecidos para a atualização da consulta");
                 }
 
                 return StatusCode(HttpStatusCode.OK.GetHashCode(), exame);
@@ -84,28 +84,56 @@ namespace LabMedicineAPI.Controllers
                 return StatusCode(HttpStatusCode.InternalServerError.GetHashCode());
             }
         }
-        [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                var result = _examesServices.DeleteExame(id);
 
-                if (result == null)
+        //[HttpPut("{id}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
+        //public IActionResult Update([FromRoute] int id, [FromBody] ExameUpdateDTO exameUpdateDTO)
+        //{
+        //    try
+        //    {
+        //        ExameGetDTO exame = _examesServices.GetById(id);
+        //        if (exame == null)
+        //            return BadRequest("Dados inválidos na requisição");
+        //        ExameGetDTO exameGet = _examesServices.ExameUpdateDTO(exameUpdateDTO);
+        //        return Ok(exameGet);
+
+        //        if (exame == null)
+        //        {
+        //            return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Dados inválidos fornecidos para a atualização do exame");
+        //        }
+
+        //        return StatusCode(HttpStatusCode.OK.GetHashCode(), exame);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
+
+        //    }
+        [HttpDelete("{id}")]
+            [ProducesResponseType(StatusCodes.Status202Accepted)]
+            [ProducesResponseType(StatusCodes.Status400BadRequest)]
+            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+            public IActionResult Delete(int id)
+            {
+                try
                 {
-                    return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Dados inválidos fornecidos para a exclusão do exame");
+                    var result = _examesServices.DeleteExame(id);
+
+                    if (result == null)
+                    {
+                        return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Dados inválidos fornecidos para a exclusão do exame");
+                    }
+
+                    return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Exame excluído com sucesso");
+                }
+                catch (Exception)
+                {
+                    return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Ocorreu um erro interno no servidor");
                 }
 
-                return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Exame excluído com sucesso");
             }
-            catch (Exception)
-            {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Ocorreu um erro interno no servidor");
-            }
-
         }
     }
-}

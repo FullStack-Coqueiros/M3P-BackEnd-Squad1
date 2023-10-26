@@ -32,9 +32,9 @@ namespace LabMedicineAPI.DTOs
 
         [Required(ErrorMessage = "O campo 'StatusSistema' é obrigatório.")]
         public bool StatusSistema { get; set; }
-        [Required]
+        
         public int PacienteId { get; set; }
-        [Required]
+        
         public int UsuarioId { get; set; }
             
       

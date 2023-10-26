@@ -44,8 +44,8 @@ namespace LabMedicineAPI.Infra
             modelBuilder.Entity<ExameModel>()
                 .HasOne(h => h.Paciente) // Um paciente pode ter muitos dietas
                 .WithMany(c => c.Exames) // Um paciente muitas 
-                .HasForeignKey(p => p.PacienteId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(p => p.PacienteId);
+               // .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<MedicamentoModel>()
                 .HasOne(h => h.Paciente)
