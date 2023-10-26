@@ -57,6 +57,7 @@ namespace LabMedicineAPI.Service.Exame
         }
         public ExameModel ExameCreateDTO(ExameCreateDTO exameCreateDTO)
         {
+           
             var exame = _mapper.Map<ExameModel>(exameCreateDTO);
             var exameCreated = _repository.Create(exame);
             var exameCreatedDTO = _mapper.Map<ExameModel>(exameCreated);
@@ -69,24 +70,39 @@ namespace LabMedicineAPI.Service.Exame
             return _repository.Delete(id);
         }
 
+        //private string Validacao(ExameModel exame)
+        //{
+        //    if (exame.NomeExame == null)
+        //    {
+        //        return "O preenchimento do campo Nome Exame é obrigatório";
+        //    }
+
+        //    if (exame.Data == null)
+        //    {
+        //        return "O preenchimento do campo Data é obrigatório";
+        //    }
+
+        //    if (exame.Horario == null)
+        //    {
+        //        return "O campo Horario não pode ser nulo";
+        //    }
+
+        //    if (exame.TipoExame == null)
+        //    {
+        //        return "O campo Tipo não pode ser nulo";
+        //    }
+
+        //    if (exame.Resultados == null)
+        //    {
+        //        return "O campo resultado não pode ser nulo";
+        //    }
+        //    if (exame.StatusSistema == null)
+        //    {
+        //        return "O campo Status Sistema não pode ser nulo";
+        //    }
+        //    return null;
+        //}
 
 
     }
 }
-
-        //public ExameGetDTO ExameUpdateDTO(ExameUpdateDTO updateExameDTO)
-        //{
-        //    ExameModel model = _mapper.Map<ExameModel>(updateExameDTO);
-        //    _repository.Update(model);
-        //    ExameGetDTO dTO = _mapper.Map<ExameGetDTO>(model);
-        //    return dTO;
-            
-        //}
-            //var exame = _repository.GetById(id);
-            //if (exame == null)
-            //{
-            //    throw new Exception("Exame com id indicado  não encontrado");
-            //}
-            //_mapper.Map(updateExameDTO, exame);
-            //_repository.Update(exame);
-            //return exame;

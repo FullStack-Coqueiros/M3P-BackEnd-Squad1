@@ -10,7 +10,6 @@ namespace LabMedicineAPI.Service.Exame
         ExameGetDTO GetById(int id);
         ExameModel ExameCreateDTO(ExameCreateDTO exameCreateDTO);
         bool DeleteExame(int id);
-       // ExameGetDTO ExameUpdateDTO(ExameUpdateDTO updateExameDTO);
         ExameModel ExameUpdate(int id, ExameUpdateDTO dTO);
     }
 }

@@ -108,10 +108,9 @@ namespace LabMedicineAPI.Service.Paciente
 
                     _repository.Delete(id);
                    
-                    //(paciente.Endereco.PacienteId);
                 }
 
-                //_repository.Delete(id);
+                
             }
 
             return false;
