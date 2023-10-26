@@ -9,11 +9,11 @@ namespace LabMedicineAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ConsultaController : ControllerBase
+    public class ConsultasController : ControllerBase
     {
         private readonly IConsultaServices _consultaServices;
 
-        public ConsultaController(IConsultaServices consultaServices)
+        public ConsultasController(IConsultaServices consultaServices)
         {
             _consultaServices = consultaServices;
         }
@@ -27,18 +27,16 @@ namespace LabMedicineAPI.Controllers
             try
             {
                 var consultaDTO = _consultaServices.Get(pacienteId);
-
                 
                 if (consultaDTO == null || !consultaDTO.Any())
                 
                     return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Nenhum resultado encontrado para o ID do paciente fornecido");
                 
-
                 return StatusCode(HttpStatusCode.OK.GetHashCode(), consultaDTO);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),"Ocorreu um erro interno no servidor");
             }
         }
 
@@ -59,9 +57,9 @@ namespace LabMedicineAPI.Controllers
 
                 return StatusCode(HttpStatusCode.Created.GetHashCode(), consulta);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),"Erro interno no servidor");
             }
         }
 
@@ -73,7 +71,7 @@ namespace LabMedicineAPI.Controllers
         {
             try
             {
-                var consulta = _consultaServices.ConsultaUpdateDTO(id, consultaUpdateDTO);
+                var consulta = _consultaServices.ConsultaUpdate(id, consultaUpdateDTO);
 
                 if (consulta == null)
                 {
@@ -89,7 +87,7 @@ namespace LabMedicineAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Delete(int id)
@@ -105,9 +103,9 @@ namespace LabMedicineAPI.Controllers
 
                 return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Consulta excluída com sucesso");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),"Ocorreu um erro interno no servidor");
             }
         }
 

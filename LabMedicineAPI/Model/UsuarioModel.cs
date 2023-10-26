@@ -12,16 +12,16 @@ namespace LabMedicineAPI.Model
     [Table("Usuario")]
     public class UsuarioModel : BaseUsuario
     {
-        [Column(TypeName = "VARCHAR"), Required, MaxLength(13)]
+        [Column(TypeName = "VARCHAR"), Required, MaxLength(255)]
         public string Telefone { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required, MinLength(6)]
+        [Column(TypeName = "VARCHAR"), Required, MinLength(6), MaxLength(255)]
         public string Senha { get; set; }
 
-        [Column(TypeName = "VARCHAR"), Required]
+        [Column(TypeName = "VARCHAR"), Required, MaxLength(255)]
         public TipoEnum Tipo { get; set; }
-        public ICollection<PacienteModel>? Pacientes { get; set; }
-        public ICollection<ConsultaModel>? Consultas { get; set; }
+        
+        public virtual ICollection<ConsultaModel>? Consultas { get; set; }
 
     }
 }

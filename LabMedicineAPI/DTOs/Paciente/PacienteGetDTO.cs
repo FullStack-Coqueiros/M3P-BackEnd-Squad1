@@ -15,12 +15,5 @@ namespace LabMedicineAPI.DTOs.Paciente
         public GeneroEnum Genero { get; set; }
         public DateTime DataNascimento { get; set; }
 
-        public PacienteGetDTO(int id, string nomeCompleto, GeneroEnum genero, DateTime dataNascimento)
-        {
-            Id = id;
-            NomeCompleto = nomeCompleto;
-            Genero = genero;
-            DataNascimento = dataNascimento;
-        }
     }
 }

@@ -4,6 +4,7 @@ using LabMedicineAPI.Infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabMedicineAPI.Migrations
 {
     [DbContext(typeof(LabMedicineDbContext))]
-    partial class LabMedicineDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231020125829_NomeDaMigracao")]
+    partial class NomeDaMigracao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -412,8 +415,6 @@ namespace LabMedicineAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
-
                     b.ToTable("Paciente");
                 });
 
@@ -512,12 +513,10 @@ namespace LabMedicineAPI.Migrations
                     b.HasOne("LabMedicineAPI.Model.PacienteModel", "Paciente")
                         .WithOne("Endereco")
                         .HasForeignKey("LabMedicineAPI.Model.EnderecoModel", "PacienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Paciente");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("LabMedicineAPI.Model.ExameModel", b =>
@@ -525,7 +524,7 @@ namespace LabMedicineAPI.Migrations
                     b.HasOne("LabMedicineAPI.Model.PacienteModel", "Paciente")
                         .WithMany("Exames")
                         .HasForeignKey("PacienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("LabMedicineAPI.Model.UsuarioModel", "Usuario")
@@ -579,17 +578,6 @@ namespace LabMedicineAPI.Migrations
 
             modelBuilder.Entity("LabMedicineAPI.Model.PacienteModel", b =>
                 {
-                    b.HasOne("LabMedicineAPI.Model.UsuarioModel", "Usuario")
-                        .WithMany("Pacientes")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("LabMedicineAPI.Model.PacienteModel", b =>
-                {
                     b.Navigation("Consultas");
 
                     b.Navigation("Dietas");
@@ -607,8 +595,6 @@ namespace LabMedicineAPI.Migrations
             modelBuilder.Entity("LabMedicineAPI.Model.UsuarioModel", b =>
                 {
                     b.Navigation("Consultas");
-
-                    b.Navigation("Pacientes");
                 });
 #pragma warning restore 612, 618
         }

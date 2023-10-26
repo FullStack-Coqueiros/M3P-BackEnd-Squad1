@@ -9,11 +9,11 @@ namespace LabMedicineAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PacienteController : ControllerBase
+    public class PacientesController : ControllerBase
     {
         private readonly IPacienteServices _services;
 
-        public PacienteController(IPacienteServices services)
+        public PacientesController(IPacienteServices services)
         {
             _services = services;
         }
@@ -26,16 +26,16 @@ namespace LabMedicineAPI.Controllers
         {
             try
             {
-                var pacientes = _services.Get();
+                IEnumerable<PacienteGetDTO> pacientes = _services.Get();
                 if (pacientes != null)
                     return StatusCode(HttpStatusCode.OK.GetHashCode(), pacientes);
 
-                return BadRequest("Não foi localizado o pacinete com o Id fornecido");
+                return BadRequest("Não foi encontrado nenhum usuario cadastrado no sistema");
 
             }
-            catch (IOException ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Erro interno no servidor");
             }
 
 
@@ -48,63 +48,68 @@ namespace LabMedicineAPI.Controllers
         {
             try
             {
-                var paciente = _services.GetById(id);
-                if (id != null)
+                PacienteGetDTO paciente = _services.GetById(id);
+                if (paciente != null)
                     return StatusCode(HttpStatusCode.OK.GetHashCode(), paciente);
 
                 return BadRequest("Não foi localizado o pacinete com o Id fornecido");
 
             }
-            catch (IOException ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Erro interno no servidor");
 
             }
         }
-
-        [HttpPost("{id}")]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public IActionResult Post([FromBody] PacienteCreateDTO pacienteCreateDTO)
+        public IActionResult Post([FromBody] PacienteEnderecoCreateDTO pacienteEnderecoCreateDTO)
         {
             try
             {
-                var paciente = _services.PacienteCreateDTO(pacienteCreateDTO);
-                
-                if (paciente != null)
+                var paciente = _services.CriarPacienteEndereco(pacienteEnderecoCreateDTO);
 
-                    return CreatedAtAction("Paciente registrado com sucesso", new { id = paciente.Id }, paciente);
-
-                return BadRequest("Dados inválidos fornecidos para a criação do paciente");
-
+                return StatusCode(StatusCodes.Status201Created, "Paciente cadastrado com sucesso");
             }
-            // implantar excepyion para conflito de cpf e email
-            
             catch (Exception ex)
-            {         
-                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
+            {
+                if (ex.Message.Contains("CPF"))
+                {
+                    return StatusCode(StatusCodes.Status409Conflict, "Conflito de CPF: ");
+                }
+                else if (ex.Message.Contains("email"))
+                {
+                    return StatusCode(StatusCodes.Status409Conflict, "Conflito de email: ");
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
+                }
             }
         }
+
+
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult PacienteUpdateDTO(int id, [FromBody]PacienteUpdateDTO pacienteUpdate)
+        public IActionResult PacienteEnderecoUpdate(int id, [FromBody] PacienteEnderecoUpdateDTO pacienteEnderecoUpdate)
         {
             try
             {
-                var paciente = _services.PacienteUpdateDTO(id, pacienteUpdate);
-                if (paciente != null)
-                    return BadRequest("Requisição com dados inválidos");
-
-                return Ok(paciente);
+                var pacienteAtualizado = _services.PacienteEnderecoUpdate(id, pacienteEnderecoUpdate);
+                if (pacienteAtualizado != null)
+                    return Ok(pacienteAtualizado);
+               
+                return BadRequest("Requisição com dados inválidos");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
 
             }
         }
@@ -125,9 +130,9 @@ namespace LabMedicineAPI.Controllers
 
                 return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Paciente excluído dos registros com sucesso");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), ex);
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode());
             }
         }
 

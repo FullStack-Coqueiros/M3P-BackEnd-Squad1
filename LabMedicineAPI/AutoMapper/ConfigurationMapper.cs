@@ -21,17 +21,14 @@ namespace LabMedicineAPI.AutoMapper
     {
         public ConfigurationMapper()
         {
-            // ConfigurationMapper Usuario
-            // Origem ... Destino
-
-            CreateMap<LoginDTO, UsuarioModel>();
-            CreateMap<UsuarioCreateDTO, UsuarioModel>();
             
-            CreateMap<UsuarioGetDTO, UsuarioModel>();
-            CreateMap<UsuarioModel,UsuarioUpdateDTO>();
-            CreateMap<UsuarioDeleteDTO, UsuarioModel>();
+
+            CreateMap<UsuarioCreateDTO, UsuarioModel>().ReverseMap();
+            CreateMap<UsuarioGetDTO, UsuarioModel>().ReverseMap();
+            CreateMap<UsuarioModel,UsuarioUpdateDTO>().ReverseMap();
 
             // ConfigurationMapper Paciente
+
             // Origem ... Destino
             CreateMap<PacienteCreateDTO, PacienteModel>();
             CreateMap<PacienteGetDTO, PacienteModel>();
@@ -39,6 +36,7 @@ namespace LabMedicineAPI.AutoMapper
             CreateMap<PacienteDeleteDTO, PacienteModel>();
 
             // ConfigurationMapper Exame
+
             // Origem ... Destino
             CreateMap<ExameCreateDTO, ExameModel>();
             CreateMap<ExameGetDTO, ExameModel>();
@@ -60,15 +58,13 @@ namespace LabMedicineAPI.AutoMapper
             CreateMap<ExercicioModel, ExercicioUpdateDTO>();
             CreateMap<ExercicioDeleteDTO, ExercicioModel>();
 
-            CreateMap<MedicamentoCreateDTO, MedicamentoModel>();
-            CreateMap<MedicamentoGetDTO, MedicamentoModel>();
-            CreateMap<MedicamentoModel, MedicamentoUpdateDTO>();
-            CreateMap<MedicamentoDeleteDTO,MedicamentoModel>();
-
-            CreateMap<EnderecoCreateDTO, EnderecoModel>();
-            CreateMap<EnderecoGetDTO, EnderecoModel>();
-            CreateMap<EnderecoModel, EnderecoUpdateDTO>();
-            CreateMap<EnderecoDeleteDTO,EnderecoModel>();
+            CreateMap<DietaCreateDTO, DietaModel>().ReverseMap();
+            CreateMap<DietaGetDTO, DietaModel>().ReverseMap();
+            CreateMap<DietaModel, DietaUpdateDTO>().ReverseMap();
+          
+            CreateMap<EnderecoCreateDTO, EnderecoModel>().ReverseMap();
+            CreateMap<EnderecoGetDTO, EnderecoModel>().ReverseMap();
+            CreateMap<EnderecoModel, EnderecoUpdateDTO>().ReverseMap();
         }
     }
 }

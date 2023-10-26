@@ -8,7 +8,7 @@ namespace LabMedicineAPI.Service.Usuario
         bool DeleteUsuario(int id);
         IEnumerable<UsuarioGetDTO> Get();
         UsuarioGetDTO GetById(int id);
-        UsuarioModel UsuarioCreateDTO(UsuarioCreateDTO usuarioCreateDTO);
-        UsuarioModel UsuarioUpdateDTO(int id, UsuarioUpdateDTO updateUsuarioDTO);
+        UsuarioGetDTO UsuarioCreateDTO(UsuarioCreateDTO usuarioCreateDTO);
+        UsuarioGetDTO UsuarioUpdateDTO(int id, UsuarioUpdateDTO updateUsuarioDTO);
     }
 }

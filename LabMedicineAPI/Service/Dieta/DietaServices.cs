@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LabMedicineAPI.DTOs.Dieta;
+using LabMedicineAPI.DTOs.Exercicio;
 using LabMedicineAPI.DTOs.Usuario;
 using LabMedicineAPI.Model;
 using LabMedicineAPI.Repositories;
@@ -16,13 +17,23 @@ namespace LabMedicineAPI.Service.Dieta
             _repository = repository;
             _mapper = mapper;
         }
-
-        public IEnumerable<DietaGetDTO> Get()
+        public IEnumerable<DietaGetDTO> Get(int? pacienteId)
         {
-            var dietas = _repository.GetAll();
+            IEnumerable<DietaModel> dietas;
+
+            if (pacienteId.HasValue)
+            {
+                dietas = _repository.GetAll().Where(c => c.PacienteId == pacienteId.Value);
+            }
+            else
+            {
+                dietas =_repository.GetAll();
+            }
+
             var dietasDTO = _mapper.Map<IEnumerable<DietaGetDTO>>(dietas);
             return dietasDTO;
         }
+
 
         public DietaGetDTO GetById(int id)
         {

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LabMedicineAPI.DTOs.Exame;
 using LabMedicineAPI.DTOs.Exercicio;
 using LabMedicineAPI.DTOs.Usuario;
 using LabMedicineAPI.Model;
@@ -16,12 +17,22 @@ namespace LabMedicineAPI.Service.Exercicio
             _repository = repository;
             _mapper = mapper;
         }
-
-        public IEnumerable<ExercicioGetDTO> Get()
+        public IEnumerable<ExercicioGetDTO> Get(int? pacienteId)
         {
-            var exercicios = _repository.GetAll();
+            IEnumerable<ExercicioModel> exercicios;
+
+            if (pacienteId.HasValue)
+            {
+                exercicios = _repository.GetAll().Where(c => c.PacienteId == pacienteId.Value);
+            }
+            else
+            {
+                exercicios = _repository.GetAll();
+            }
+
             var exerciciosDTO = _mapper.Map<IEnumerable<ExercicioGetDTO>>(exercicios);
             return exerciciosDTO;
+
         }
 
         public ExercicioGetDTO GetById(int id)

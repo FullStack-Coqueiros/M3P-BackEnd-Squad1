@@ -10,6 +10,7 @@ namespace LabMedicineAPI.Repositories
         TEntity Update(TEntity entity);
         bool Delete(int id);
         TEntity GetByUser(Expression<Func<TEntity, bool>> criteria);
+        TEntity GetByPacienteId(int pacienteId);
     }
 
 }

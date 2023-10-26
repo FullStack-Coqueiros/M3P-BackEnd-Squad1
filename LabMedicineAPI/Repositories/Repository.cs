@@ -1,4 +1,5 @@
 ﻿using LabMedicineAPI.Infra;
+using LabMedicineAPI.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -22,6 +23,19 @@ namespace LabMedicineAPI.Repositories
         {
             return _context.Set<TEntity>().Find(id);
         }
+        public TEntity GetByPacienteId(int pacienteId)
+        {
+            if (typeof(TEntity) == typeof(EnderecoModel))
+            {
+                // Verifique se o tipo TEntity é EnderecoModel, pois você deseja filtrar por PacienteId apenas para essa entidade.
+                return _context.Set<TEntity>().Cast<EnderecoModel>().SingleOrDefault(e => e.PacienteId == pacienteId) as TEntity;
+            }
+            else
+            {
+
+                return null;
+            }
+        }
 
         public TEntity Create(TEntity entity)
         {
@@ -31,10 +45,14 @@ namespace LabMedicineAPI.Repositories
         }
 
         public TEntity Update(TEntity entity)
+
         {
+
+            _context.ChangeTracker.Clear();
             _context.Entry(entity).State = EntityState.Modified;
             _context.SaveChanges();
             return entity;
+
         }
 
         public bool Delete(int id)

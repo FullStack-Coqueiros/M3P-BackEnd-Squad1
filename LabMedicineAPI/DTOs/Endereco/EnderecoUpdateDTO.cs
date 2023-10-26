@@ -22,11 +22,11 @@ namespace LabMedicineAPI.DTOs.Endereco
 
         public string PontoReferencia { get; set; }
 
-        [Required]
-        public int UsuarioId { get; set; }
+        //[Required]
+        //public int UsuarioId { get; set; }
 
-        [Required]
-        public int PacienteId { get; set; }
+        //[Required]
+        //public int PacienteId { get; set; }
 
     }
 }

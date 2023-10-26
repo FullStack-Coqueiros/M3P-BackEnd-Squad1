@@ -36,19 +36,7 @@ namespace LabMedicineAPI.DTOs.Usuario
         [EnumDataType(typeof(TipoEnum), ErrorMessage = "Tipo de usuário inválido.")]
         public TipoEnum Tipo { get; set; }
 
-        public bool StatusSistema { get; set; } = true; // Valor padrão: ativo
+        public bool StatusSistema { get; set; } = true; 
 
-        public UsuarioCreateDTO(string nomeCompleto, GeneroEnum genero, string cpf, string telefone, string email, string senha, TipoEnum tipo,
-        bool statusSistema = true)
-        {
-            NomeCompleto = nomeCompleto;
-            Genero = genero;
-            CPF = cpf;
-            Telefone = telefone;
-            Email = email;
-            Senha = senha;
-            Tipo = tipo;
-            StatusSistema = statusSistema;
-        }
     }
 }
