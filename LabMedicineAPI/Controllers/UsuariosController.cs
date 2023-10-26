@@ -34,9 +34,9 @@ namespace LabMedicineAPI.Controllers
                 return NotFound("Não foi encontrado nenhum usuario cadastrado no sistema");
 
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),"Erro interno no servidor");
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Erro interno no servidor");
             }
         }
         [HttpGet("{id}")]
@@ -56,80 +56,78 @@ namespace LabMedicineAPI.Controllers
             }
             catch
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(),"Erro interno no servidor");
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Erro interno no servidor");
 
             }
 
-            if (nome == "vitor")
+            
+            [HttpPost]
+            [ProducesResponseType(StatusCodes.Status201Created)]
+            [ProducesResponseType(StatusCodes.Status400BadRequest)]
+            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+            [ProducesResponseType(StatusCodes.Status409Conflict)]
+            
+            IActionResult Post([FromBody] UsuarioCreateDTO usuarioCreateDTO)
             {
-                return Ok("Usuario Bloqueado");
-        }
-
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public IActionResult Post([FromBody] UsuarioCreateDTO usuarioCreateDTO)
-        {
-            try
-            {
-                var usuario = _services.UsuarioCreateDTO(usuarioCreateDTO);
-
-                if (usuario != null)
+                try
                 {
-                    return Ok("Usuario registrado com sucesso");
+                    var usuario = _services.UsuarioCreateDTO(usuarioCreateDTO);
+
+                    if (usuario != null)
+                    {
+                        return Ok("Usuario registrado com sucesso");
+                    }
+                    return BadRequest("Dados inválidos fornecidos para a criação do usuario");
+
                 }
-                return BadRequest("Dados inválidos fornecidos para a criação do usuario");
+                // implantar excepyion para conflito de cpf e email
 
+                catch (Exception ex)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                }
             }
-            // implantar excepyion para conflito de cpf e email
 
-            catch (Exception ex) 
+            [HttpPut("{id}")]
+            [ProducesResponseType(StatusCodes.Status200OK)]
+            [ProducesResponseType(StatusCodes.Status400BadRequest)]
+            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+            IActionResult Update([FromRoute] int id, [FromBody] UsuarioUpdateDTO usuarioUpdate)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,ex);
-            }
-        }
+                try
+                {
+                    UsuarioGetDTO usuario = _services.GetById(id);
+                    if (usuario == null)
+                        return BadRequest("Requisição com dados inválidos");
+                    UsuarioGetDTO usuarioGet = _services.UsuarioUpdateDTO(id, usuarioUpdate);
+                    return Ok(usuarioGet);
+                }
+                catch
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
 
-        [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Update([FromRoute]int id, [FromBody] UsuarioUpdateDTO usuarioUpdate)
-        {
-            try
-            {
-                UsuarioGetDTO usuario = _services.GetById(id);
-                if (usuario == null)
-                    return BadRequest("Requisição com dados inválidos");
-                UsuarioGetDTO usuarioGet = _services.UsuarioUpdateDTO(id,usuarioUpdate);
-                return Ok(usuarioGet);
+                }
             }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno no servidor");
 
-            }
-        }
+            [HttpDelete("{id}")]
+            [ProducesResponseType(StatusCodes.Status200OK)]
+            [ProducesResponseType(StatusCodes.Status400BadRequest)]
+            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+            IActionResult Delete(int id)
+            {
+                try
+                {
+                    var where = _services.GetById(id);
+                    if (where == null)
+                        return BadRequest("Dados inválidos fornecidos para a exclusão do usuário");
 
-        [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                var where = _services.GetById(id);
-                if(where == null)
-                   return BadRequest("Dados inválidos fornecidos para a exclusão do usuário");
-                
-                var result = _services.DeleteUsuario(id);
-                return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Usuario excluído dos registros com sucesso");
-            }
-            catch
-            {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Ocorreu um erro interno no servidor");
+                    var result = _services.DeleteUsuario(id);
+                    return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Usuario excluído dos registros com sucesso");
+                }
+                catch
+                {
+                    return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Ocorreu um erro interno no servidor");
+                }
             }
         }
     }
