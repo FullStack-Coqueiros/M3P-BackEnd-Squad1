@@ -46,16 +46,10 @@ namespace LabMedicineAPI.AutoMapper
             CreateMap<ExercicioGetDTO, ExercicioModel>().ReverseMap();
             CreateMap<ExercicioModel, ExercicioUpdateDTO>().ReverseMap();
 
-           
-
-            CreateMap<DietaCreateDTO, DietaModel>();
-            CreateMap<DietaGetDTO, DietaModel>();
-            CreateMap<DietaModel, DietaUpdateDTO>();
-            CreateMap<DietaDeleteDTO, DietaModel>();
-
-            
-
-
+            CreateMap<DietaCreateDTO, DietaModel>().ReverseMap();
+            CreateMap<DietaGetDTO, DietaModel>().ReverseMap();
+            CreateMap<DietaModel, DietaUpdateDTO>().ReverseMap();
+          
             CreateMap<EnderecoCreateDTO, EnderecoModel>().ReverseMap();
             CreateMap<EnderecoGetDTO, EnderecoModel>().ReverseMap();
             CreateMap<EnderecoModel, EnderecoUpdateDTO>().ReverseMap();

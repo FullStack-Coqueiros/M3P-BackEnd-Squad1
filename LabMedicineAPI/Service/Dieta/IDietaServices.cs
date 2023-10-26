@@ -8,7 +8,7 @@ namespace LabMedicineAPI.Service.Dieta
         bool DeleteDieta(int id);
         DietaModel DietaCreateDTO(DietaCreateDTO dietaCreateDTO);
         DietaModel DietaUpdateDTO(int id, DietaUpdateDTO updateDietaDTO);
-        IEnumerable<DietaGetDTO> Get();
+        IEnumerable<DietaGetDTO> Get(int? pacienteId);
         DietaGetDTO GetById(int id);
     }
 }
