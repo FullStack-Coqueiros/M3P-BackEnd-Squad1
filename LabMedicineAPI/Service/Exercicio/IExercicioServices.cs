@@ -8,7 +8,7 @@ namespace LabMedicineAPI.Service.Exercicio
         bool DeleteExercicio(int id);
         ExercicioModel ExercicioCreateDTO(ExercicioCreateDTO exercicioCreateDTO);
         ExercicioModel ExercicioUpdateDTO(int id, ExercicioUpdateDTO updateExercicioDTO);
-        IEnumerable<ExercicioGetDTO> Get();
+        IEnumerable<ExercicioGetDTO> Get(int? pacienteId);
         ExercicioGetDTO GetById(int id);
     }
 }
