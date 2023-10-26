@@ -19,9 +19,17 @@ namespace LabMedicineAPI.Service.Medicamento
             _mapper = mapper;
         }
 
-        public IEnumerable<MedicamentoGetDTO> Get()
+        public IEnumerable<MedicamentoGetDTO> Get(int? pacienteId)
         {
-            var medicamentos = _repository.GetAll();
+            IEnumerable<MedicamentoModel> medicamentos;
+            if (pacienteId.HasValue)
+            {
+                medicamentos = _repository.GetAll().Where(c => c.PacienteId == pacienteId.Value);
+            }
+            else
+            {
+                medicamentos = _repository.GetAll();
+            }
             var medicamentosDTO = _mapper.Map<IEnumerable<MedicamentoGetDTO>>(medicamentos);
             return medicamentosDTO;
         }
@@ -33,7 +41,7 @@ namespace LabMedicineAPI.Service.Medicamento
             return medicamentoDTO;
         }
 
-        public MedicamentoModel medicamentoCreateDTO(MedicamentoCreateDTO medicamentoCreateDTO)
+        public MedicamentoModel MedicamentoCreateDTO(MedicamentoCreateDTO medicamentoCreateDTO)
         {
             var medicamento = _mapper.Map<MedicamentoModel>(medicamentoCreateDTO);
             var medicamentoCreated = _repository.Create(medicamento);

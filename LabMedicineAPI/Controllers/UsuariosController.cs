@@ -9,11 +9,11 @@ namespace LabMedicineAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class UsuariosController : ControllerBase
     {
         private readonly IUsuarioServices _services;
 
-        public UsuarioController(IUsuarioServices services)
+        public UsuariosController(IUsuarioServices services)
         {
             _services = services;
         }

@@ -11,11 +11,11 @@ namespace LabMedicineAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExameController : ControllerBase
+    public class ExamesController : ControllerBase
     {
         private readonly IExameServices _examesServices;
 
-        public ExameController(IExameServices examesServices)
+        public ExamesController(IExameServices examesServices)
         {
             _examesServices = examesServices;
         }

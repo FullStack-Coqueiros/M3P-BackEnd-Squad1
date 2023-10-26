@@ -70,39 +70,5 @@ namespace LabMedicineAPI.Service.Exame
             return _repository.Delete(id);
         }
 
-        //private string Validacao(ExameModel exame)
-        //{
-        //    if (exame.NomeExame == null)
-        //    {
-        //        return "O preenchimento do campo Nome Exame é obrigatório";
-        //    }
-
-        //    if (exame.Data == null)
-        //    {
-        //        return "O preenchimento do campo Data é obrigatório";
-        //    }
-
-        //    if (exame.Horario == null)
-        //    {
-        //        return "O campo Horario não pode ser nulo";
-        //    }
-
-        //    if (exame.TipoExame == null)
-        //    {
-        //        return "O campo Tipo não pode ser nulo";
-        //    }
-
-        //    if (exame.Resultados == null)
-        //    {
-        //        return "O campo resultado não pode ser nulo";
-        //    }
-        //    if (exame.StatusSistema == null)
-        //    {
-        //        return "O campo Status Sistema não pode ser nulo";
-        //    }
-        //    return null;
-        //}
-
-
     }
 }
