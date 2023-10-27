@@ -62,6 +62,8 @@ namespace LabMedicineAPI.Service.Usuario
         {
             UsuarioModel model = _repository.GetById(id);
             model = _mapper.Map(updateUsuarioDTO, model);
+            if (updateUsuarioDTO.StatusSistema == false)
+                DesativarRecursosRelacionados(model);
             _repository.Update(model);
             UsuarioModel usuarioUpdated = _repository.GetById(id);
             UsuarioGetDTO usuarioGet = _mapper.Map<UsuarioGetDTO>(usuarioUpdated);
@@ -91,6 +93,14 @@ namespace LabMedicineAPI.Service.Usuario
 
             
             return null;
+        }
+        private void DesativarRecursosRelacionados(UsuarioModel usuario)
+        {
+            if(usuario.Consultas != null)
+                foreach(var consulta in usuario.Consultas)
+                {
+                    consulta.StatusSistema = false;
+                }
         }
 
     }
