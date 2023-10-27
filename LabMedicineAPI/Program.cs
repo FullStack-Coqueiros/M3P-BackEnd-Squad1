@@ -56,8 +56,8 @@ builder.Services.AddSwaggerGen(c =>
                                             });
 });
 
-builder.Services.AddTransient<IAuthServices, AuthServices>();
-builder.Services.AddTransient<IUserServices, UserServices>();
+
+builder.Services.AddTransient<ILoginService, LoginService>();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<LabMedicineDbContext>(o => o.UseSqlServer(connectionString));
@@ -70,9 +70,7 @@ builder.Services.AddControllers(options =>
     options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
 });
 
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped<IAuthServices, AuthServices>();
-builder.Services.AddScoped<IUserServices, UserServices>();
+
 
 builder.Services.AddRouting(options =>
 {
@@ -80,6 +78,8 @@ builder.Services.AddRouting(options =>
     options.LowercaseQueryStrings = true;
 });
 
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IPacienteServices, PacienteServices>();
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
 builder.Services.AddScoped<IMedicamentoServices, MedicamentoServices>();
