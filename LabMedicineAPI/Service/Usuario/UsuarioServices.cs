@@ -71,10 +71,10 @@ namespace LabMedicineAPI.Service.Usuario
          
         }
 
-        public bool DeleteUsuario(int id)
+        public bool DeleteUsuario(int id, int userId)
         {
             var usuario = _repository.GetById(id);
-            if(usuario != null)
+            if(usuario != null && usuario.Id != userId)
             {
                 var impedimentos = VerificarImpedimentosDelecao(usuario);
                 if (string.IsNullOrEmpty(impedimentos))

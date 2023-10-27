@@ -159,13 +159,20 @@ namespace LabMedicineAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public IActionResult Update([FromRoute] int id, [FromBody] UsuarioUpdateDTO usuarioUpdate)
+        public IActionResult Update([FromRoute] int id,int userId, [FromBody] UsuarioUpdateDTO usuarioUpdate)
         {
             try
             {
                 UsuarioGetDTO usuario = _services.GetById(id);
                 if (usuario == null)
                     return BadRequest("Requisição com dados inválidos");
+                if(userId == id)
+                {
+                    if (usuarioUpdate.StatusSistema == false)
+                    {
+                        return BadRequest("Você não pode definir seu próprio status como inativo.");
+                    }
+                }
                 UsuarioGetDTO usuarioGet = _services.UsuarioUpdateDTO(id, usuarioUpdate);
                 return Ok(usuarioGet);
             }
@@ -182,12 +189,12 @@ namespace LabMedicineAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, int userId)
         {
             try
             {
-                var where = _services.GetById(id);
-                if (where == null)
+                var usuario = _services.GetById(id);
+                if (usuario == null)
                     return BadRequest("Dados inválidos fornecidos para a exclusão do usuário");
 
                 var result = _services.DeleteUsuario(id);

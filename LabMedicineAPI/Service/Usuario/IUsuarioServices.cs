@@ -10,6 +10,6 @@ namespace LabMedicineAPI.Service.Usuario
         UsuarioGetDTO GetById(int id);
         UsuarioGetDTO CreateUsuario(UsuarioCreateDTO usuario);
         UsuarioGetDTO UsuarioUpdateDTO(int id, UsuarioUpdateDTO updateUsuarioDTO);
-        bool DeleteUsuario(int id);
+        bool DeleteUsuario(int id, int userId);
     }
 }
