@@ -20,7 +20,7 @@ namespace LabMedicineAPI.Controllers
             _consultaServices = consultaServices;
         }
 
-        [Authorize(Roles = "Administrador, Médico")]
+        [Authorize(Roles = "Administrador, Medico")]
         [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -44,7 +44,7 @@ namespace LabMedicineAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrador, Médico")]
+        [Authorize(Roles = "Administrador, Medico")]
         [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -69,7 +69,7 @@ namespace LabMedicineAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrador, Médico")]
+        [Authorize(Roles = "Administrador, Medico")]
         [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -94,7 +94,7 @@ namespace LabMedicineAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrador, Médico")]
+        [Authorize(Roles = "Administrador, Medico")]
         [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
