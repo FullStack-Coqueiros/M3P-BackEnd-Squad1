@@ -1,6 +1,6 @@
 ﻿using LabMedicineAPI.DTOs.Login;
 
-namespace LabMedicineAPI.Interfaces
+namespace LabMedicineAPI.Service.Auth
 {
     public interface ILoginService
     {

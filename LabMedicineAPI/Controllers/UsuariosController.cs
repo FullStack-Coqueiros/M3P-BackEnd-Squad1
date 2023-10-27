@@ -1,7 +1,6 @@
 ﻿using LabMedicineAPI.DTOs.Login;
 using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.DTOs.Usuario;
-using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Service.Auth;
 using LabMedicineAPI.Service.Usuario;
 using Microsoft.AspNetCore.Authorization;

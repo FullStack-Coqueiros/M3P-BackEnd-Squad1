@@ -1,5 +1,4 @@
 using LabMedicineAPI.Infra;
-using LabMedicineAPI.Interfaces;
 using LabMedicineAPI.Repositories;
 using LabMedicineAPI.Service.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
