@@ -3,8 +3,10 @@ using LabMedicineAPI.DTOs.Consulta;
 using LabMedicineAPI.DTOs.Exame;
 using LabMedicineAPI.Model;
 using LabMedicineAPI.Service.Exame;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Net;
 
 namespace LabMedicineAPI.Controllers
@@ -19,6 +21,9 @@ namespace LabMedicineAPI.Controllers
         {
             _examesServices = examesServices;
         }
+
+        [Authorize(Roles = "Administrador, Medico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -40,6 +45,9 @@ namespace LabMedicineAPI.Controllers
                 return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Ocorreu um erro interno no servidor");
             }
         }
+
+        [Authorize(Roles = "Administrador, Medico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -49,7 +57,7 @@ namespace LabMedicineAPI.Controllers
             try
             {
                 var exame = _examesServices.ExameCreateDTO(exameCreateDTO);
-               
+
 
                 if (exame == null)
                 {
@@ -63,6 +71,9 @@ namespace LabMedicineAPI.Controllers
                 return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Erro interno no servidor");
             }
         }
+
+        [Authorize(Roles = "Administrador, Medico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -86,28 +97,30 @@ namespace LabMedicineAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrador, Medico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpDelete("{id}")]
-            [ProducesResponseType(StatusCodes.Status202Accepted)]
-            [ProducesResponseType(StatusCodes.Status400BadRequest)]
-            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-            public IActionResult Delete(int id)
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Delete(int id)
+        {
+            try
             {
-                try
-                {
-                    var result = _examesServices.DeleteExame(id);
+                var result = _examesServices.DeleteExame(id);
 
-                    if (result == null)
-                    {
-                        return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Dados inválidos fornecidos para a exclusão do exame");
-                    }
-
-                    return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Exame excluído com sucesso");
-                }
-                catch (Exception)
+                if (result == null)
                 {
-                    return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Ocorreu um erro interno no servidor");
+                    return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Dados inválidos fornecidos para a exclusão do exame");
                 }
 
+                return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Exame excluído com sucesso");
             }
+            catch (Exception)
+            {
+                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Ocorreu um erro interno no servidor");
+            }
+
         }
     }
+}

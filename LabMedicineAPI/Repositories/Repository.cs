@@ -1,7 +1,7 @@
 ﻿using LabMedicineAPI.Infra;
 using LabMedicineAPI.Model;
 using Microsoft.EntityFrameworkCore;
-
+using System.Linq.Expressions;
 
 namespace LabMedicineAPI.Repositories
 {
@@ -67,6 +67,19 @@ namespace LabMedicineAPI.Repositories
             _context.SaveChanges();
             return true;
         }
-    }
 
+        public TEntity GetByUser(Expression<Func<TEntity, bool>> user)
+        {
+            try
+            {
+                return _context.Set<TEntity>().FirstOrDefault(user);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Email e ou senha incorretos", ex);
+            }
+        }
+
+    }
 }

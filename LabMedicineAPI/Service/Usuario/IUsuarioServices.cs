@@ -5,10 +5,11 @@ namespace LabMedicineAPI.Service.Usuario
 {
     public interface IUsuarioServices
     {
-        bool DeleteUsuario(int id);
+        UsuarioGetDTO GetByEmail(string email);
         IEnumerable<UsuarioGetDTO> Get();
         UsuarioGetDTO GetById(int id);
-        UsuarioGetDTO UsuarioCreateDTO(UsuarioCreateDTO usuarioCreateDTO);
+        UsuarioGetDTO CreateUsuario(UsuarioCreateDTO usuario);
         UsuarioGetDTO UsuarioUpdateDTO(int id, UsuarioUpdateDTO updateUsuarioDTO);
+        bool DeleteUsuario(int id, int userId);
     }
 }

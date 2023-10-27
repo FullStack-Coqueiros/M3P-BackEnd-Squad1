@@ -1,7 +1,9 @@
 ﻿using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.Service.Paciente;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Net;
 
@@ -18,6 +20,8 @@ namespace LabMedicineAPI.Controllers
             _services = services;
         }
 
+        [Authorize(Roles = "Administrador, Medico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -37,9 +41,10 @@ namespace LabMedicineAPI.Controllers
             {
                 return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Erro interno no servidor");
             }
-
-
         }
+
+        [Authorize(Roles = "Administrador, Medico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -61,6 +66,9 @@ namespace LabMedicineAPI.Controllers
 
             }
         }
+
+        [Authorize(Roles = "Administrador, Medico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -91,8 +99,8 @@ namespace LabMedicineAPI.Controllers
             }
         }
 
-
-
+        [Authorize(Roles = "Administrador, Medico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -113,6 +121,9 @@ namespace LabMedicineAPI.Controllers
 
             }
         }
+
+        [Authorize(Roles = "Administrador, Medico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -135,7 +146,6 @@ namespace LabMedicineAPI.Controllers
                 return StatusCode(HttpStatusCode.InternalServerError.GetHashCode());
             }
         }
-
 
     }
 

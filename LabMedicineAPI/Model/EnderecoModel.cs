@@ -30,7 +30,6 @@ namespace LabMedicineAPI.Model
         public string Bairro { get; set; }
         [Column(TypeName = "VARCHAR"), MaxLength(255)]
         public string PontoReferencia { get; set; }
-
         [Required]
         [ForeignKey("PacienteModel")]
         public int PacienteId { get; set; }

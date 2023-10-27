@@ -27,5 +27,7 @@ namespace LabMedicineAPI.DTOs.Usuario
         [Required(ErrorMessage = "O campo 'Tipo' é obrigatório.")]
         public TipoEnum Tipo { get; set; }
 
+        public bool StatusSistema { get; set; } = true;
+
     }
 }

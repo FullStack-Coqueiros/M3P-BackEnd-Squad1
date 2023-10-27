@@ -1,4 +1,6 @@
-﻿namespace LabMedicineAPI.Repositories
+﻿using System.Linq.Expressions;
+
+namespace LabMedicineAPI.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
@@ -7,6 +9,7 @@
         TEntity Create(TEntity entity);
         TEntity Update(TEntity entity);
         bool Delete(int id);
+        TEntity GetByUser(Expression<Func<TEntity, bool>> criteria);
         TEntity GetByPacienteId(int pacienteId);
     }
 

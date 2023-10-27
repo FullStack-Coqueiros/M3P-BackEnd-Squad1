@@ -4,6 +4,7 @@ using LabMedicineAPI.Infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabMedicineAPI.Migrations
 {
     [DbContext(typeof(LabMedicineDbContext))]
-    partial class LabMedicineDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231017165725_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,45 +120,38 @@ namespace LabMedicineAPI.Migrations
 
             modelBuilder.Entity("LabMedicineAPI.Model.EnderecoModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EnderecoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnderecoId"));
 
                     b.Property<string>("Bairro")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CEP")
                         .IsRequired()
-                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
-                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Complemento")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Estado")
                         .IsRequired()
-                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Logradouro")
                         .IsRequired()
-                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Numero")
                         .IsRequired()
-                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<int>("PacienteId")
@@ -163,13 +159,16 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("PontoReferencia")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("PacienteId")
-                        .IsUnique();
+                    b.HasKey("EnderecoId");
+
+                    b.HasIndex("PacienteId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Endereco");
                 });
@@ -214,7 +213,7 @@ namespace LabMedicineAPI.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<string>("Url")
+                    b.Property<string>("URL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -339,28 +338,20 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Alergias")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR");
-
-                    b.Property<string>("ContatoEmergencia")
-                        .IsRequired()
-                        .HasMaxLength(255)
+                        .HasMaxLength(14)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Convenio")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CuidadosEspecificos")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
@@ -375,13 +366,7 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Genero")
                         .IsRequired()
-                        .HasMaxLength(100)
                         .HasColumnType("VARCHAR");
-
-                    b.Property<string>("Naturalidade")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("NomeCompleto")
                         .IsRequired()
@@ -390,8 +375,7 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("NumeroConvenio")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RgOrgaoExpedidor")
                         .IsRequired()
@@ -402,10 +386,8 @@ namespace LabMedicineAPI.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR");
 
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR");
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ValidadeConvenio")
                         .HasColumnType("datetime2");
@@ -427,7 +409,7 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasMaxLength(255)
+                        .HasMaxLength(14)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Email")
@@ -437,7 +419,6 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Genero")
                         .IsRequired()
-                        .HasMaxLength(100)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("NomeCompleto")
@@ -447,7 +428,6 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("StatusSistema")
@@ -456,12 +436,11 @@ namespace LabMedicineAPI.Migrations
 
                     b.Property<string>("Telefone")
                         .IsRequired()
-                        .HasMaxLength(255)
+                        .HasMaxLength(13)
                         .HasColumnType("VARCHAR");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
@@ -480,7 +459,7 @@ namespace LabMedicineAPI.Migrations
                     b.HasOne("LabMedicineAPI.Model.UsuarioModel", "Usuario")
                         .WithMany("Consultas")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Paciente");
@@ -510,8 +489,14 @@ namespace LabMedicineAPI.Migrations
             modelBuilder.Entity("LabMedicineAPI.Model.EnderecoModel", b =>
                 {
                     b.HasOne("LabMedicineAPI.Model.PacienteModel", "Paciente")
-                        .WithOne("Endereco")
-                        .HasForeignKey("LabMedicineAPI.Model.EnderecoModel", "PacienteId")
+                        .WithMany("Enderecos")
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LabMedicineAPI.Model.UsuarioModel", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -525,7 +510,7 @@ namespace LabMedicineAPI.Migrations
                     b.HasOne("LabMedicineAPI.Model.PacienteModel", "Paciente")
                         .WithMany("Exames")
                         .HasForeignKey("PacienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("LabMedicineAPI.Model.UsuarioModel", "Usuario")
@@ -594,8 +579,7 @@ namespace LabMedicineAPI.Migrations
 
                     b.Navigation("Dietas");
 
-                    b.Navigation("Endereco")
-                        .IsRequired();
+                    b.Navigation("Enderecos");
 
                     b.Navigation("Exames");
 
