@@ -188,21 +188,36 @@ namespace LabMedicineAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-
         public IActionResult Delete(int id, int userId)
         {
             try
             {
                 var usuario = _services.GetById(id);
-                if (usuario == null)
-                    return BadRequest("Dados inválidos fornecidos para a exclusão do usuário");
 
-                var result = _services.DeleteUsuario(id);
-                return StatusCode(HttpStatusCode.Accepted.GetHashCode(), "Usuario excluído dos registros com sucesso");
+                if (usuario == null)
+                {
+                    return BadRequest("Dados inválidos fornecidos para a exclusão do usuário");
+                }
+
+                if (userId == id)
+                {
+                    return BadRequest("Você não pode excluir a si próprio.");
+                }
+
+                var result = _services.DeleteUsuario(id, userId);
+
+                if (result)
+                {
+                    return StatusCode((int)HttpStatusCode.Accepted, "Usuário excluído dos registros com sucesso");
+                }
+                else
+                {
+                    return BadRequest("Não foi possível excluir o usuário.");
+                }
             }
             catch
             {
-                return StatusCode(HttpStatusCode.InternalServerError.GetHashCode(), "Ocorreu um erro interno no servidor");
+                return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro interno no servidor");
             }
         }
 

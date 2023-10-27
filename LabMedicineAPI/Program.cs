@@ -27,7 +27,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Auth", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "LabMedicine", Version = "v1" });
     //Adição do header de autenticação no Swagger 
     c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
     {
