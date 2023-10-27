@@ -69,7 +69,13 @@ builder.Services.AddControllers(options =>
     options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
 });
 
-
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("StatusSistemaAtivo", policy =>
+    {
+        policy.RequireClaim("StatusSistema", "true");
+    });
+});
 
 builder.Services.AddRouting(options =>
 {

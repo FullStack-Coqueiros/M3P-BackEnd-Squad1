@@ -27,6 +27,7 @@ namespace LabMedicineAPI.Controllers
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult Login([FromBody] LoginDTO login)
         {
@@ -36,6 +37,9 @@ namespace LabMedicineAPI.Controllers
                 {
                     return StatusCode(HttpStatusCode.BadRequest.GetHashCode(), "Não foi possível logar.");
                 }
+                UsuarioGetDTO usuario = _services.GetByEmail(login.Email);
+                if (usuario.StatusSistema == false)
+                    return StatusCode(HttpStatusCode.Unauthorized.GetHashCode(), "Usuário com StatusSistema desativado no sistema.");
                 login.Logado = true;
 
                 string tokenJwt = _loginServices.GeraTokenJWT(login);
@@ -52,7 +56,7 @@ namespace LabMedicineAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        IActionResult ResetSenha([FromBody] ResetSenhaDTO resetSenhaDTO)
+        public IActionResult ResetSenha([FromBody] ResetSenhaDTO resetSenhaDTO)
         {
             try
             {

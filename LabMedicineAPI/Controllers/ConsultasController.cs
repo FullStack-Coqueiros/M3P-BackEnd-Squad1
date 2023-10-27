@@ -1,8 +1,10 @@
 ﻿using LabMedicineAPI.DTOs;
 using LabMedicineAPI.DTOs.Consulta;
 using LabMedicineAPI.Service.Consulta;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Net;
 
 namespace LabMedicineAPI.Controllers
@@ -18,6 +20,8 @@ namespace LabMedicineAPI.Controllers
             _consultaServices = consultaServices;
         }
 
+        [Authorize(Roles = "Administrador, Médico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -40,6 +44,8 @@ namespace LabMedicineAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrador, Médico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -63,6 +69,8 @@ namespace LabMedicineAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrador, Médico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -86,6 +94,8 @@ namespace LabMedicineAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrador, Médico")]
+        [Authorize(Policy = "StatusSistemaAtivo")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
