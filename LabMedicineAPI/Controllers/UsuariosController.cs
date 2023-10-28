@@ -1,4 +1,5 @@
-﻿using LabMedicineAPI.DTOs.Login;
+﻿using AutoMapper;
+using LabMedicineAPI.DTOs.Login;
 using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.DTOs.Usuario;
 using LabMedicineAPI.Service.Auth;
@@ -43,6 +44,7 @@ namespace LabMedicineAPI.Controllers
                 login.Logado = true;
 
                 string tokenJwt = _loginServices.GeraTokenJWT(login);
+               
                 return StatusCode(HttpStatusCode.OK.GetHashCode(), tokenJwt);
             }
             catch (Exception)
