@@ -1,4 +1,5 @@
 # M3P-BackEnd-Squad1
+
 #LABMedical
 
 # Sobre o projeto
@@ -10,3 +11,12 @@ Os alunos dessa turma foram divididos em duas squads, sendo que cada squad dever
 Conforme documentação fornecida, a organização LABMedicine LTDA, empresa líder no segmento tecnológico de gestão hospitalar, foi selecionada em edital e recebeu um aporte financeiro para aprimorar seu principal produto, o LABMedical. A expectativa é que esse novo produto possa ser personalizado e comercializado para postos de saúde e clínicas particulares em todo o país.
 
 A aplicação engloba o desenvolvimento de BACK-END (WebAPI) e FRONT-END conforme requisitos especificados, regra de negócio e tecnologias listadas abaixo.
+
+## 1. Tecnologias utilizadas
+
+### Back end
+- C#
+- Banco de dados: SQL Server
+### Front end
+- HTML / CSS / Javascript
+- React
