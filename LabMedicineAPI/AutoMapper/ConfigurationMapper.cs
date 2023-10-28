@@ -26,7 +26,9 @@ namespace LabMedicineAPI.AutoMapper
             CreateMap<UsuarioCreateDTO, UsuarioModel>().ReverseMap();
             CreateMap<UsuarioGetDTO, UsuarioModel>().ReverseMap();
             CreateMap<UsuarioModel,UsuarioUpdateDTO>().ReverseMap();
-            CreateMap<LoginResponseDTO, UsuarioGetDTO>().ForMember(dest => dest.Senha, opt => opt.Ignore()).ReverseMap();
+            CreateMap<UsuarioGetDTO, UsuarioLoginResponseDTO>().ReverseMap();
+               
+            //CreateMap<UsuarioGetDTO,LoginResponseDTO >().ReverseMap();
 
             // ConfigurationMapper Paciente
 
