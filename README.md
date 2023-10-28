@@ -20,3 +20,21 @@ A aplicação engloba o desenvolvimento de BACK-END (WebAPI) e FRONT-END conform
 ### Front end
 - HTML / CSS / Javascript
 - React
+
+## 2. Regras de negócio
+
+### Autenticação dos usuários: 
+Quando um usuário realizar a autenticação, o sistema deverá entender o cargo do usuário e permitir alguns funcionalidades conforme as permissões vinculadas. Nessa aplicação teremos cadastrados os seguintes usuários:
+- Administrador: poderá cadastrar, editar, listar e deletar qualquer usuário, bem como qualquer uma das funcionalidades de consultas, exames, medicamentos, dietas e exercícios. Só não poderá deletar a si mesmo. Poderá também editar as configurações da aplicação e visualizar os logs.
+- Médico: poderá cadastrar, editar, listar e deletar qualquer paciente, exame, consulta, medicação, dieta e exercício.
+- Enfermeiro: poderá cadastrar, editar, listar e deletar qualquer paciente, medicação, dieta e exercício.
+- Paciente: não possuirá acesso ao sistema.
+
+### Deleção:
+Um recurso não poderá ser deletado caso tenha algo vinculado.
+
+### Inativação:
+Todos os usuários e recursos devem possuir uma flag (ativo/inativo) para que possa ser inativado caso seja necessário. Se um usuário for inativado, todos os recursos vinculados a ele também serão inativados.
+
+### Registro:
+Todas as operações realizadas no sistema deverão gerar um log que poderá ser visualizado apenas pelo Administrador do sistema.
