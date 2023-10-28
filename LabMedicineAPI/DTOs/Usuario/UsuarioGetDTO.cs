@@ -15,7 +15,6 @@ namespace LabMedicineAPI.DTOs.Usuario
         public string Cpf { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
-        public string Senha { get; set; }
         public string Tipo { get; set; }
         public bool StatusSistema { get; set; } = true;
 
