@@ -16,8 +16,6 @@ namespace LabMedicineAPI.Base
         [Column(TypeName = "VARCHAR"), Required, MaxLength(100)]
         public string Genero { get; set; }
         [Column(TypeName = "VARCHAR"), Required, MaxLength(255)]
-        public string Rg { get; set; }
-        [Column(TypeName = "VARCHAR"), Required, MaxLength(255)]
         public string CPF { get; set; }
         [Column(TypeName = "VARCHAR"), Required, MaxLength(100)]
         public string Email { get; set; }

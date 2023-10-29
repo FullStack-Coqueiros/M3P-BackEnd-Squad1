@@ -13,7 +13,7 @@ namespace LabMedicineAPI.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; }
+        public int Id { get; set; }
         [Column(TypeName = "VARCHAR"),MaxLength(255), Required]
         public string CEP { get; set; }
         [Column(TypeName = "VARCHAR"), MaxLength(255), Required]
