@@ -47,10 +47,13 @@ namespace LabMedicineAPI.Controllers
                 login.Logado = true;
 
                 string tokenJwt = _loginServices.GeraTokenJWT(login);
-              
-                UsuarioLoginResponseDTO response = _mapper.Map<UsuarioGetDTO, UsuarioLoginResponseDTO>(usuario);
-                response.StatusSistema = usuario.StatusSistema;
-                response.Token = tokenJwt;
+                
+                UsuarioLoginResponseDTO usuarioDTO = _mapper.Map<UsuarioGetDTO, UsuarioLoginResponseDTO>(usuario);
+                var response = new LoginResponseDTO
+                {
+                    UsuarioGet = usuarioDTO,
+                    Token = tokenJwt
+                };
 
                 return StatusCode(HttpStatusCode.OK.GetHashCode(),response);
             }
