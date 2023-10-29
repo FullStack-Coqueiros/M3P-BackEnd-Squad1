@@ -1,5 +1,6 @@
 ﻿using LabMedicineAPI.DTOs.Login;
 using LabMedicineAPI.DTOs.Usuario;
+using LabMedicineAPI.Model;
 using LabMedicineAPI.Service.Usuario;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -39,6 +40,7 @@ namespace LabMedicineAPI.Service.Auth
 
             return true;
         }
+
         public string GeraTokenJWT(LoginDTO login)
         {
             UsuarioGetDTO usuario = _usuarios.GetByEmail(login.Email);

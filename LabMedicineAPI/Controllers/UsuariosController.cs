@@ -1,4 +1,5 @@
-﻿using LabMedicineAPI.DTOs.Login;
+﻿using AutoMapper;
+using LabMedicineAPI.DTOs.Login;
 using LabMedicineAPI.DTOs.Paciente;
 using LabMedicineAPI.DTOs.Usuario;
 using LabMedicineAPI.Service.Auth;
@@ -16,10 +17,13 @@ namespace LabMedicineAPI.Controllers
     {
         private readonly IUsuarioServices _services;
         private readonly ILoginService _loginServices;
-        public UsuariosController(IUsuarioServices services, ILoginService login)
+        private readonly IMapper _mapper;
+
+        public UsuariosController(IUsuarioServices services, ILoginService login, IMapper mapper)
         {
             _services = services;
             _loginServices = login;
+            _mapper = mapper;
         }
 
 
@@ -43,7 +47,15 @@ namespace LabMedicineAPI.Controllers
                 login.Logado = true;
 
                 string tokenJwt = _loginServices.GeraTokenJWT(login);
-                return StatusCode(HttpStatusCode.OK.GetHashCode(), tokenJwt);
+                
+                UsuarioLoginResponseDTO usuarioDTO = _mapper.Map<UsuarioGetDTO, UsuarioLoginResponseDTO>(usuario);
+                var response = new LoginResponseDTO
+                {
+                    UsuarioGet = usuarioDTO,
+                    Token = tokenJwt
+                };
+
+                return StatusCode(HttpStatusCode.OK.GetHashCode(),response);
             }
             catch (Exception)
             {
