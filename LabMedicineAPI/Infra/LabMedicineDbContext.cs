@@ -20,10 +20,7 @@ namespace LabMedicineAPI.Infra
         public LabMedicineDbContext(DbContextOptions<LabMedicineDbContext> options) : base(options)
         {
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.EnableSensitiveDataLogging();
-        }
+      
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
