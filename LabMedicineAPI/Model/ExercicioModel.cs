@@ -17,7 +17,7 @@ namespace LabMedicineAPI.Model
         public string NomeSerieExerc { get; set; }
 
         [Required]
-        public TipoExercicioEnum TipoExerc { get; set; }
+        public string TipoExerc { get; set; }
 
         [Required]
         public decimal QuantidadeSemana { get; set; }

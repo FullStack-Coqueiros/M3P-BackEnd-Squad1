@@ -20,6 +20,7 @@ namespace LabMedicineAPI.Infra
         public LabMedicineDbContext(DbContextOptions<LabMedicineDbContext> options) : base(options)
         {
         }
+      
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -58,8 +59,58 @@ namespace LabMedicineAPI.Infra
 
             modelBuilder.Entity<EnderecoModel>()
                 .HasKey(p => p.Id);
+            modelBuilder.Entity<UsuarioModel>().HasData(
 
-
+               new UsuarioModel
+               {
+                   Id = 1,
+                   NomeCompleto = "4Devs",
+                   Genero = "Outro",
+                   CPF = "09465328956",
+                   Email = "admin1@admin.com",
+                   StatusSistema = true,
+                   Telefone = "48998000054",
+                   Senha = "12345678",
+                   Tipo = "Administrador"
+               },
+               new UsuarioModel
+               {
+                   Id = 2,
+                   NomeCompleto = "Rafael Silva",
+                   Genero = "Masculino",
+                   CPF = "45662548652",
+                   Email = "rafael@gmail.com",
+                   StatusSistema = true,
+                   Telefone = "48995321544",
+                   Senha = "12345678",
+                   Tipo = "Médico"
+               },
+               new UsuarioModel
+               {
+                   Id = 3,
+                   NomeCompleto = "Alessandra",
+                   Genero = "Feminino",
+                   CPF = "06532589965",
+                   Email = "alessandra@gmail.com",
+                   StatusSistema = true,
+                   Telefone = "48995874233",
+                   Senha = "12345678",
+                   Tipo = "Enfermeiro"
+               },
+                new UsuarioModel
+                {
+                    Id = 4,
+                    NomeCompleto = "William",
+                    Genero = "Masculino",
+                    CPF = "06523144785",
+                    Email = "william84@gmail.com",
+                    StatusSistema = true,
+                    Telefone = "48996524233",
+                    Senha = "12345678",
+                    Tipo = "Enfermeiro"
+                }
+               );
+           
             base.OnModelCreating(modelBuilder);
 
         }

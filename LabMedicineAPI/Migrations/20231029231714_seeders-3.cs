@@ -5,15 +5,11 @@
 namespace LabMedicineAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class EnderecoDelecaoemCascata : Migration
+    public partial class seeders3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Endereco_Paciente_PacienteId",
-                table: "Endereco");
-
             migrationBuilder.AlterColumn<string>(
                 name: "StatusSistema",
                 table: "Usuario",
@@ -29,23 +25,11 @@ namespace LabMedicineAPI.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "VARCHAR");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Endereco_Paciente_PacienteId",
-                table: "Endereco",
-                column: "PacienteId",
-                principalTable: "Paciente",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Endereco_Paciente_PacienteId",
-                table: "Endereco");
-
             migrationBuilder.AlterColumn<string>(
                 name: "StatusSistema",
                 table: "Usuario",
@@ -61,14 +45,6 @@ namespace LabMedicineAPI.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "VARCHAR(1)");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Endereco_Paciente_PacienteId",
-                table: "Endereco",
-                column: "PacienteId",
-                principalTable: "Paciente",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
     }
 }

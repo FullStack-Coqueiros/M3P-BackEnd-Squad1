@@ -20,7 +20,7 @@ namespace LabMedicineAPI.Model
         [Required, MaxLength(20)]
         public string RgOrgaoExpedidor { get; set; }
         [Required]
-        public EstadoCivilEnum EstadoCivil { get; set; }
+        public string EstadoCivil { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required, MaxLength(255)]
         public string Telefone { get; set; }

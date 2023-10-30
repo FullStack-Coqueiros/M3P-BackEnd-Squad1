@@ -16,13 +16,13 @@ namespace LabMedicineAPI.Model
         public string NomeMedicamento { get; set; }
 
         [Required]
-        public TipoMedicamentoEnum TipoMedicamento { get; set; }
+        public string TipoMedicamento { get; set; }
 
         [Required]
         public decimal Quantidade { get; set; }
 
         [Required]
-        public UnidadeEnum Unidade { get; set; }
+        public string Unidade { get; set; }
 
         [Column(TypeName = "VARCHAR"), Required, MaxLength(1000), MinLength(10)]
         public string Observacoes { get; set; }

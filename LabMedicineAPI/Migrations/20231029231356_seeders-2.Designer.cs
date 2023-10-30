@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabMedicineAPI.Migrations
 {
     [DbContext(typeof(LabMedicineDbContext))]
-    [Migration("20231026135827_AjusteDeleteExame")]
-    partial class AjusteDeleteExame
+    [Migration("20231029231356_seeders-2")]
+    partial class seeders2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -103,8 +103,9 @@ namespace LabMedicineAPI.Migrations
                     b.Property<bool>("StatusSistema")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TipoDieta")
-                        .HasColumnType("int");
+                    b.Property<string>("TipoDieta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
@@ -266,8 +267,9 @@ namespace LabMedicineAPI.Migrations
                     b.Property<bool>("StatusSistema")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TipoExerc")
-                        .HasColumnType("int");
+                    b.Property<string>("TipoExerc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
@@ -314,11 +316,13 @@ namespace LabMedicineAPI.Migrations
                     b.Property<bool>("StatusSistema")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TipoMedicamento")
-                        .HasColumnType("int");
+                    b.Property<string>("TipoMedicamento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Unidade")
-                        .HasColumnType("int");
+                    b.Property<string>("Unidade")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
@@ -373,8 +377,9 @@ namespace LabMedicineAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<int>("EstadoCivil")
-                        .HasColumnType("int");
+                    b.Property<string>("EstadoCivil")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Genero")
                         .IsRequired()
@@ -468,6 +473,56 @@ namespace LabMedicineAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CPF = "09465328956",
+                            Email = "admin1@admin.com",
+                            Genero = "Outro",
+                            NomeCompleto = "4Devs",
+                            Senha = "12345678",
+                            StatusSistema = "1",
+                            Telefone = "48998000054",
+                            Tipo = "Administrador"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CPF = "45662548652",
+                            Email = "rafael@gmail.com",
+                            Genero = "Masculino",
+                            NomeCompleto = "Rafael Silva",
+                            Senha = "12345678",
+                            StatusSistema = "1",
+                            Telefone = "48995321544",
+                            Tipo = "Médico"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CPF = "06532589965",
+                            Email = "alessandra@gmail.com",
+                            Genero = "Feminino",
+                            NomeCompleto = "Alessandra",
+                            Senha = "12345678",
+                            StatusSistema = "1",
+                            Telefone = "48995874233",
+                            Tipo = "Enfermeiro"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CPF = "06523144785",
+                            Email = "william84@gmail.com",
+                            Genero = "Masculino",
+                            NomeCompleto = "William",
+                            Senha = "12345678",
+                            StatusSistema = "1",
+                            Telefone = "48996524233",
+                            Tipo = "Enfermeiro"
+                        });
                 });
 
             modelBuilder.Entity("LabMedicineAPI.Model.ConsultaModel", b =>
@@ -494,7 +549,7 @@ namespace LabMedicineAPI.Migrations
                     b.HasOne("LabMedicineAPI.Model.PacienteModel", "Paciente")
                         .WithMany("Dietas")
                         .HasForeignKey("PacienteId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LabMedicineAPI.Model.UsuarioModel", "Usuario")
@@ -562,7 +617,7 @@ namespace LabMedicineAPI.Migrations
                     b.HasOne("LabMedicineAPI.Model.PacienteModel", "Paciente")
                         .WithMany("Medicamentos")
                         .HasForeignKey("PacienteId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LabMedicineAPI.Model.UsuarioModel", "Usuario")
