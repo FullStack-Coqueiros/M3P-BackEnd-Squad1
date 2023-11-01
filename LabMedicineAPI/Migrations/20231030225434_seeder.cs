@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LabMedicineAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class seeders2 : Migration
+    public partial class seeder : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

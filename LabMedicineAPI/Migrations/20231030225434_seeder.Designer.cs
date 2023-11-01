@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabMedicineAPI.Migrations
 {
     [DbContext(typeof(LabMedicineDbContext))]
-    [Migration("20231029231356_seeders-2")]
-    partial class seeders2
+    [Migration("20231030225434_seeder")]
+    partial class seeder
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

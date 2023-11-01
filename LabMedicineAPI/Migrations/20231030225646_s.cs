@@ -5,7 +5,7 @@
 namespace LabMedicineAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class seeders3 : Migration
+    public partial class s : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

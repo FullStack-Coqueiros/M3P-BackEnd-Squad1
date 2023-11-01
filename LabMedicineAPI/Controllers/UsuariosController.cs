@@ -44,7 +44,7 @@ namespace LabMedicineAPI.Controllers
                 UsuarioGetDTO usuario = _services.GetByEmail(login.Email);
                 if (usuario.StatusSistema == false)
                     return StatusCode(HttpStatusCode.Unauthorized.GetHashCode(), "Usuário com StatusSistema desativado no sistema.");
-                login.Logado = true;
+                
 
                 string tokenJwt = _loginServices.GeraTokenJWT(login);
                 
